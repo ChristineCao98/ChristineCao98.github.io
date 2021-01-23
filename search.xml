@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Dynamic Programming</title>
+    <url>/2021/01/22/first-blog/</url>
+    <content><![CDATA[<h1 id="Dynamic-Programming"><a href="#Dynamic-Programming" class="headerlink" title="Dynamic Programming"></a>Dynamic Programming</h1><ul>
+<li>想满足最优子结，子问题之间必须互相独立</li>
+<li>状态转移方程</li>
+</ul>
+<ol>
+<li>明确base case  </li>
+<li>明确「状态」</li>
+<li>明确「选择」</li>
+<li>定义 dp 数组/函数的含义<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 初始化 base case</span><br><span class="line">dp[0][0][...] &#x3D; base</span><br><span class="line"># 进行状态转移</span><br><span class="line">for 状态1 in 状态1的所有取值：</span><br><span class="line">    for 状态2 in 状态2的所有取值：</span><br><span class="line">        for ...</span><br><span class="line">            dp[状态1][状态2][...] &#x3D; 求最值(选择1，选择2...)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>遍历方向</li>
+</ul>
+<ol>
+<li>遍历的过程中，所需的状态必须是已经计算出来的。</li>
+<li>遍历的终点必须是存储结果的那个位置。</li>
+</ol>
+<h2 id="子序列模板"><a href="#子序列模板" class="headerlink" title="子序列模板"></a>子序列模板</h2><ol>
+<li>第一种思路模板是一个一维的 dp 数组：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int n &#x3D; array.length;</span><br><span class="line">int[] dp &#x3D; new int[n];</span><br><span class="line"></span><br><span class="line">for (int i &#x3D; 1; i &lt; n; i++) &#123;</span><br><span class="line">    for (int j &#x3D; 0; j &lt; i; j++) &#123;</span><br><span class="line">        dp[i] &#x3D; 最值(dp[i], dp[j] + ...)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>第二种思路模板是一个二维的 dp 数组：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int n &#x3D; arr.length;</span><br><span class="line">int[][] dp &#x3D; new dp[n][n];</span><br><span class="line"></span><br><span class="line">for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">    for (int j &#x3D; 1; j &lt; n; j++) &#123;</span><br><span class="line">        if (arr[i] &#x3D;&#x3D; arr[j]) </span><br><span class="line">            dp[i][j] &#x3D; dp[i][j] + ...</span><br><span class="line">        else</span><br><span class="line">            dp[i][j] &#x3D; 最值(...)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+这种思路运用相对更多一些，尤其是涉及两个字符串/数组的子序列。本思路中 dp 数组含义又分为「只涉及一个字符串」和「涉及两个字符串」两种情况。<blockquote>
+<ol>
+<li>涉及两个字符串/数组时（比如最长公共子序列），dp 数组的含义如下:<br>在子数组arr1[0..i]和子数组arr2[0..j]中，我们要求的子序列（最长公共子序列）长度为dp[i][j]。</li>
+<li>只涉及一个字符串/数组时，dp 数组的含义如下:<br>在子数组array[i..j]中，我们要求的子序列的长度为dp[i][j]。<br>主要还是正确定义 dp 数组的含义，遇到子序列问题，首先想到两种动态规划思路，然后根据实际问题看看哪种思路容易找到状态转移关系。<br>另外，找到状态转移和 base case 之后，一定要<strong>观察 DP table，看看怎么遍历</strong>才能保证通过已计算出来的结果解决新的问题</li>
+</ol>
+</blockquote>
+<h2 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h2>贪心算法可以认为是动态规划算法的一个特例，相比动态规划，使用贪心算法需要满足更多的条件（贪心选择性质），但是效率比动态规划要高。<br>贪心选择性质：每一步都做出一个局部最优的选择，最终的结果就是全局最优。</li>
+</ol>
+<ul>
+<li>区间调度算法<blockquote>
+<ol>
+<li>从区间集合 intvs 中选择一个区间 x，这个 x 是在当前所有区间中结束最早的（end 最小）。</li>
+<li>把所有与 x 区间相交的区间从区间集合 intvs 中删除。</li>
+<li>重复步骤 1 和 2，直到 intvs 为空为止。之前选出的那些 x 就是最大不相交子集。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>problem solving template</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/01/22/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
