@@ -148,4 +148,113 @@ s2 = s1 + s2;
         <tag>basic syntax</tag>
       </tags>
   </entry>
+  <entry>
+    <title>arrays类&amp;基本包装类型&amp;Random类</title>
+    <url>/2021/01/24/arrays/</url>
+    <content><![CDATA[<h2 id="Arrays类"><a href="#Arrays类" class="headerlink" title="Arrays类"></a>Arrays类</h2><ul>
+<li>概述<br>根据数组进行操作的工具类  </li>
+<li>Class Method  <ul>
+<li>public static String toString(T&lt;&gt; a)</li>
+<li>public static void sort(T&lt;&gt; a)</li>
+<li>public static int binarySearch(T&lt;&gt; a,T key)<h2 id="基本包装类型"><a href="#基本包装类型" class="headerlink" title="基本包装类型"></a>基本包装类型</h2>为了对基本数据类型进行更多更方便的操作，Java针对每一种基本数据类型提供了对应的类类型–包装类    <table>
+<thead>
+<tr>
+<th align="center">基本类型</th>
+<th align="center">包装类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">byte</td>
+<td align="center">Byte</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">Short</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">Integer</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">Long</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">Float</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">Double</td>
+</tr>
+<tr>
+<td align="center">char</td>
+<td align="center">Character</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">Boolean</td>
+</tr>
+</tbody></table>
+<a id="more"></a>
+<h3 id="Integer类"><a href="#Integer类" class="headerlink" title="Integer类"></a>Integer类</h3></li>
+</ul>
+</li>
+<li>构造方法  <ul>
+<li>public Integer(int i)</li>
+<li>public Integer(String str)//str必须由数字字符串组成  </li>
+</ul>
+</li>
+<li>Class Method  <ul>
+<li>Conversion between int and String<ul>
+<li>public static String toString(int num)//int -&gt; String</li>
+<li>public static int parseInt(String str)//String -&gt; int</li>
+</ul>
+</li>
+<li>public int intValue()//Integer -&gt; int</li>
+<li>public static Integer valueOf(int num)//int -&gt; Integer</li>
+<li>public static Integer valueOf(String str)//String -&gt; Integer</li>
+<li>十进制到其他进制  <ul>
+<li>public static String toString(int i,int radix)//radix为进制数，进制的范围是2-36</li>
+</ul>
+</li>
+<li>其他进制到十进制  <ul>
+<li>public static int parseInt(String str,int radix)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>JDK新特性  <ul>
+<li>自动装箱<br>把基本类型转换为包装类型  </li>
+<li>自动拆箱<br>把包装类型转换为基本类型<h3 id="Character类"><a href="#Character类" class="headerlink" title="Character类"></a>Character类</h3></li>
+</ul>
+</li>
+<li>Constructor<br>public Character(char value)</li>
+<li>Class Method<ul>
+<li>public static boolean isUpperCase(char ch)</li>
+<li>public static boolean isLowerCase(char ch)</li>
+<li>public static boolean isDigit(char ch)</li>
+<li>public static char toUpperCase(char ch)</li>
+<li>public static char toLowerCase(char ch)<h2 id="Random类"><a href="#Random类" class="headerlink" title="Random类"></a>Random类</h2></li>
+</ul>
+</li>
+<li>Constructor<ul>
+<li>public Random()//用当前时间的毫秒值作为默认种子</li>
+<li>public Random(long seed)//给定种子后，每次得到的随机数是相同的 </li>
+</ul>
+</li>
+<li>Class Method<ul>
+<li>public int nextInt()//在int的范围内生成随机数</li>
+<li>public int nextInt(int n)//[0,n)范围内生成随机数</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>basic syntax</tag>
+      </tags>
+  </entry>
 </search>
