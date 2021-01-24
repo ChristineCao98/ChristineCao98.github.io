@@ -64,4 +64,88 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>StringBuffer类</title>
+    <url>/2021/01/24/StringBuffer/</url>
+    <content><![CDATA[<ul>
+<li>The differece between String and StringBuffer<br>String的长度和内容不可变，StringBuffer可变，不会浪费太多资源  <a id="more"></a></li>
+<li>Constructor  <ul>
+<li>public StringBuffer()</li>
+<li>public StringBuffer(int capacity)</li>
+<li>public StringBuffer(String str)  </li>
+</ul>
+</li>
+<li>Class Method<br>*<ul>
+<li>public int capacity()</li>
+<li>public int length() </li>
+<li>添加功能<ul>
+<li>public StringBuffer append(String str):可以添加任意数据类型，并返回StringBuffer本身</li>
+<li>public StringBuffer insert(int offset, String str):在指定位置插入任意数据类型</li>
+</ul>
+</li>
+<li>删除功能 <ul>
+<li>public StringBuffer deleteCharAt(int index)</li>
+<li>public StringBuffer delete(int start,int end):[start,end)</li>
+</ul>
+</li>
+<li>替换功能  <ul>
+<li>public StringBuffer replace(int start,int end,String str)</li>
+</ul>
+</li>
+<li>翻转功能  <ul>
+<li>public StringBuffer reverse()</li>
+</ul>
+</li>
+<li>截取功能  <ul>
+<li>public String substring(int start)</li>
+<li>public String substring(int start,int end)//注意返回值是String</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>StringBuilder是与StringBuffer兼容的API，但不保证同步(线程不安全)</li>
+<li>String是一种特殊的引用类型，只能把它当作基本型来看,可以将其看作常量值，其参数传递和基本类型的参数传递是一样的    </li>
+</ul>
+<pre><code>public class StringBufferDemo &#123;
+public static void main(String[] args) &#123;
+String s1 = &quot;hello&quot;;
+String s2 = &quot;world&quot;;
+System.out.println(s1 + &quot;---&quot; + s2);// hello---world
+change(s1, s2);
+System.out.println(s1 + &quot;---&quot; + s2);// hello---world
+
+
+StringBuffer sb1 = new StringBuffer(&quot;hello&quot;);
+StringBuffer sb2 = new StringBuffer(&quot;world&quot;);
+System.out.println(sb1 + &quot;---&quot; + sb2);// hello---world
+change(sb1, sb2);
+System.out.println(sb1 + &quot;---&quot; + sb2);// hello---worldworld
+
+
+&#125;
+
+
+public static void change(StringBuffer sb1, StringBuffer sb2) &#123;
+sb1 = sb2;
+sb2.append(sb1);
+&#125;
+
+
+public static void change(String s1, String s2) &#123;
+s1 = s2;
+s2 = s1 + s2;
+&#125;</code></pre>
+<p>解释：<br><strong>在java中，对于不管是基本类型还是引用类型，采用的都是值调用</strong></p>
+<ul>
+<li>call-by-value 值调用：将实际参数的内容拷贝到被调用方法。</li>
+<li>call-by-reference 引用调用：将实际参数的地址作为形式参数的值被传递到被调用方法(拷贝到被调用方法的栈中)。<br>因此，对sb1=sb2;这个语句来说，只是将change方法栈内的引用sb1进行重定向，不会影响main方法中sb1引用指向的内容  </li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>basic syntax</tag>
+      </tags>
+  </entry>
 </search>
