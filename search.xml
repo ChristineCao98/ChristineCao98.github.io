@@ -306,7 +306,73 @@ s2 = s1 + s2;
   <entry>
     <title>errorhandling</title>
     <url>/2021/01/25/errorhandling/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h3 id="Java中的异常"><a href="#Java中的异常" class="headerlink" title="Java中的异常"></a>Java中的异常</h3><ul>
+<li>Java的异常是class，Throwable是异常体系的根，它继承自Object。<ul>
+<li>Throwable有两个体系：Error和Exception，Error表示严重的错误，程序对此一般无能为力。</li>
+<li>而Exception则是运行时的错误，它可以被捕获并处理</li>
+</ul>
+</li>
+<li>Java规定  <ul>
+<li>必须捕获的异常，包括Exception及其子类，但不包括RuntimeException及其子类，这种类型的异常称为Checked Exception</li>
+<li>不需要捕获的异常，包括Error及其子类，RuntimeException及其子类。  </li>
+</ul>
+</li>
+<li>在方法定义的时候，使用throws Xxx表示该方法可能抛出的异常类型。**<em>调用方**</em>在调用的时候，必须强制捕获这些异常，否则编译器会报错。<a id="more"></a>
+
+</li>
+</ul>
+<h3 id="捕获异常"><a href="#捕获异常" class="headerlink" title="捕获异常"></a>捕获异常</h3><ul>
+<li><p>可以使用多个catch语句，每个catch分别捕获对应的Exception及其子类。JVM在捕获到异常后，会从上到下匹配catch语句，匹配到某个catch后，执行catch代码块，然后不再继续匹配。  </p>
+</li>
+<li><p>子类异常必须写在父类异常前面，否则父类异常就会先被捕获，子类异常不会被捕获</p>
+</li>
+<li><p>finally语句  </p>
+<ul>
+<li>finally语句不是必须的，可写可不写  </li>
+<li>finally语句总是最后执行  </li>
+<li>在catch中抛出异常，不会影响finally的执行。JVM会先执行finally，然后抛出异常。</li>
+</ul>
+</li>
+<li><p>捕获异常可以用’|’拼在一起  </p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">catch (IOException | NumberFormatException e)</span><br></pre></td></tr></table></figure>
+<h3 id="assertion"><a href="#assertion" class="headerlink" title="assertion"></a>assertion</h3><ul>
+<li>概述<br>是一种调试程序的方式  </li>
+<li>例子  </li>
+</ul>
+<pre><code>void f(int x)&#123;
+    assert x&gt;0;//断言条件x&gt;0预期为true。如果计算结果为false，则断言失败，抛出AssertionError。
+    /*
+    assert x&gt;0 : &quot;x must &gt;0&quot;;
+    也可以添加上报错信息
+    */
+&#125;</code></pre>
+<ul>
+<li>特点  <ul>
+<li> 断言失败时会抛出AssertionError，导致程序结束退出。因此，断言不能用于可恢复的程序错误，只应该用于开发和测试阶段。</li>
+<li>JVM默认关闭断言指令，即遇到assert语句就自动忽略了，不执行。<br>要执行assert语句，必须给Java虚拟机传递-enableassertions（可简写为-ea）参数启用断言。所以，有断言的程序必须在命令行下运行才有效果</li>
+<li>实际开发中，很少使用断言。更好的方法是编写单元测试  </li>
+</ul>
+</li>
+</ul>
+<h3 id="Logging"><a href="#Logging" class="headerlink" title="Logging"></a>Logging</h3><ul>
+<li>概述<br>日志就是Logging，它的目的是为了取代System.out.println()进行程序调试  </li>
+<li>功能  <ul>
+<li>可以定义格式，重定向到文件等</li>
+<li>可以存档，便于追踪问题</li>
+<li>可以按级别分类，便于打开或关闭某些级别</li>
+<li>可以根据配置文件调整日志，无需修改代码 </li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>core learning</tag>
+      </tags>
   </entry>
   <entry>
     <title>var&amp; StringJoiner类</title>
@@ -320,9 +386,13 @@ s2 = s1 + s2;
 <li>作用<br>高效拼接字符  </li>
 <li>实例   </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String[] names &#x3D; &#123;&quot;Bob&quot;, &quot;Alice&quot;, &quot;Grace&quot;&#125;;</span><br><span class="line">        var sj &#x3D; new StringJoiner(&quot;, &quot;);</span><br><span class="line">        for (String name : names) &#123;</span><br><span class="line">            sj.add(name);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(sj.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line">Output: Bob, Alice, Grace   </span><br><span class="line"></span><br><span class="line">还可在Constructor指定开头和结尾：   </span><br><span class="line">var sj&#x3D;new StringJoiner(String deli,String start,String end)  </span><br><span class="line">* String的静态方法join()   </span><br><span class="line">在不需要指定开头和结尾时用此方法更方便  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>String[] names={“I”,”l”,”u”};<br>String s=String.join(“ ,”,names);</p>
-<pre><code></code></pre>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String[] names &#x3D; &#123;&quot;Bob&quot;, &quot;Alice&quot;, &quot;Grace&quot;&#125;;</span><br><span class="line">        var sj &#x3D; new StringJoiner(&quot;, &quot;);</span><br><span class="line">        for (String name : names) &#123;</span><br><span class="line">            sj.add(name);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(sj.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Output: Bob, Alice, Grace   </p>
+<p>还可在Constructor指定开头和结尾：<br>var sj=new StringJoiner(String deli,String start,String end)  </p>
+<ul>
+<li>String的静态方法join()<br>在不需要指定开头和结尾时用此方法更方便  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    String[] names&#x3D;&#123;&quot;I&quot;,&quot;l&quot;,&quot;u&quot;&#125;;</span><br><span class="line">    String s&#x3D;String.join(&quot; ,&quot;,names);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>java</category>

@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="var关键字 var 是java10的新特性，用来定义局部变量   在定义局部变量时，任意什么类型都可以用var定义变量的类型会根据所赋的值来判断 var 定义变量必须赋初始值  StringJoiner类 作用高效拼接字符   实例     12345678910111213141516171819public class Main &amp;#123;    public static void ma">
+  <meta name="description" content="var关键字 var 是java10的新特性，用来定义局部变量   在定义局部变量时，任意什么类型都可以用var定义变量的类型会根据所赋的值来判断 var 定义变量必须赋初始值  StringJoiner类 作用高效拼接字符   实例     12345678910public class Main &amp;#123;    public static void main(String[] args)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="var&amp; StringJoiner类">
 <meta property="og:url" content="http://example.com/2021/01/25/var/index.html">
 <meta property="og:site_name" content="Christine Cao&#39;s Blog">
-<meta property="og:description" content="var关键字 var 是java10的新特性，用来定义局部变量   在定义局部变量时，任意什么类型都可以用var定义变量的类型会根据所赋的值来判断 var 定义变量必须赋初始值  StringJoiner类 作用高效拼接字符   实例     12345678910111213141516171819public class Main &amp;#123;    public static void ma">
+<meta property="og:description" content="var关键字 var 是java10的新特性，用来定义局部变量   在定义局部变量时，任意什么类型都可以用var定义变量的类型会根据所赋的值来判断 var 定义变量必须赋初始值  StringJoiner类 作用高效拼接字符   实例     12345678910public class Main &amp;#123;    public static void main(String[] args)">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-25T12:25:17.000Z">
-<meta property="article:modified_time" content="2021-01-25T16:22:33.954Z">
+<meta property="article:modified_time" content="2021-01-25T21:24:56.455Z">
 <meta property="article:author" content="Christine Cao">
 <meta property="article:tag" content="core learning">
 <meta name="twitter:card" content="summary">
@@ -213,7 +213,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-01-25 12:25:17 / Modified: 16:22:33" itemprop="dateCreated datePublished" datetime="2021-01-25T12:25:17+00:00">2021-01-25</time>
+              <time title="Created: 2021-01-25 12:25:17 / Modified: 21:24:56" itemprop="dateCreated datePublished" datetime="2021-01-25T12:25:17+00:00">2021-01-25</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,9 +245,13 @@
 <li>作用<br>高效拼接字符  </li>
 <li>实例   </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String[] names &#x3D; &#123;&quot;Bob&quot;, &quot;Alice&quot;, &quot;Grace&quot;&#125;;</span><br><span class="line">        var sj &#x3D; new StringJoiner(&quot;, &quot;);</span><br><span class="line">        for (String name : names) &#123;</span><br><span class="line">            sj.add(name);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(sj.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line">Output: Bob, Alice, Grace   </span><br><span class="line"></span><br><span class="line">还可在Constructor指定开头和结尾：   </span><br><span class="line">var sj&#x3D;new StringJoiner(String deli,String start,String end)  </span><br><span class="line">* String的静态方法join()   </span><br><span class="line">在不需要指定开头和结尾时用此方法更方便  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>String[] names={“I”,”l”,”u”};<br>String s=String.join(“ ,”,names);</p>
-<pre><code></code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String[] names &#x3D; &#123;&quot;Bob&quot;, &quot;Alice&quot;, &quot;Grace&quot;&#125;;</span><br><span class="line">        var sj &#x3D; new StringJoiner(&quot;, &quot;);</span><br><span class="line">        for (String name : names) &#123;</span><br><span class="line">            sj.add(name);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(sj.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Output: Bob, Alice, Grace   </p>
+<p>还可在Constructor指定开头和结尾：<br>var sj=new StringJoiner(String deli,String start,String end)  </p>
+<ul>
+<li>String的静态方法join()<br>在不需要指定开头和结尾时用此方法更方便  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    String[] names&#x3D;&#123;&quot;I&quot;,&quot;l&quot;,&quot;u&quot;&#125;;</span><br><span class="line">    String s&#x3D;String.join(&quot; ,&quot;,names);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
