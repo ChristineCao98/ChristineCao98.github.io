@@ -402,9 +402,16 @@ s2 = s1 + s2;
       </tags>
   </entry>
   <entry>
-    <title>Integers</title>
+    <title>992. Subarrays with K Different Integers</title>
     <url>/2021/01/26/992_leetocde/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>Using two windows, one to calculate the number of subarrays with exactly k different integers(M), the other with k-1 integers(N).<br>Each time slide to the right by one element, and increment the result by M-N, it is illustrated in the diagram as follows.<br><img src="/images/post_images/992_diagram1.png" alt="diagram1"></p>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>sliding window</tag>
+      </tags>
   </entry>
   <entry>
     <title>collections</title>
