@@ -368,7 +368,7 @@ s2 = s1 + s2;
 </ul>
 ]]></content>
       <categories>
-        <category>java</category>
+        <category>Java</category>
       </categories>
       <tags>
         <tag>core learning</tag>
@@ -395,7 +395,86 @@ s2 = s1 + s2;
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    String[] names&#x3D;&#123;&quot;I&quot;,&quot;l&quot;,&quot;u&quot;&#125;;</span><br><span class="line">    String s&#x3D;String.join(&quot; ,&quot;,names);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>java</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>core learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Integers</title>
+    <url>/2021/01/26/992_leetocde/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>collections</title>
+    <url>/2021/01/25/collections/</url>
+    <content><![CDATA[<h3 id="Collection-概述"><a href="#Collection-概述" class="headerlink" title="Collection 概述"></a>Collection 概述</h3><ul>
+<li>java.util包提供了集合类：Collection，它是除Map外所有其他集合类的根接口  </li>
+<li>主要包括三种集合类型  <ul>
+<li>List：一种有序列表的集合</li>
+<li>Set：一种保证没有重复元素的集合</li>
+<li>Map：一种通过键值（key-value）查找的映射表集合  </li>
+</ul>
+</li>
+</ul>
+<h3 id="List类"><a href="#List类" class="headerlink" title="List类"></a>List类</h3><ul>
+<li>主要的接口方法  <ul>
+<li>在末尾添加一个元素：boolean add(E e)</li>
+<li>在指定索引添加一个元素：boolean add(int index, E e)</li>
+<li>删除指定索引的元素：int remove(int index)</li>
+<li>删除某个元素：int remove(Object e)</li>
+<li>获取指定索引的元素：E get(int index)</li>
+<li>获取链表大小（包含元素的个数）：int size()</li>
+</ul>
+</li>
+<li>List允许添加null</li>
+<li>要坚持使用迭代器遍历list<ul>
+<li>Iterator对象有两个方法：boolean hasNext()判断是否有下一个元素，E next()返回下一个元素</li>
+<li>只要实现了Iterable接口的集合类都可以直接用for each循环来遍历(Iterable接口定义了一个Iterator<E> iterator()方法，强迫集合类必须返回一个Iterator实例)</li>
+</ul>
+</li>
+<li>复写equals方法  <ul>
+<li>先确定实例“相等”的逻辑，即哪些字段相等，就认为实例相等</li>
+<li>用instanceof判断传入的待比较的Object是不是当前类型，如果是，继续比较，否则返回false</li>
+<li>对引用类型用Objects.equals()比较(省去了判断null的麻烦)，对基本类型直接用==比较</li>
+</ul>
+</li>
+</ul>
+<h3 id="Map类"><a href="#Map类" class="headerlink" title="Map类"></a>Map类</h3><ul>
+<li>遍历   </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;遍历key</span><br><span class="line">    for(E key:map.keySet())</span><br><span class="line">    &#x2F;&#x2F;同时遍历key和value</span><br><span class="line">    for(Map.EntrySet(E1,E2) entry:map.entrySet())&#123;</span><br><span class="line">        E1 key&#x3D;entry.getKey();</span><br><span class="line">        E2 value&#x3D;entry.getValue();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>重写equals方法<br>在Map的内部，对key做比较是通过equals()实现的，这一点和List查找元素需要正确覆写equals()是一样的，即正确使用Map必须保证：作为key的对象必须正确覆写equals()方法。  </p>
+</li>
+<li><p>重写hashCode方法<br>作为key的对象必须正确覆写hashCode()方法，且hashCode()方法要严格遵循以下规范：</p>
+<ul>
+<li>如果两个对象相等，则两个对象的hashCode()必须相等；</li>
+<li>如果两个对象不相等，则两个对象的hashCode()尽量不要相等。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Person &#123;</span><br><span class="line">  String firstName;</span><br><span class="line">  String lastName;</span><br><span class="line">  int age;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  int hashCode() &#123;</span><br><span class="line">      int h &#x3D; 0;</span><br><span class="line">      h &#x3D; 31 * h + firstName.hashCode();&#x2F;&#x2F;使用31*h的目的是为了尽量把不同的Person实例的hashCode()均匀分布到整个int范围</span><br><span class="line">      h &#x3D; 31 * h + lastName.hashCode();</span><br><span class="line">      h &#x3D; 31 * h + age;</span><br><span class="line">      return h;</span><br><span class="line">      &#x2F;&#x2F;return Objects.hash(firstName, lastName, age);</span><br><span class="line">      &#x2F;&#x2F;借助Objects.hash()方法可以避免NullPointerException</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>TreeSet和TreeMap的存储都是有序的，添加的元素必须正确实现Comparable接口，如果没有实现Comparable接口，那么创建TreeSet或TreeMap时必须传入一个Comparator对象。</p>
+</li>
+</ul>
+<h3 id="Queue类"><a href="#Queue类" class="headerlink" title="Queue类"></a>Queue类</h3><ul>
+<li>它和List的区别在于，List可以在任意位置添加和删除元素，而Queue只有两个操作：<ul>
+<li>把元素添加到队列末尾；</li>
+<li>从队列头部取出元素。</li>
+</ul>
+</li>
+<li>方法  <ul>
+<li>int size()：获取队列长度；</li>
+<li>boolean add(E)/boolean offer(E)：添加元素到队尾；</li>
+<li>E remove()/E poll()：获取队首元素并从队列中删除；</li>
+<li>E element()/E peek()：获取队首元素但并不从队列中删除。</li>
+<li>*a/b,在操作失败时，a方法会throw exception,b方法返回null或false**</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java</category>
       </categories>
       <tags>
         <tag>core learning</tag>
