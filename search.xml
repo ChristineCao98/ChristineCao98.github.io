@@ -600,4 +600,81 @@ s2 = s1 + s2;
         <tag>core learning</tag>
       </tags>
   </entry>
+  <entry>
+    <title>reflection</title>
+    <url>/2021/01/27/reflection/</url>
+    <content><![CDATA[<h3 id="类的加载"><a href="#类的加载" class="headerlink" title="类的加载"></a>类的加载</h3><ul>
+<li>当程序要使用某个类时，如果它还没被加载到内存，则系统会通过加载、连接、初始化三步来实现对这个类进行初始化<ul>
+<li>加载  <ul>
+<li>指将class文件读入内存，并为之创建一个Class对象  </li>
+<li>任何类在使用时系统都会创建一个Class对象  </li>
+</ul>
+</li>
+<li>连接  <ul>
+<li>验证<br>是否有正确的内部结构，并和其他的类协调一致  </li>
+<li>准备<br>负责为类的静态成员分配内存，并设置默认初始化值  </li>
+<li>解析<br>将类中二进制数据中的符号引用替换为直接引用</li>
+</ul>
+</li>
+<li>初始化  </li>
+</ul>
+</li>
+<li>类的初始化时机<ul>
+<li>创建类的实例  </li>
+<li>访问类的静态变量或为其赋值  </li>
+<li>调用类的静态方法  </li>
+<li>使用反射方式强制创建某个类或接口对应的Java.lang.Class对象  </li>
+<li>初始化某个类的子类  </li>
+<li>直接使用Java.exe命令来运行某个子类  </li>
+</ul>
+</li>
+</ul>
+<h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><ul>
+<li>概述  <ul>
+<li>负责将.class文件加载到内存中，并为之生成对应的Class对象  </li>
+</ul>
+</li>
+<li>组成  <ul>
+<li>BootStrap ClassLoader<br>负责java核心类的加载(比如System,String等)</li>
+<li>Extension ClassLoader<br>负责JRE扩展目录中jar包的加载</li>
+<li>System ClassLoader<br>负责在JVM启动时加载来自java命令的class文件，以及classpath环境变量所指定的jar包和类路径  </li>
+</ul>
+</li>
+</ul>
+<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><ul>
+<li>java反射机制是在运行状态中，对于任意一个类，都能知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性。这种动态获取信息以及动态调用对象的方法的功能被称为java语言的反射机制  </li>
+<li>要想解剖一个类必须获取该类的字节码文件对象。而解剖使用的就是Class类中的方法，所以先要获取到每一个字节码文件对应的Class类型的对象  </li>
+<li>Class类  <ul>
+<li>成员变量 Field</li>
+<li>构造方法 Constructor</li>
+<li>成员方法 Method</li>
+<li>通过这三个对象调用相应的成员变量、构造方法和成员方法  </li>
+</ul>
+</li>
+<li>获取Class文件对象的三种方式  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">        &#x2F;&#x2F;method 1:getClass() method of Object class</span><br><span class="line">        A a&#x3D;new A();</span><br><span class="line">        Class c&#x3D;a.getClass();</span><br><span class="line">        &#x2F;&#x2F;method 2: static attribute of data type </span><br><span class="line">        Class c2&#x3D;A.class;</span><br><span class="line">        &#x2F;&#x2F;method 3: static method of Class class</span><br><span class="line">        &#x2F;&#x2F;public static Class forName(String className)</span><br><span class="line">        &#x2F;&#x2F;className must include the complete path </span><br><span class="line">        Class c3&#x3D;Class.forName(&quot;cn.net.A&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line">开发中一般使用第三种，因为它的参数是字符串，可以配置到配置文件中  </span><br><span class="line">* 通过反射获取构造方法  </span><br></pre></td></tr></table></figure>
+{<br>  // No-argument constructor<br>  Class c1=Class.forName(“cn.net.A”);<br>  Constructor con=c1.getConstructor();<br>  Object obj=con.newInstance();<br>  //Parameterized constructor<br>  Class c2=Class.forName(“cn.net.A”);<br>  Constructor con=c2.getConstructor(int.class,int.class);<br>  Object obj=con.newInstance(2,3);<br>  //private constructor<br>  Class c3=Class.forName(“cn.net.A”);<br>  Constructor con=c3.getDeclaredConstructor(int.class,int.class);<br>  con.setAccessible(true);<br>  Object obj=con.newInstance(2,3);<br>}<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* 通过反射获取成员变量  </span><br></pre></td></tr></table></figure>
+{<br>  Class c=Class.forName(“cn.net.A”);<br>  Constructor con=c.getConstructor();<br>  Object obj=con.newInstance();<br>  Field p1Field=c.getField(“p1”);<br>  p1Field.set(obj,3);<br>  //private attribute<br>  Class c=Class.forName(“cn.net.A”);<br>  Constructor con=c.getConstructor();<br>  Object obj=con.newInstance();<br>  Field p1Field=c.getDeclaredField(“p1”);<br>  p1field.setAccessible(true);<br>  p1Field.set(obj,3);<br>}<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* 通过反射获取成员方法  </span><br></pre></td></tr></table></figure>
+public static void main(String[] args) throws Exception {<pre><code>  Class c=Class.forName(&quot;com.itranswarp.learnjava.Student&quot;);
+  Constructor cons=c.getConstructor();
+  Object obj=cons.newInstance();
+  Method m1=c.getMethod(&quot;add&quot;,int.class,int.class);
+  Object a=m1.invoke(obj,2,3);
+  int b=(int) a;
+  System.out.println(b);</code></pre>
+  }<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* 通过反射越过泛型检查  </span><br></pre></td></tr></table></figure>
+public static void main(String[] args) throws Exception {<pre><code>  ArrayList&lt;Integer&gt; array=new ArrayList&lt;&gt;();
+  Class c=array.getClass();
+  Method m=c.getMethod(&quot;add&quot;,Object.class);
+  m.invoke(array,&quot;hello&quot;);</code></pre>
+  }<pre><code></code></pre>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>core learning</tag>
+      </tags>
+  </entry>
 </search>
