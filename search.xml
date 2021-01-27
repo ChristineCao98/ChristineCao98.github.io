@@ -625,7 +625,9 @@ s2 = s1 + s2;
 <li>调用类的静态方法  </li>
 <li>使用反射方式强制创建某个类或接口对应的Java.lang.Class对象  </li>
 <li>初始化某个类的子类  </li>
-<li>直接使用Java.exe命令来运行某个子类  </li>
+<li>直接使用Java.exe命令来运行某个子类  <a id="more"></a>
+
+</li>
 </ul>
 </li>
 </ul>
