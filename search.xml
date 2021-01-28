@@ -679,4 +679,92 @@ public static void main(String[] args) throws Exception {<pre><code>  ArrayList&
         <tag>core learning</tag>
       </tags>
   </entry>
+  <entry>
+    <title>160. Intersection of Two Linked Lists</title>
+    <url>/2021/01/28/getIntersectionNode/</url>
+    <content><![CDATA[<ul>
+<li>Loop through two lists to get their length of them  </li>
+<li>If the tail node of the two lists are different, return null</li>
+<li>Skip the longer list ahead X nodes, where X = abs(lenA-lenB).   </li>
+<li>Use two pointers until they meet.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public ListNode getIntersectionNode(ListNode headA, ListNode headB) &#123;</span><br><span class="line">       if(headA&#x3D;&#x3D;null||headB&#x3D;&#x3D;null) return null;</span><br><span class="line">       int lena&#x3D;0;</span><br><span class="line">       int lenb&#x3D;0;</span><br><span class="line">       ListNode curA&#x3D;headA;</span><br><span class="line">       ListNode curB&#x3D;headB;</span><br><span class="line">       while(curA.next!&#x3D;null)&#123;</span><br><span class="line">           lena++;</span><br><span class="line">           curA&#x3D;curA.next;</span><br><span class="line">       &#125;</span><br><span class="line">       while(curB.next!&#x3D;null)&#123;</span><br><span class="line">           lenb++;</span><br><span class="line">           curB&#x3D;curB.next;</span><br><span class="line">       &#125;</span><br><span class="line">       if(curA!&#x3D;curB) return null;</span><br><span class="line">       if(lena&gt;lenb)&#123;</span><br><span class="line">           headA&#x3D;skip(headA,lena-lenb);</span><br><span class="line">       &#125;</span><br><span class="line">       else&#123;</span><br><span class="line">           headB&#x3D;skip(headB,lenb-lena);</span><br><span class="line">       &#125;</span><br><span class="line">       while(headA!&#x3D;headB)&#123;</span><br><span class="line">           headA&#x3D;headA.next;</span><br><span class="line">           headB&#x3D;headB.next;</span><br><span class="line">       &#125;</span><br><span class="line">       return headA;</span><br><span class="line">   &#125;</span><br><span class="line">   private ListNode skip(ListNode head,int n)&#123;</span><br><span class="line">       while(n&gt;0)&#123;</span><br><span class="line">           head&#x3D;head.next;</span><br><span class="line">           n--;</span><br><span class="line">       &#125;</span><br><span class="line">       return head;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>linked list</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>70. climbing stairs</title>
+    <url>/2021/01/28/climbing-stairs/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    &#x2F;&#x2F; HashMap&lt;Integer,Integer&gt; hm&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">    &#x2F;&#x2F; public int climbStairs(int n) &#123;</span><br><span class="line">    &#x2F;&#x2F;     if(hm.containsKey(n)) return hm.get(n);</span><br><span class="line">    &#x2F;&#x2F;     if(n&lt;0) return 0;</span><br><span class="line">    &#x2F;&#x2F;     if(n&#x3D;&#x3D;0) return 1;</span><br><span class="line">    &#x2F;&#x2F;     int times&#x3D;climbStairs(n-1)+climbStairs(n-2);</span><br><span class="line">    &#x2F;&#x2F;     hm.put(n,times);</span><br><span class="line">    &#x2F;&#x2F;     return times;</span><br><span class="line">    &#x2F;&#x2F; &#125;</span><br><span class="line">    public int climbStairs(int n)&#123;</span><br><span class="line">        if(n&#x3D;&#x3D;1) return 1;</span><br><span class="line">        int[] dp&#x3D;new int[n+1];</span><br><span class="line">        dp[1]&#x3D;1;</span><br><span class="line">        dp[2]&#x3D;2;</span><br><span class="line">        for(int i&#x3D;3;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">            dp[i]&#x3D;dp[i-1]+dp[i-2];</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>dynamic programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>21. merge sorted list</title>
+    <url>/2021/01/28/merge-sorted-list/</url>
+    <content><![CDATA[<p>My initial solution is this:  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public ListNode mergeTwoLists(ListNode l1, ListNode l2) &#123;</span><br><span class="line">        if(l1&#x3D;&#x3D;null) return l2;</span><br><span class="line">        if(l2&#x3D;&#x3D;null) return l1;</span><br><span class="line">        if(l1.val&lt;l2.val) return mergeTwoLists(l2,l1);</span><br><span class="line">        ListNode head&#x3D;new ListNode(l2.val);</span><br><span class="line">        head.next&#x3D;mergeTwoLists(l1,l2.next);</span><br><span class="line">        return head;</span><br><span class="line">    &#125;</span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line"></span><br><span class="line">But notice that you don&#39;t need to create extra space for ListNodes.  </span><br></pre></td></tr></table></figure>
+<p>public ListNode mergeTwoLists(ListNode l1, ListNode l2) {<br>        if(l1==null) return l2;<br>        if(l2==null) return l1;<br>        if(l1.val&lt;l2.val) return mergeTwoLists(l2,l1);<br>        l2.next=mergeTwoLists(l1,l2.next);<br>        return l2;<br>    }</p>
+<pre><code></code></pre>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>recursion</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>155 min stack</title>
+    <url>/2021/01/28/min-stack/</url>
+    <content><![CDATA[<p>Creating two stacks, one to store all the current data, one to store the information of minimum number.  In the min stack, each node stores an int array with size two(the first to store the min number itself, the second to store the number of times it appears)   </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class MinStack &#123;</span><br><span class="line">    Stack&lt;Integer&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">    Stack&lt;int[]&gt; min&#x3D;new Stack&lt;&gt;();</span><br><span class="line">    &#x2F;** initialize your data structure here. *&#x2F;</span><br><span class="line">    public MinStack() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void push(int x) &#123;</span><br><span class="line">        stack.push(x);</span><br><span class="line">        if(min.isEmpty()) &#123;</span><br><span class="line">            min.push(new int[]&#123;x,1&#125;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        int premin&#x3D;min.peek()[0];</span><br><span class="line">        if(x&#x3D;&#x3D;premin) min.peek()[1]++;</span><br><span class="line">        else if(x&lt;premin)&#123;</span><br><span class="line">            min.push(new int[]&#123;x,1&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void pop() &#123;</span><br><span class="line">        int p&#x3D;stack.pop();</span><br><span class="line">        if(p&#x3D;&#x3D;min.peek()[0])&#123;</span><br><span class="line">            if(min.peek()[1]&#x3D;&#x3D;1) min.pop();</span><br><span class="line">            else&#123;</span><br><span class="line">                min.peek()[1]--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int top() &#123;</span><br><span class="line">        return stack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int getMin() &#123;</span><br><span class="line">        return min.peek()[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>stack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>two sum</title>
+    <url>/2021/01/28/two-sum/</url>
+    <content><![CDATA[<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>First of all I think about two-pass HashMap solution, and I made a mistake by not excluding the situation when target-nums[i]=nums[i].<br>But there is one-pass solution where you can do this in O(N) time(faster than O(2N)).</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int[] twoSum(int[] nums, int target) &#123;</span><br><span class="line">        HashMap&lt;Integer,Integer&gt; hm&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        for(int i&#x3D;0;i&lt;nums.length;i++)&#123;</span><br><span class="line">            int complement&#x3D;target-nums[i];</span><br><span class="line">            if(hm.containsKey(complement))&#123;</span><br><span class="line">                return new int[]&#123;hm.get(complement),i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            hm.put(nums[i],i);</span><br><span class="line">        &#125;</span><br><span class="line">        throw new IllegalArgumentException(&quot;No two sum solution&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>hashmap</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>20. valid parenthesis</title>
+    <url>/2021/01/28/valid-parenthesis/</url>
+    <content><![CDATA[<p>This is my initial solution:  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public boolean isValid(String s) &#123;</span><br><span class="line">        Stack&lt;Character&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">        for(char c:s.toCharArray())&#123;</span><br><span class="line">            if(c&#x3D;&#x3D;&#39;(&#39;||c&#x3D;&#x3D;&#39;&#123;&#39;||c&#x3D;&#x3D;&#39;[&#39;)&#123;</span><br><span class="line">                stack.add(c);</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                if(stack.isEmpty()) return false;</span><br><span class="line">                char c2&#x3D;stack.pop();</span><br><span class="line">                boolean match&#x3D;false;</span><br><span class="line">                switch(c2)&#123;</span><br><span class="line">                    case &#39;(&#39;:</span><br><span class="line">                        match&#x3D;c&#x3D;&#x3D;&#39;)&#39;;</span><br><span class="line">                        break;</span><br><span class="line">                    case &#39;&#123;&#39;:</span><br><span class="line">                        match&#x3D;c&#x3D;&#x3D;&#39;&#125;&#39;;</span><br><span class="line">                        break;</span><br><span class="line">                    case &#39;[&#39;:</span><br><span class="line">                        match&#x3D;c&#x3D;&#x3D;&#39;]&#39;;</span><br><span class="line">                        break;</span><br><span class="line">                &#125;</span><br><span class="line">                if(!match) return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return stack.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line"></span><br><span class="line">But it can be improved by creating a hashmap to establish the mapping relation between the open brackets and closed brackets.  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>public boolean isValid(String s) {<br>        Stack<Character> stack=new Stack&lt;&gt;();<br>        HashMap&lt;Character,Character&gt; mapping=new HashMap&lt;&gt;();<br>        mapping.put(‘)’,’(‘);<br>        mapping.put(‘]’,’[‘);<br>        mapping.put(‘}’,’{‘);<br>        for(char c:s.toCharArray()){<br>            if(mapping.containsKey(c)){<br>                char match=stack.isEmpty()?’#’:stack.pop();<br>                if(match!=mapping.get(c)) return false;<br>            }<br>            else{<br>                stack.push(c);<br>            }<br>        }<br>        return stack.isEmpty();<br>    }</p>
+<pre><code></code></pre>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>stack</tag>
+      </tags>
+  </entry>
 </search>

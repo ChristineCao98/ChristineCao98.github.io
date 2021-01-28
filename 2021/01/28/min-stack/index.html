@@ -20,16 +20,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Christine Cao&#39;s Blog">
-<meta property="og:url" content="http://example.com/tags/problem-solving-template/index.html">
+  <meta name="description" content="Creating two stacks, one to store all the current data, one to store the information of minimum number.  In the min stack, each node stores an int array with size two(the first to store the min number">
+<meta property="og:type" content="article">
+<meta property="og:title" content="155 min stack">
+<meta property="og:url" content="http://example.com/2021/01/28/min-stack/index.html">
 <meta property="og:site_name" content="Christine Cao&#39;s Blog">
+<meta property="og:description" content="Creating two stacks, one to store all the current data, one to store the information of minimum number.  In the min stack, each node stores an int array with size two(the first to store the min number">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-28T16:13:49.000Z">
+<meta property="article:modified_time" content="2021-01-28T16:19:07.830Z">
 <meta property="article:author" content="Christine Cao">
-<meta property="article:tag" content="Java">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="stack">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/tags/problem-solving-template/">
+<link rel="canonical" href="http://example.com/2021/01/28/min-stack/">
 
 
 <script id="page-configurations">
@@ -37,12 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Tag: problem solving template | Christine Cao's Blog</title>
+  <title>155 min stack | Christine Cao's Blog</title>
   
 
 
@@ -178,51 +183,93 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">problem solving template
-          <small>Tag</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/28/min-stack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          155 min stack
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-01-28 16:13:49 / Modified: 16:19:07" itemprop="dateCreated datePublished" datetime="2021-01-28T16:13:49+00:00">2021-01-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <p>Creating two stacks, one to store all the current data, one to store the information of minimum number.  In the min stack, each node stores an int array with size two(the first to store the min number itself, the second to store the number of times it appears)   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class MinStack &#123;</span><br><span class="line">    Stack&lt;Integer&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">    Stack&lt;int[]&gt; min&#x3D;new Stack&lt;&gt;();</span><br><span class="line">    &#x2F;** initialize your data structure here. *&#x2F;</span><br><span class="line">    public MinStack() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void push(int x) &#123;</span><br><span class="line">        stack.push(x);</span><br><span class="line">        if(min.isEmpty()) &#123;</span><br><span class="line">            min.push(new int[]&#123;x,1&#125;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        int premin&#x3D;min.peek()[0];</span><br><span class="line">        if(x&#x3D;&#x3D;premin) min.peek()[1]++;</span><br><span class="line">        else if(x&lt;premin)&#123;</span><br><span class="line">            min.push(new int[]&#123;x,1&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void pop() &#123;</span><br><span class="line">        int p&#x3D;stack.pop();</span><br><span class="line">        if(p&#x3D;&#x3D;min.peek()[0])&#123;</span><br><span class="line">            if(min.peek()[1]&#x3D;&#x3D;1) min.pop();</span><br><span class="line">            else&#123;</span><br><span class="line">                min.peek()[1]--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int top() &#123;</span><br><span class="line">        return stack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int getMin() &#123;</span><br><span class="line">        return min.peek()[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-01-22T22:30:06+00:00"
-              content="2021-01-22">
-          01-22
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+              <a href="/tags/stack/" rel="tag"><i class="fa fa-tag"></i> stack</a>
+          </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/01/22/first-blog/" itemprop="url">
-            <span itemprop="name">Dynamic Programming</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/28/climbing-stairs/" rel="prev" title="70. climbing stairs">
+      <i class="fa fa-chevron-left"></i> 70. climbing stairs
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/28/getIntersectionNode/" rel="next" title="160. Intersection of Two Linked Lists">
+      160. Intersection of Two Linked Lists <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
