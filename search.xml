@@ -644,33 +644,36 @@ s2 = s1 + s2;
 </li>
 </ul>
 <h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><ul>
-<li>java反射机制是在运行状态中，对于任意一个类，都能知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性。这种动态获取信息以及动态调用对象的方法的功能被称为java语言的反射机制  </li>
-<li>要想解剖一个类必须获取该类的字节码文件对象。而解剖使用的就是Class类中的方法，所以先要获取到每一个字节码文件对应的Class类型的对象  </li>
-<li>Class类  <ul>
+<li><p>java反射机制是在运行状态中，对于任意一个类，都能知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性。这种动态获取信息以及动态调用对象的方法的功能被称为java语言的反射机制  </p>
+</li>
+<li><p>要想解剖一个类必须获取该类的字节码文件对象。而解剖使用的就是Class类中的方法，所以先要获取到每一个字节码文件对应的Class类型的对象  </p>
+</li>
+<li><p>Class类  </p>
+<ul>
 <li>成员变量 Field</li>
 <li>构造方法 Constructor</li>
 <li>成员方法 Method</li>
 <li>通过这三个对象调用相应的成员变量、构造方法和成员方法  </li>
 </ul>
 </li>
-<li>获取Class文件对象的三种方式  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">        &#x2F;&#x2F;method 1:getClass() method of Object class</span><br><span class="line">        A a&#x3D;new A();</span><br><span class="line">        Class c&#x3D;a.getClass();</span><br><span class="line">        &#x2F;&#x2F;method 2: static attribute of data type </span><br><span class="line">        Class c2&#x3D;A.class;</span><br><span class="line">        &#x2F;&#x2F;method 3: static method of Class class</span><br><span class="line">        &#x2F;&#x2F;public static Class forName(String className)</span><br><span class="line">        &#x2F;&#x2F;className must include the complete path </span><br><span class="line">        Class c3&#x3D;Class.forName(&quot;cn.net.A&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line">开发中一般使用第三种，因为它的参数是字符串，可以配置到配置文件中  </span><br><span class="line">* 通过反射获取构造方法  </span><br></pre></td></tr></table></figure>
-{<br>  // No-argument constructor<br>  Class c1=Class.forName(“cn.net.A”);<br>  Constructor con=c1.getConstructor();<br>  Object obj=con.newInstance();<br>  //Parameterized constructor<br>  Class c2=Class.forName(“cn.net.A”);<br>  Constructor con=c2.getConstructor(int.class,int.class);<br>  Object obj=con.newInstance(2,3);<br>  //private constructor<br>  Class c3=Class.forName(“cn.net.A”);<br>  Constructor con=c3.getDeclaredConstructor(int.class,int.class);<br>  con.setAccessible(true);<br>  Object obj=con.newInstance(2,3);<br>}<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* 通过反射获取成员变量  </span><br></pre></td></tr></table></figure>
-{<br>  Class c=Class.forName(“cn.net.A”);<br>  Constructor con=c.getConstructor();<br>  Object obj=con.newInstance();<br>  Field p1Field=c.getField(“p1”);<br>  p1Field.set(obj,3);<br>  //private attribute<br>  Class c=Class.forName(“cn.net.A”);<br>  Constructor con=c.getConstructor();<br>  Object obj=con.newInstance();<br>  Field p1Field=c.getDeclaredField(“p1”);<br>  p1field.setAccessible(true);<br>  p1Field.set(obj,3);<br>}<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* 通过反射获取成员方法  </span><br></pre></td></tr></table></figure>
-public static void main(String[] args) throws Exception {<pre><code>  Class c=Class.forName(&quot;com.itranswarp.learnjava.Student&quot;);
-  Constructor cons=c.getConstructor();
-  Object obj=cons.newInstance();
-  Method m1=c.getMethod(&quot;add&quot;,int.class,int.class);
-  Object a=m1.invoke(obj,2,3);
-  int b=(int) a;
-  System.out.println(b);</code></pre>
-  }<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* 通过反射越过泛型检查  </span><br></pre></td></tr></table></figure>
-public static void main(String[] args) throws Exception {<pre><code>  ArrayList&lt;Integer&gt; array=new ArrayList&lt;&gt;();
-  Class c=array.getClass();
-  Method m=c.getMethod(&quot;add&quot;,Object.class);
-  m.invoke(array,&quot;hello&quot;);</code></pre>
-  }<pre><code></code></pre>
+<li><p>获取Class文件对象的三种方式  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">        &#x2F;&#x2F;method 1:getClass() method of Object class</span><br><span class="line">        A a&#x3D;new A();</span><br><span class="line">        Class c&#x3D;a.getClass();</span><br><span class="line">        &#x2F;&#x2F;method 2: static attribute of data type </span><br><span class="line">        Class c2&#x3D;A.class;</span><br><span class="line">        &#x2F;&#x2F;method 3: static method of Class class</span><br><span class="line">        &#x2F;&#x2F;public static Class forName(String className)</span><br><span class="line">        &#x2F;&#x2F;className must include the complete path </span><br><span class="line">        Class c3&#x3D;Class.forName(&quot;cn.net.A&quot;);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<p>开发中一般使用第三种，因为它的参数是字符串，可以配置到配置文件中  </p>
+</li>
+<li><p>通过反射获取构造方法  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; No-argument constructor</span><br><span class="line">    Class c1&#x3D;Class.forName(&quot;cn.net.A&quot;);</span><br><span class="line">    Constructor con&#x3D;c1.getConstructor();</span><br><span class="line">    Object obj&#x3D;con.newInstance();</span><br><span class="line">    &#x2F;&#x2F;Parameterized constructor</span><br><span class="line">    Class c2&#x3D;Class.forName(&quot;cn.net.A&quot;);</span><br><span class="line">    Constructor con&#x3D;c2.getConstructor(int.class,int.class);</span><br><span class="line">    Object obj&#x3D;con.newInstance(2,3);</span><br><span class="line">    &#x2F;&#x2F;private constructor</span><br><span class="line">    Class c3&#x3D;Class.forName(&quot;cn.net.A&quot;);</span><br><span class="line">    Constructor con&#x3D;c3.getDeclaredConstructor(int.class,int.class);</span><br><span class="line">    con.setAccessible(true);</span><br><span class="line">    Object obj&#x3D;con.newInstance(2,3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>通过反射获取成员变量</p>
 </li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    Class c&#x3D;Class.forName(&quot;cn.net.A&quot;);</span><br><span class="line">    Constructor con&#x3D;c.getConstructor();</span><br><span class="line">    Object obj&#x3D;con.newInstance();</span><br><span class="line">    Field p1Field&#x3D;c.getField(&quot;p1&quot;);</span><br><span class="line">    p1Field.set(obj,3);</span><br><span class="line">    &#x2F;&#x2F;private attribute</span><br><span class="line">    Class c&#x3D;Class.forName(&quot;cn.net.A&quot;);</span><br><span class="line">    Constructor con&#x3D;c.getConstructor();</span><br><span class="line">    Object obj&#x3D;con.newInstance();</span><br><span class="line">    Field p1Field&#x3D;c.getDeclaredField(&quot;p1&quot;);</span><br><span class="line">    p1field.setAccessible(true);</span><br><span class="line">    p1Field.set(obj,3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过反射获取成员方法  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static void main(String[] args) throws Exception &#123;</span><br><span class="line">        Class c&#x3D;Class.forName(&quot;com.itranswarp.learnjava.Student&quot;);</span><br><span class="line">        Constructor cons&#x3D;c.getConstructor();</span><br><span class="line">        Object obj&#x3D;cons.newInstance();</span><br><span class="line">        Method m1&#x3D;c.getMethod(&quot;add&quot;,int.class,int.class);</span><br><span class="line">        Object a&#x3D;m1.invoke(obj,2,3);</span><br><span class="line">        int b&#x3D;(int) a;</span><br><span class="line">        System.out.println(b);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过反射越过泛型检查  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static void main(String[] args) throws Exception &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; array&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">        Class c&#x3D;array.getClass();</span><br><span class="line">        Method m&#x3D;c.getMethod(&quot;add&quot;,Object.class);</span><br><span class="line">        m.invoke(array,&quot;hello&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Java</category>
@@ -713,10 +716,9 @@ public static void main(String[] args) throws Exception {<pre><code>  ArrayList&
     <title>21. merge sorted list</title>
     <url>/2021/01/28/merge-sorted-list/</url>
     <content><![CDATA[<p>My initial solution is this:  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public ListNode mergeTwoLists(ListNode l1, ListNode l2) &#123;</span><br><span class="line">        if(l1&#x3D;&#x3D;null) return l2;</span><br><span class="line">        if(l2&#x3D;&#x3D;null) return l1;</span><br><span class="line">        if(l1.val&lt;l2.val) return mergeTwoLists(l2,l1);</span><br><span class="line">        ListNode head&#x3D;new ListNode(l2.val);</span><br><span class="line">        head.next&#x3D;mergeTwoLists(l1,l2.next);</span><br><span class="line">        return head;</span><br><span class="line">    &#125;</span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line"></span><br><span class="line">But notice that you don&#39;t need to create extra space for ListNodes.  </span><br></pre></td></tr></table></figure>
-<p>public ListNode mergeTwoLists(ListNode l1, ListNode l2) {<br>        if(l1==null) return l2;<br>        if(l2==null) return l1;<br>        if(l1.val&lt;l2.val) return mergeTwoLists(l2,l1);<br>        l2.next=mergeTwoLists(l1,l2.next);<br>        return l2;<br>    }</p>
-<pre><code></code></pre>
-]]></content>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public ListNode mergeTwoLists(ListNode l1, ListNode l2) &#123;</span><br><span class="line">        if(l1&#x3D;&#x3D;null) return l2;</span><br><span class="line">        if(l2&#x3D;&#x3D;null) return l1;</span><br><span class="line">        if(l1.val&lt;l2.val) return mergeTwoLists(l2,l1);</span><br><span class="line">        ListNode head&#x3D;new ListNode(l2.val);</span><br><span class="line">        head.next&#x3D;mergeTwoLists(l1,l2.next);</span><br><span class="line">        return head;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>But notice that you don’t need to create extra space for ListNodes.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public ListNode mergeTwoLists(ListNode l1, ListNode l2) &#123;</span><br><span class="line">        if(l1&#x3D;&#x3D;null) return l2;</span><br><span class="line">        if(l2&#x3D;&#x3D;null) return l1;</span><br><span class="line">        if(l1.val&lt;l2.val) return mergeTwoLists(l2,l1);</span><br><span class="line">        l2.next&#x3D;mergeTwoLists(l1,l2.next);</span><br><span class="line">        return l2;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>algorithm</category>
       </categories>
@@ -755,16 +757,52 @@ public static void main(String[] args) throws Exception {<pre><code>  ArrayList&
     <title>20. valid parenthesis</title>
     <url>/2021/01/28/valid-parenthesis/</url>
     <content><![CDATA[<p>This is my initial solution:  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public boolean isValid(String s) &#123;</span><br><span class="line">        Stack&lt;Character&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">        for(char c:s.toCharArray())&#123;</span><br><span class="line">            if(c&#x3D;&#x3D;&#39;(&#39;||c&#x3D;&#x3D;&#39;&#123;&#39;||c&#x3D;&#x3D;&#39;[&#39;)&#123;</span><br><span class="line">                stack.add(c);</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                if(stack.isEmpty()) return false;</span><br><span class="line">                char c2&#x3D;stack.pop();</span><br><span class="line">                boolean match&#x3D;false;</span><br><span class="line">                switch(c2)&#123;</span><br><span class="line">                    case &#39;(&#39;:</span><br><span class="line">                        match&#x3D;c&#x3D;&#x3D;&#39;)&#39;;</span><br><span class="line">                        break;</span><br><span class="line">                    case &#39;&#123;&#39;:</span><br><span class="line">                        match&#x3D;c&#x3D;&#x3D;&#39;&#125;&#39;;</span><br><span class="line">                        break;</span><br><span class="line">                    case &#39;[&#39;:</span><br><span class="line">                        match&#x3D;c&#x3D;&#x3D;&#39;]&#39;;</span><br><span class="line">                        break;</span><br><span class="line">                &#125;</span><br><span class="line">                if(!match) return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return stack.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line"></span><br><span class="line">But it can be improved by creating a hashmap to establish the mapping relation between the open brackets and closed brackets.  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>public boolean isValid(String s) {<br>        Stack<Character> stack=new Stack&lt;&gt;();<br>        HashMap&lt;Character,Character&gt; mapping=new HashMap&lt;&gt;();<br>        mapping.put(‘)’,’(‘);<br>        mapping.put(‘]’,’[‘);<br>        mapping.put(‘}’,’{‘);<br>        for(char c:s.toCharArray()){<br>            if(mapping.containsKey(c)){<br>                char match=stack.isEmpty()?’#’:stack.pop();<br>                if(match!=mapping.get(c)) return false;<br>            }<br>            else{<br>                stack.push(c);<br>            }<br>        }<br>        return stack.isEmpty();<br>    }</p>
-<pre><code></code></pre>
-]]></content>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public boolean isValid(String s) &#123;</span><br><span class="line">        Stack&lt;Character&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">        for(char c:s.toCharArray())&#123;</span><br><span class="line">            if(c&#x3D;&#x3D;&#39;(&#39;||c&#x3D;&#x3D;&#39;&#123;&#39;||c&#x3D;&#x3D;&#39;[&#39;)&#123;</span><br><span class="line">                stack.add(c);</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                if(stack.isEmpty()) return false;</span><br><span class="line">                char c2&#x3D;stack.pop();</span><br><span class="line">                boolean match&#x3D;false;</span><br><span class="line">                switch(c2)&#123;</span><br><span class="line">                    case &#39;(&#39;:</span><br><span class="line">                        match&#x3D;c&#x3D;&#x3D;&#39;)&#39;;</span><br><span class="line">                        break;</span><br><span class="line">                    case &#39;&#123;&#39;:</span><br><span class="line">                        match&#x3D;c&#x3D;&#x3D;&#39;&#125;&#39;;</span><br><span class="line">                        break;</span><br><span class="line">                    case &#39;[&#39;:</span><br><span class="line">                        match&#x3D;c&#x3D;&#x3D;&#39;]&#39;;</span><br><span class="line">                        break;</span><br><span class="line">                &#125;</span><br><span class="line">                if(!match) return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return stack.isEmpty();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>But it can be improved by creating a hashmap to establish the mapping relation between the open brackets and closed brackets.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public boolean isValid(String s) &#123;</span><br><span class="line">        Stack&lt;Character&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">        HashMap&lt;Character,Character&gt; mapping&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        mapping.put(&#39;)&#39;,&#39;(&#39;);</span><br><span class="line">        mapping.put(&#39;]&#39;,&#39;[&#39;);</span><br><span class="line">        mapping.put(&#39;&#125;&#39;,&#39;&#123;&#39;);</span><br><span class="line">        for(char c:s.toCharArray())&#123;</span><br><span class="line">            if(mapping.containsKey(c))&#123;</span><br><span class="line">                char match&#x3D;stack.isEmpty()?&#39;#&#39;:stack.pop();</span><br><span class="line">                if(match!&#x3D;mapping.get(c)) return false;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                stack.push(c);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return stack.isEmpty();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>algorithm</category>
       </categories>
       <tags>
         <tag>leetcode</tag>
         <tag>stack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>majorityElement</title>
+    <url>/2021/01/28/majorityElement/</url>
+    <content><![CDATA[<ul>
+<li>Keep a variable ‘majority’ and keep a variable ‘count’.</li>
+<li>Loop through the array, if current number is not equal to majority, minus the count by one and if count equals zero, replace the majority with current number  </li>
+<li>If current number equals majority, increment count by 1.</li>
+<li>The idea behind this is that the majority element is guaranteed to be more than N/2, so the count of it will always be larger than 0 no matter how many it is offseted by other element.  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public int majorityElement(int[] nums) &#123;</span><br><span class="line">        int majority&#x3D;nums[0];</span><br><span class="line">        int count&#x3D;1;</span><br><span class="line">        for(int i&#x3D;1;i&lt;nums.length;i++)&#123;</span><br><span class="line">            if(majority&#x3D;&#x3D;nums[i]) count++;</span><br><span class="line">            else&#123;</span><br><span class="line">                count--;</span><br><span class="line">                if(count&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    majority&#x3D;nums[i];</span><br><span class="line">                    count&#x3D;1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return majority;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>bit manipulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>reverse_list</title>
+    <url>/2021/01/28/reverse-list/</url>
+    <content><![CDATA[<h3 id="206"><a href="#206" class="headerlink" title="206"></a>206</h3><ul>
+<li>recursive<br><img src="/images/post_images/linked1.png" alt="diagram1">  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public ListNode reverseList(ListNode head) &#123;</span><br><span class="line">        if(head&#x3D;&#x3D;null||head.next&#x3D;&#x3D;null) return head;</span><br><span class="line">        ListNode last&#x3D;reverseList(head.next);</span><br><span class="line">        head.next.next&#x3D;head;</span><br><span class="line">        head.next&#x3D;null;</span><br><span class="line">        return last;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>iterative<br>keep three handles–pre,cur,nxt  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public ListNode reverseList(ListNode head) &#123;</span><br><span class="line">        ListNode pre&#x3D;null,cur&#x3D;head,nxt&#x3D;head;</span><br><span class="line">        while(cur!&#x3D;null)&#123;</span><br><span class="line">            nxt&#x3D;cur.next;</span><br><span class="line">            cur.next&#x3D;pre;</span><br><span class="line">            pre&#x3D;cur;</span><br><span class="line">            cur&#x3D;nxt;</span><br><span class="line">        &#125;</span><br><span class="line">        return pre;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>linked list</tag>
       </tags>
   </entry>
 </search>
