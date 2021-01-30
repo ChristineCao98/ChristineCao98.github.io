@@ -297,7 +297,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-01-30 00:04:11 / Modified: 00:20:29" itemprop="dateCreated datePublished" datetime="2021-01-30T00:04:11+00:00">2021-01-30</time>
+              <time title="Created: 2021-01-30 00:04:11 / Modified: 01:09:40" itemprop="dateCreated datePublished" datetime="2021-01-30T00:04:11+00:00">2021-01-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -320,15 +320,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="Three-templates-of-binary-search"><a href="#Three-templates-of-binary-search" class="headerlink" title="Three templates of binary search"></a>Three templates of binary search</h3><ul>
-<li>basic template  </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">int binarySearch(int[] nums, int target) &#123;</span><br><span class="line">    int left &#x3D; 0; </span><br><span class="line">    int right &#x3D; nums.length - 1; &#x2F;&#x2F; attention</span><br><span class="line">    while(left &lt;&#x3D; right) &#123; &#x2F;&#x2F; attention</span><br><span class="line">        int mid &#x3D; (right + left) &#x2F; 2;</span><br><span class="line">        if(nums[mid] &#x3D;&#x3D; target)</span><br><span class="line">            return mid; </span><br><span class="line">        else if (nums[mid] &lt; target)</span><br><span class="line">            left &#x3D; mid + 1; &#x2F;&#x2F; attention</span><br><span class="line">        else if (nums[mid] &gt; target)</span><br><span class="line">            right &#x3D; mid - 1; &#x2F;&#x2F; attention</span><br><span class="line">        &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line">The interval used in this algorithm is [left,right], so the ending condition is left&gt;right.</span><br><span class="line">&lt;!-- more --&gt;</span><br><span class="line"></span><br><span class="line">* finding the left bound  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>int left_bound(int[] nums, int target) {<br>if (nums.length == 0) return -1;<br>int left = 0;<br>int right = nums.length; // attention<br>while (left &lt; right) { // attention<br>    int mid = (left + right) / 2;<br>    if (nums[mid] == target) {<br>       right = mid;<br>       } else if (nums[mid] &lt; target) {<br>            left = mid + 1;<br>       } else if (nums[mid] &gt; target) {<br>            right = mid; // attention<br>       }<br>    }<br>    return (left!=nums.length&amp;&amp;nums[left]==target)?left:-1;<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  * The interval used in this algorithm is [left,right), so the ending condition is left&#x3D;&#x3D;right.  </span><br><span class="line">  * Keep in mind one property of this algorithm, if target does not exist in the nums array, left will always end at the element that is the first which is larger than target in the array.  </span><br><span class="line">* finding the right bound  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>int right_bound(int[] nums, int target) {<br>  if (nums.length == 0) return -1;<br>  int left = 0, right = nums.length;</p>
-<p>  while (left &lt; right) {<br>      int mid = (left + right) / 2;<br>      if (nums[mid] == target) {<br>          left = mid + 1; //this is the reason that it should return left-1<br>      } else if (nums[mid] &lt; target) {<br>          left = mid + 1;<br>      } else if (nums[mid] &gt; target) {<br>          right = mid;<br>      }<br>  }<br>  return (left!=0&amp;&amp;nums[left-1]==target)?left-1:-1;<br>}<br>```</p>
-
+          <h2 id="Three-templates-of-binary-search"><a href="#Three-templates-of-binary-search" class="headerlink" title="Three templates of binary search"></a>Three templates of binary search</h2><h3 id="basic-template"><a href="#basic-template" class="headerlink" title="basic template"></a>basic template</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int binarySearch(int[] nums, int target) &#123;</span><br><span class="line">    int left &#x3D; 0; </span><br><span class="line">    int right &#x3D; nums.length - 1; &#x2F;&#x2F; attention</span><br><span class="line">    while(left &lt;&#x3D; right) &#123; &#x2F;&#x2F; attention</span><br><span class="line">        int mid &#x3D; (right + left) &#x2F; 2;</span><br><span class="line">        if(nums[mid] &#x3D;&#x3D; target)</span><br><span class="line">            return mid; </span><br><span class="line">        else if (nums[mid] &lt; target)</span><br><span class="line">            left &#x3D; mid + 1; &#x2F;&#x2F; attention</span><br><span class="line">        else if (nums[mid] &gt; target)</span><br><span class="line">            right &#x3D; mid - 1; &#x2F;&#x2F; attention</span><br><span class="line">        &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The interval used in this algorithm is [left,right], so the ending condition is left&gt;right.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/30/binary-search/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
