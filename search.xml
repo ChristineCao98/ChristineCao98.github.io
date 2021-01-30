@@ -913,7 +913,7 @@ s2 = s1 + s2;
       </tags>
   </entry>
   <entry>
-    <title>combinationSum</title>
+    <title>39. Combination Sum</title>
     <url>/2021/01/30/combinationSum/</url>
     <content><![CDATA[<pre><code>class Solution &#123;
     List&lt;List&lt;Integer&gt;&gt; res=new LinkedList&lt;&gt;();
