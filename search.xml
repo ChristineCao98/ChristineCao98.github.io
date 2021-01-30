@@ -945,4 +945,143 @@ s2 = s1 + s2;
         <tag>backtracking</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Jump Game</title>
+    <url>/2021/01/30/canJump/</url>
+    <content><![CDATA[<h3 id="55"><a href="#55" class="headerlink" title="55"></a>55</h3><p>For each step,update the farthest place you can go, if you cannot go any farther, return false.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean canJump(int[] nums) &#123;</span><br><span class="line">        int farthest&#x3D;0;</span><br><span class="line">        for(int i&#x3D;0;i&lt;nums.length-1;i++)&#123;</span><br><span class="line">            farthest&#x3D;Math.max(farthest,i+nums[i]);</span><br><span class="line">            if(farthest&#x3D;&#x3D;i) return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="45"><a href="#45" class="headerlink" title="45"></a>45</h3><ul>
+<li>First solution is to use dynamic programming(However it exceeds time limit)  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int jump(int[] nums) &#123;</span><br><span class="line">        int n&#x3D;nums.length;</span><br><span class="line">        int[] dp&#x3D;new int[n];</span><br><span class="line">        Arrays.fill(dp,n);</span><br><span class="line">        dp[n-1]&#x3D;0;</span><br><span class="line">        for(int i&#x3D;n-1;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            for(int x&#x3D;0;x&lt;&#x3D;nums[i];x++)&#123;</span><br><span class="line">                if(i+x&gt;n-1) break;</span><br><span class="line">                dp[i]&#x3D;Math.min(dp[i],dp[i+x]+1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Second solution will use greedy.  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int jump(int[] nums) &#123;</span><br><span class="line">        int end&#x3D;0;</span><br><span class="line">        int farthest&#x3D;0;</span><br><span class="line">        int jumps&#x3D;0;</span><br><span class="line">        for(int i&#x3D;0;i&lt;nums.length-1;i++)&#123;&#x2F;&#x2F;Notice that the iteration stops at the last but one element because there will be no jumps update at the end</span><br><span class="line">            farthest&#x3D;Math.max(farthest,nums[i]+i);</span><br><span class="line">            if(end&#x3D;&#x3D;i)&#123;</span><br><span class="line">                jumps++;</span><br><span class="line">                end&#x3D;farthest;&#x2F;&#x2F;end will always be inside the jumpable area of the step that we actually take so we can update jumps after we take that step here</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return jumps;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The core idea here is to pick up the element that has the most potential.<br><img src="/images/post_images/jump_diagram1.png"><br>As this picture shows, the next step we will jump to is index 2, because its jumpable area covers[3,6] which is larger than others.  </p>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>greedy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>groupAnagrams</title>
+    <url>/2021/01/30/groupAnagrams/</url>
+    <content><![CDATA[<ul>
+<li>The most important idea of this question is to use a hashmap to store all the lists of same anagrams.  </li>
+<li>There are two possible keys:  <ul>
+<li>the sorted string</li>
+<li>character counts(eg. The character count of ‘ab’ can be ‘1#1#0…#0’)<a id="more"></a>
+
+</li>
+</ul>
+</li>
+</ul>
+<p>Here is the code for the second solution:  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;String&gt;&gt; groupAnagrams(String[] strs) &#123;</span><br><span class="line">        HashMap&lt;String,List&gt; mapping&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        for(String s:strs)&#123;</span><br><span class="line">            int[] count&#x3D;new int[26];</span><br><span class="line">            for(char c:s.toCharArray())&#123;</span><br><span class="line">                count[c-&#39;a&#39;]++;</span><br><span class="line">            &#125;</span><br><span class="line">            StringBuilder sb&#x3D;new StringBuilder();</span><br><span class="line">            for(int i:count)&#123;</span><br><span class="line">                sb.append(i);</span><br><span class="line">                sb.append(&quot;#&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            String index&#x3D;sb.toString();</span><br><span class="line">            if(!mapping.containsKey(index))&#123;</span><br><span class="line">                mapping.put(index,new ArrayList&lt;String&gt;());</span><br><span class="line">            &#125;</span><br><span class="line">            mapping.get(index).add(s);</span><br><span class="line">        &#125;</span><br><span class="line">        return new ArrayList(mapping.values());&#x2F;&#x2F;The values method of hashmap will return a collection, and arraylist has a constructor that can take a collection. </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>hashmap</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>merge56</title>
+    <url>/2021/01/30/merge56/</url>
+    <content><![CDATA[<p>The core of this question is to sort the array by the first element of each subarray.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[][] merge(int[][] intervals) &#123;</span><br><span class="line">        Arrays.sort(intervals,new Comparator&lt;int[]&gt;()&#123;</span><br><span class="line">            public int compare(int[] a,int[] b)&#123;</span><br><span class="line">                return a[0]-b[0];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        LinkedList&lt;int[]&gt; merged&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">        for(int[] interval:intervals)&#123;</span><br><span class="line">            if(merged.isEmpty()||merged.getLast()[1]&lt;interval[0])&#123;</span><br><span class="line">                merged.add(interval);</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                if(merged.getLast()[1]&lt;interval[1])&#123;</span><br><span class="line">                    merged.getLast()[1]&#x3D;interval[1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return merged.toArray(new int[merged.size()][]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>sort</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>64. Minimum Path Sum</title>
+    <url>/2021/01/30/minPathSum/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int minPathSum(int[][] grid) &#123;</span><br><span class="line">        int m&#x3D;grid.length;</span><br><span class="line">        int n&#x3D;grid[0].length;</span><br><span class="line">        int[] dp&#x3D;new int[n];</span><br><span class="line">        dp[0]&#x3D;grid[0][0];</span><br><span class="line">        &#x2F;&#x2F; for(int i&#x3D;1;i&lt;m;i++)&#123;</span><br><span class="line">        &#x2F;&#x2F;     dp[i][0]&#x3D;dp[i-1][0]+grid[i][0];</span><br><span class="line">        &#x2F;&#x2F; &#125;</span><br><span class="line">        for(int i&#x3D;1;i&lt;n;i++)&#123;</span><br><span class="line">            dp[i]&#x3D;dp[i-1]+grid[0][i];</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;1;i&lt;m;i++)&#123;</span><br><span class="line">            dp[0]+&#x3D;grid[i][0];</span><br><span class="line">            for(int j&#x3D;1;j&lt;n;j++)&#123;</span><br><span class="line">                dp[j]&#x3D;Math.min(dp[j],dp[j-1])+grid[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[n-1];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>dynamic programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>48. Rotate Image</title>
+    <url>/2021/01/30/rotate/</url>
+    <content><![CDATA[<p><strong>Every rotation is the product of two reflections.</strong>  </p>
+<ul>
+<li>For the requirement of this question, we first reverse the matrix around the main diagonal, and then reverse it from left to right. </li>
+<li>It is called transpose and reflect in linear algebra.  </li>
+<li>If you change the mirror function from top to bottom and change the order of transpose and mirror, you can get the other three angles.  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public void rotate(int[][] matrix) &#123;</span><br><span class="line">        transpose(matrix);</span><br><span class="line">        mirror(matrix);</span><br><span class="line">    &#125;</span><br><span class="line">    private void transpose(int[][] matrix)&#123;</span><br><span class="line">        for(int i&#x3D;1;i&lt;matrix.length;i++)&#123;</span><br><span class="line">            for(int j&#x3D;0;j&lt;i;j++)&#123;</span><br><span class="line">                int temp&#x3D;matrix[i][j];</span><br><span class="line">                matrix[i][j]&#x3D;matrix[j][i];</span><br><span class="line">                matrix[j][i]&#x3D;temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    private void mirror(int[][] matrix)&#123;</span><br><span class="line">        int n&#x3D;matrix.length;</span><br><span class="line">        for(int i&#x3D;0;i&lt;n;i++)&#123;</span><br><span class="line">            for(int j&#x3D;0;j&lt;n&#x2F;2;j++)&#123;</span><br><span class="line">                int temp&#x3D;matrix[i][j];</span><br><span class="line">                matrix[i][j]&#x3D;matrix[i][n-j-1];</span><br><span class="line">                matrix[i][n-j-1]&#x3D;temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sortColors</title>
+    <url>/2021/01/30/sortColors/</url>
+    <content><![CDATA[<ul>
+<li><p>We will use three pointers here to track the rightmost boundary of zeros, the leftmost boundary of twos and the current element under the consideration.  </p>
+</li>
+<li><p>While curr &lt;= p2 :</p>
+<ul>
+<li><p>If nums[curr] = 0 : swap currth and p0th elements and move both pointers to the right.</p>
+</li>
+<li><p>If nums[curr] = 2 : swap currth and p2th elements. Move pointer p2 to the left.</p>
+</li>
+<li><p>If nums[curr] = 1 : move pointer curr to the right.  </p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public void sortColors(int[] nums) &#123;</span><br><span class="line">        int n&#x3D;nums.length-1;</span><br><span class="line">        int cur&#x3D;0,left&#x3D;0,right&#x3D;n;</span><br><span class="line">        while(cur&lt;&#x3D;right)&#123;</span><br><span class="line">            if(nums[cur]&#x3D;&#x3D;0)&#123;</span><br><span class="line">                swap(nums,cur,left);</span><br><span class="line">                left++;</span><br><span class="line">                cur++;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(nums[cur]&#x3D;&#x3D;2)&#123;</span><br><span class="line">                swap(nums,cur,right);</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                cur++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    private void swap(int[] nums,int l,int r)&#123;</span><br><span class="line">        int temp&#x3D;nums[l];</span><br><span class="line">        nums[l]&#x3D;nums[r];</span><br><span class="line">        nums[r]&#x3D;temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>two pointers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>subsets</title>
+    <url>/2021/01/30/subsets/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; res&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) &#123;</span><br><span class="line">        backtrack(new ArrayList&lt;Integer&gt;(),nums,0);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    private void backtrack(ArrayList&lt;Integer&gt; track,int[] nums,int start)&#123;</span><br><span class="line">        res.add(new ArrayList&lt;Integer&gt;(track));</span><br><span class="line">        for(int i&#x3D;start;i&lt;nums.length;i++)&#123;</span><br><span class="line">            track.add(nums[i]);</span><br><span class="line">            backtrack(track,nums,i+1);</span><br><span class="line">            track.remove(track.size()-1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>backtracking</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>62. Unique Paths</title>
+    <url>/2021/01/30/uniquePaths/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int uniquePaths(int m, int n) &#123;</span><br><span class="line">        if(n&gt;m) return uniquePaths(n,m);</span><br><span class="line">        int[] dp&#x3D;new int[n];</span><br><span class="line">        dp[0]&#x3D;1;</span><br><span class="line">        for(int i&#x3D;1;i&lt;m;i++)&#123;</span><br><span class="line">            dp[0]&#x3D;1;</span><br><span class="line">            for(int j&#x3D;1;j&lt;n;j++)&#123;</span><br><span class="line">                if(i&#x3D;&#x3D;1) dp[j]&#x3D;dp[j-1]+1;</span><br><span class="line">                else dp[j]&#x3D;dp[j-1]+dp[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[n-1];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>dynamic programming</tag>
+      </tags>
+  </entry>
 </search>
