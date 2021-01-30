@@ -184,6 +184,94 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/30/combinationSum/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/30/combinationSum/" class="post-title-link" itemprop="url">combinationSum</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-01-30 01:01:36 / Modified: 01:05:47" itemprop="dateCreated datePublished" datetime="2021-01-30T01:01:36+00:00">2021-01-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <pre><code>class Solution &#123;
+    List&lt;List&lt;Integer&gt;&gt; res=new LinkedList&lt;&gt;();
+    public List&lt;List&lt;Integer&gt;&gt; combinationSum(int[] candidates, int target) &#123;
+        List&lt;Integer&gt; track=new ArrayList&lt;&gt;();
+        backtrack(track,candidates,target,0);
+        return res;
+    &#125;
+    private void backtrack(List&lt;Integer&gt; track,int[] candidates, int target,int start)&#123;
+        if(target&lt;0) return;
+        if(target==0)&#123;
+            res.add(new ArrayList&lt;Integer&gt;(track));
+            return;
+        &#125;
+        for(int i=start;i&lt;candidates.length;i++)&#123;
+            track.add(candidates[i]);
+            backtrack(track,candidates,target-candidates[i],i);
+            track.remove(track.size()-1);
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p>Notice that the parameter start is very crucial here, which guarantees that we won’t get repetitive answer by avoiding adding the element with which all the possible combinations have been added to the result.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/30/binary-search/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -854,74 +942,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/28/min-stack/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/28/min-stack/" class="post-title-link" itemprop="url">155 min stack</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-01-28 16:13:49 / Modified: 16:19:07" itemprop="dateCreated datePublished" datetime="2021-01-28T16:13:49+00:00">2021-01-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Creating two stacks, one to store all the current data, one to store the information of minimum number.  In the min stack, each node stores an int array with size two(the first to store the min number itself, the second to store the number of times it appears)   </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class MinStack &#123;</span><br><span class="line">    Stack&lt;Integer&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">    Stack&lt;int[]&gt; min&#x3D;new Stack&lt;&gt;();</span><br><span class="line">    &#x2F;** initialize your data structure here. *&#x2F;</span><br><span class="line">    public MinStack() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void push(int x) &#123;</span><br><span class="line">        stack.push(x);</span><br><span class="line">        if(min.isEmpty()) &#123;</span><br><span class="line">            min.push(new int[]&#123;x,1&#125;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        int premin&#x3D;min.peek()[0];</span><br><span class="line">        if(x&#x3D;&#x3D;premin) min.peek()[1]++;</span><br><span class="line">        else if(x&lt;premin)&#123;</span><br><span class="line">            min.push(new int[]&#123;x,1&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void pop() &#123;</span><br><span class="line">        int p&#x3D;stack.pop();</span><br><span class="line">        if(p&#x3D;&#x3D;min.peek()[0])&#123;</span><br><span class="line">            if(min.peek()[1]&#x3D;&#x3D;1) min.pop();</span><br><span class="line">            else&#123;</span><br><span class="line">                min.peek()[1]--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int top() &#123;</span><br><span class="line">        return stack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int getMin() &#123;</span><br><span class="line">        return min.peek()[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1041,7 +1061,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -911,4 +911,37 @@ s2 = s1 + s2;
         <tag>binary search</tag>
       </tags>
   </entry>
+  <entry>
+    <title>combinationSum</title>
+    <url>/2021/01/30/combinationSum/</url>
+    <content><![CDATA[<pre><code>class Solution &#123;
+    List&lt;List&lt;Integer&gt;&gt; res=new LinkedList&lt;&gt;();
+    public List&lt;List&lt;Integer&gt;&gt; combinationSum(int[] candidates, int target) &#123;
+        List&lt;Integer&gt; track=new ArrayList&lt;&gt;();
+        backtrack(track,candidates,target,0);
+        return res;
+    &#125;
+    private void backtrack(List&lt;Integer&gt; track,int[] candidates, int target,int start)&#123;
+        if(target&lt;0) return;
+        if(target==0)&#123;
+            res.add(new ArrayList&lt;Integer&gt;(track));
+            return;
+        &#125;
+        for(int i=start;i&lt;candidates.length;i++)&#123;
+            track.add(candidates[i]);
+            backtrack(track,candidates,target-candidates[i],i);
+            track.remove(track.size()-1);
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p>Notice that the parameter start is very crucial here, which guarantees that we won’t get repetitive answer by avoiding adding the element with which all the possible combinations have been added to the result.</p>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>backtracking</tag>
+      </tags>
+  </entry>
 </search>
