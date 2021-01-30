@@ -49,6 +49,7 @@
       <tags>
         <tag>problem solving template</tag>
         <tag>leetcode</tag>
+        <tag>dynamic programming</tag>
       </tags>
   </entry>
   <entry>
@@ -793,6 +794,8 @@ s2 = s1 + s2;
 <li>recursive<br><img src="/images/post_images/linked1.png" alt="diagram1">  </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public ListNode reverseList(ListNode head) &#123;</span><br><span class="line">        if(head&#x3D;&#x3D;null||head.next&#x3D;&#x3D;null) return head;</span><br><span class="line">        ListNode last&#x3D;reverseList(head.next);</span><br><span class="line">        head.next.next&#x3D;head;</span><br><span class="line">        head.next&#x3D;null;</span><br><span class="line">        return last;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
 <ul>
 <li>iterative<br>keep three handles–pre,cur,nxt  </li>
 </ul>
@@ -803,6 +806,93 @@ s2 = s1 + s2;
       <tags>
         <tag>leetcode</tag>
         <tag>linked list</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>15. 3Sum</title>
+    <url>/2021/01/29/3sum/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) &#123;</span><br><span class="line">        Arrays.sort(nums);&#x2F;&#x2F;Using two pointers technique, you must sort the array first</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">            for(int i&#x3D;0;i&lt;nums.length;i++)&#123;</span><br><span class="line">            if(nums[i]&gt;0) break;</span><br><span class="line">            if(i!&#x3D;0&amp;&amp;nums[i]&#x3D;&#x3D;nums[i-1]) continue;</span><br><span class="line">            int lo&#x3D;i+1;</span><br><span class="line">            int hi&#x3D;nums.length-1;</span><br><span class="line">            while(lo&lt;hi)&#123;</span><br><span class="line">                int sum&#x3D;nums[lo]+nums[hi]+nums[i];</span><br><span class="line">                if(sum&gt;0)&#123;</span><br><span class="line">                    hi--;</span><br><span class="line">                &#125;</span><br><span class="line">                else if(sum&lt;0)&#123;</span><br><span class="line">                    lo++;</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    res.add(Arrays.asList(nums[i],nums[lo++],nums[hi--]));</span><br><span class="line">                     while(lo&lt;hi&amp;&amp;nums[lo]&#x3D;&#x3D;nums[lo-1])&#123;</span><br><span class="line">                    lo++;&#x2F;&#x2F; You can only move lo to avoid repetitive elements until you can make sure that it is not the first element of scanning</span><br><span class="line">                &#125;</span><br><span class="line">                &#125;</span><br><span class="line">               </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>two pointers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2. Add Two Numbers</title>
+    <url>/2021/01/29/addTwoNumbers/</url>
+    <content><![CDATA[<p>My initial code:  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123;</span><br><span class="line">        int add&#x3D;0;</span><br><span class="line">        ListNode head&#x3D;new ListNode();</span><br><span class="line">        ListNode cur&#x3D;head;</span><br><span class="line">        while(l1!&#x3D;null&amp;&amp;l2!&#x3D;null)&#123;</span><br><span class="line">            cur.val&#x3D;((l1.val+l2.val+add)%10);</span><br><span class="line">            add&#x3D;(l1.val+l2.val+add)&#x2F;10;</span><br><span class="line">            l1&#x3D;l1.next;</span><br><span class="line">            l2&#x3D;l2.next;</span><br><span class="line">            if(l1&#x3D;&#x3D;null&amp;&amp;l2&#x3D;&#x3D;null&amp;&amp;add&#x3D;&#x3D;0) break;</span><br><span class="line">            cur.next&#x3D;new ListNode();</span><br><span class="line">            cur&#x3D;cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        if(l1&#x3D;&#x3D;null)&#123;</span><br><span class="line">            l1&#x3D;l2;</span><br><span class="line">        &#125;</span><br><span class="line">        while(l1!&#x3D;null)&#123;</span><br><span class="line">            cur.val&#x3D;((l1.val+add)%10);</span><br><span class="line">            add&#x3D;(l1.val+add)&#x2F;10;</span><br><span class="line">            l1&#x3D;l1.next;</span><br><span class="line">            if(l1&#x3D;&#x3D;null&amp;&amp;add&#x3D;&#x3D;0) break;</span><br><span class="line">            cur.next&#x3D;new ListNode();</span><br><span class="line">            cur&#x3D;cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        if(add!&#x3D;0)&#123;</span><br><span class="line">            cur.val&#x3D;add;</span><br><span class="line">        &#125;</span><br><span class="line">        return head;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>But it is really redundant:  </p>
+<ul>
+<li>A dummyhead can be created to be followed by the actual head node  </li>
+<li>Merge the two blocks together  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123;</span><br><span class="line">        int add&#x3D;0;</span><br><span class="line">        ListNode dummyHead&#x3D;new ListNode();</span><br><span class="line">        ListNode cur&#x3D;dummyHead;</span><br><span class="line">        while(l1!&#x3D;null||l2!&#x3D;null)&#123;</span><br><span class="line">            int x&#x3D;l1&#x3D;&#x3D;null?0:l1.val;</span><br><span class="line">            int y&#x3D;l2&#x3D;&#x3D;null?0:l2.val;</span><br><span class="line">            int sum&#x3D;x+y+add;</span><br><span class="line">            add&#x3D;sum&#x2F;10;</span><br><span class="line">            cur.next&#x3D;new ListNode(sum%10);</span><br><span class="line">            cur&#x3D;cur.next;</span><br><span class="line">            if(l1!&#x3D;null) l1&#x3D;l1.next;</span><br><span class="line">            if(l2!&#x3D;null) l2&#x3D;l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        if(add!&#x3D;0)&#123;</span><br><span class="line">            cur.next&#x3D;new ListNode(add);</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyHead.next;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>linked list</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>binary_search</title>
+    <url>/2021/01/30/binary-search/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>removeNthFromEnd</title>
+    <url>/2021/01/29/removeNthFromEnd/</url>
+    <content><![CDATA[<p>Again using a dummy head is crucial for solving this problem.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode removeNthFromEnd(ListNode head, int n) &#123;</span><br><span class="line">        ListNode dummyHead&#x3D;new ListNode(0,head);</span><br><span class="line">        ListNode right&#x3D;head;</span><br><span class="line">        for(int i&#x3D;n;i&gt;0;i--)&#123;</span><br><span class="line">            right&#x3D;right.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode cur&#x3D;head;</span><br><span class="line">        ListNode pre&#x3D;dummyHead;</span><br><span class="line">        while(right!&#x3D;null)&#123;</span><br><span class="line">            cur&#x3D;cur.next;</span><br><span class="line">            pre&#x3D;pre.next;</span><br><span class="line">            right&#x3D;right.next;</span><br><span class="line">        &#125;</span><br><span class="line">        pre.next&#x3D;cur.next;</span><br><span class="line">        return dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>two pointers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>letterCombinations</title>
+    <url>/2021/01/29/letterCombinations/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    List&lt;String&gt; res&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">    HashMap&lt;Integer,char[]&gt; digitToLetter&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">    public List&lt;String&gt; letterCombinations(String digits) &#123;</span><br><span class="line">        if(digits&#x3D;&#x3D;null||digits.length()&#x3D;&#x3D;0) return res;</span><br><span class="line">        digitToLetter.put(2,new char[]&#123;&#39;a&#39;,&#39;b&#39;,&#39;c&#39;&#125;);</span><br><span class="line">        digitToLetter.put(3,new char[]&#123;&#39;d&#39;,&#39;e&#39;,&#39;f&#39;&#125;);</span><br><span class="line">        digitToLetter.put(4,new char[]&#123;&#39;g&#39;,&#39;h&#39;,&#39;i&#39;&#125;);</span><br><span class="line">        digitToLetter.put(5,new char[]&#123;&#39;j&#39;,&#39;k&#39;,&#39;l&#39;&#125;);</span><br><span class="line">        digitToLetter.put(6,new char[]&#123;&#39;m&#39;,&#39;n&#39;,&#39;o&#39;&#125;);</span><br><span class="line">        digitToLetter.put(7,new char[]&#123;&#39;p&#39;,&#39;q&#39;,&#39;r&#39;,&#39;s&#39;&#125;);</span><br><span class="line">        digitToLetter.put(8,new char[]&#123;&#39;t&#39;,&#39;u&#39;,&#39;v&#39;&#125;);</span><br><span class="line">        digitToLetter.put(9,new char[]&#123;&#39;w&#39;,&#39;x&#39;,&#39;y&#39;,&#39;z&#39;&#125;);</span><br><span class="line">        StringBuilder track&#x3D;new StringBuilder();</span><br><span class="line">        backtrack(track,digits,0);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    private void backtrack(StringBuilder track,String digits,int index)&#123;</span><br><span class="line">        if(index&#x3D;&#x3D;digits.length())&#123;</span><br><span class="line">            res.add(track.toString());</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(char c:digitToLetter.get(digits.charAt(index)-&#39;0&#39;))&#123;</span><br><span class="line">            track.append(c);</span><br><span class="line">            backtrack(track,digits,index+1);</span><br><span class="line">            track.deleteCharAt(index);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>backtracking</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>search_rotated</title>
+    <url>/2021/01/29/search-rotated/</url>
+    <content><![CDATA[<p>Formula: If a sorted array is shifted, if you take the middle, always one side will be sorted. Take the recursion according to that rule.</p>
+<ul>
+<li>take the middle and compare with target, if matches return.</li>
+<li>if middle is bigger than left side, it means left is sorted<ul>
+<li>if [left] &lt; target &lt; [middle] then do recursion with left, middle - 1 (right)</li>
+<li>left side is sorted, but target not in here, search on right side middle + 1 (left), right</li>
+</ul>
+</li>
+<li>if middle is less than right side, it means right is sorted<ul>
+<li>if [middle] &lt; target &lt; [right] then do recursion with middle + 1 (left), right</li>
+<li>right side is sorted, but target not in here, search on left side left, middle -1 (right)  </li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int search(int[] nums, int target) &#123;</span><br><span class="line">        int left&#x3D;0;</span><br><span class="line">        int right&#x3D;nums.length-1;</span><br><span class="line">        while(left&lt;&#x3D;right)&#123;</span><br><span class="line">            int mid&#x3D;(left+right)&#x2F;2;</span><br><span class="line">            if(nums[mid]&#x3D;&#x3D;target) return mid;</span><br><span class="line">            if(nums[mid]&gt;&#x3D;nums[left])&#123;&#x2F;&#x2F;NOTICE!!!!!The equal mark is extremly important here!Considering this case: nums&#x3D;&#123;3,1&#125;, target&#x3D;1, you will want both 3 and 1 to be examined. And you can only do this by adding an equal mark here.</span><br><span class="line">                if(target&lt;nums[mid]&amp;&amp;target&gt;&#x3D;nums[left])&#123;</span><br><span class="line">                    right&#x3D;mid-1;</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    left&#x3D;mid+1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                if(target&gt;nums[mid]&amp;&amp;target&lt;&#x3D;nums[right])&#123;</span><br><span class="line">                    left&#x3D;mid+1;</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    right&#x3D;mid-1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>binary search</tag>
       </tags>
   </entry>
 </search>
