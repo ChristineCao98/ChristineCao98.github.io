@@ -950,6 +950,8 @@ s2 = s1 + s2;
     <url>/2021/01/30/canJump/</url>
     <content><![CDATA[<h3 id="55"><a href="#55" class="headerlink" title="55"></a>55</h3><p>For each step,update the farthest place you can go, if you cannot go any farther, return false.</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean canJump(int[] nums) &#123;</span><br><span class="line">        int farthest&#x3D;0;</span><br><span class="line">        for(int i&#x3D;0;i&lt;nums.length-1;i++)&#123;</span><br><span class="line">            farthest&#x3D;Math.max(farthest,i+nums[i]);</span><br><span class="line">            if(farthest&#x3D;&#x3D;i) return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
 <h3 id="45"><a href="#45" class="headerlink" title="45"></a>45</h3><ul>
 <li>First solution is to use dynamic programming(However it exceeds time limit)  </li>
 </ul>
@@ -1047,6 +1049,8 @@ s2 = s1 + s2;
 <li><p>If nums[curr] = 2 : swap currth and p2th elements. Move pointer p2 to the left.</p>
 </li>
 <li><p>If nums[curr] = 1 : move pointer curr to the right.  </p>
+<a id="more"></a>
+
 </li>
 </ul>
 </li>
@@ -1076,6 +1080,107 @@ s2 = s1 + s2;
     <title>62. Unique Paths</title>
     <url>/2021/01/30/uniquePaths/</url>
     <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int uniquePaths(int m, int n) &#123;</span><br><span class="line">        if(n&gt;m) return uniquePaths(n,m);</span><br><span class="line">        int[] dp&#x3D;new int[n];</span><br><span class="line">        dp[0]&#x3D;1;</span><br><span class="line">        for(int i&#x3D;1;i&lt;m;i++)&#123;</span><br><span class="line">            dp[0]&#x3D;1;</span><br><span class="line">            for(int j&#x3D;1;j&lt;n;j++)&#123;</span><br><span class="line">                if(i&#x3D;&#x3D;1) dp[j]&#x3D;dp[j-1]+1;</span><br><span class="line">                else dp[j]&#x3D;dp[j-1]+dp[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[n-1];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>dynamic programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>105. Construct Binary Tree from Preorder and Inorder Traversal</title>
+    <url>/2021/02/01/buildTree105/</url>
+    <content><![CDATA[<p>The main idea is illustrated in the diagram below:<br><img src="/images/post_images/105_diagram.png">  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public TreeNode buildTree(int[] preorder, int[] inorder) &#123;</span><br><span class="line">        if(preorder&#x3D;&#x3D;null||preorder.length&#x3D;&#x3D;0) return null;</span><br><span class="line">        return buildTree(preorder,0,preorder.length-1,inorder,0,preorder.length-1);</span><br><span class="line">    &#125;</span><br><span class="line">    private TreeNode buildTree(int[] preorder,int pre_s,int pre_e,</span><br><span class="line">                               int[] inorder,int in_s,int in_e)&#123;</span><br><span class="line">        if(pre_s&gt;pre_e) return null;</span><br><span class="line">        TreeNode root&#x3D;new TreeNode(preorder[pre_s]);</span><br><span class="line">        int root_pos&#x3D;0;</span><br><span class="line">        for(int i&#x3D;in_s;i&lt;&#x3D;in_e;i++)&#123;</span><br><span class="line">            if(inorder[i]&#x3D;&#x3D;preorder[pre_s])&#123;</span><br><span class="line">                root_pos&#x3D;i;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int left_size&#x3D;root_pos-in_s;</span><br><span class="line">        root.left&#x3D;buildTree(preorder,pre_s+1,pre_s+left_size,</span><br><span class="line">                           inorder,in_s,root_pos-1);</span><br><span class="line">        root.right&#x3D;buildTree(preorder,pre_s+left_size+1,pre_e,</span><br><span class="line">                           inorder,root_pos+1,in_e);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>depth first search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>98. Validate Binary Search Tree</title>
+    <url>/2021/02/01/isValidBST/</url>
+    <content><![CDATA[<h3 id="method-1-preorder"><a href="#method-1-preorder" class="headerlink" title="method 1(preorder)"></a>method 1(preorder)</h3><p>Valid BST must fulfill max.val &gt; root.val &gt; min.val<br>expand the parameter list to pass the min and max on  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean validate(TreeNode root, Integer low, Integer high) &#123;</span><br><span class="line">        &#x2F;&#x2F; Empty trees are valid BSTs.</span><br><span class="line">        if (root &#x3D;&#x3D; null) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; The current node&#39;s value must be between low and high.</span><br><span class="line">        if ((low !&#x3D; null &amp;&amp; root.val &lt;&#x3D; low) || (high !&#x3D; null &amp;&amp; root.val &gt;&#x3D; high)) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; The left and right subtree must also be valid.</span><br><span class="line">        return validate(root.right, root.val, high) &amp;&amp; validate(root.left, low, root.val);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean isValidBST(TreeNode root) &#123;</span><br><span class="line">        return validate(root, null, null);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="method-2-inorder"><a href="#method-2-inorder" class="headerlink" title="method 2(inorder)"></a>method 2(inorder)</h3><p>To keep the previous traversed node in class variable prev, if root.val&lt;=prev, return false.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    Integer prev;</span><br><span class="line">    public boolean isValidBST(TreeNode root) &#123;</span><br><span class="line">        if(root&#x3D;&#x3D;null) return true;</span><br><span class="line">        if(!isValidBST(root.left)) return false;</span><br><span class="line">        if(prev!&#x3D;null&amp;&amp;root.val&lt;&#x3D;prev) return false;</span><br><span class="line">        prev&#x3D;root.val;</span><br><span class="line">        return isValidBST(root.right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>depth first search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>levelOrder</title>
+    <url>/2021/02/01/levelOrder/</url>
+    <content><![CDATA[<p>The two most important variables here is level and level_length.  Length is to keep track of the depth of current iteration(We will also use it to act as the index of returned array). If we finish looping through all the elements in current level, increment level by one and the size of current queue will be level_length, that is, the number of elements in the next level.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">        if(root&#x3D;&#x3D;null) return res;</span><br><span class="line">        Queue&lt;TreeNode&gt; q&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">        q.add(root);</span><br><span class="line">        int level&#x3D;0;</span><br><span class="line">        while(!q.isEmpty())&#123;</span><br><span class="line">            res.add(new ArrayList&lt;Integer&gt;());</span><br><span class="line">            int level_length&#x3D;q.size();</span><br><span class="line">            for(int i&#x3D;0;i&lt;level_length;i++)&#123;</span><br><span class="line">                TreeNode cur&#x3D;q.poll();</span><br><span class="line">                res.get(level).add(cur.val);</span><br><span class="line">                if(cur.left!&#x3D;null)&#123;</span><br><span class="line">                    q.add(cur.left);</span><br><span class="line">                &#125;</span><br><span class="line">                if(cur.right!&#x3D;null)&#123;</span><br><span class="line">                    q.add(cur.right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            level++;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>breadth first search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>96. Unique Binary Search Trees</title>
+    <url>/2021/02/01/numTrees96/</url>
+    <content><![CDATA[<p>The main idea of this question can be illustrated by the diagram below.<br><img src="/images/post_images/96_diagram.png">  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int numTrees(int n) &#123;</span><br><span class="line">        if(n&#x3D;&#x3D;1) return 1;</span><br><span class="line">        int[] dp&#x3D;new int[n+1];</span><br><span class="line">        dp[0]&#x3D;1;</span><br><span class="line">        dp[1]&#x3D;1;</span><br><span class="line">        for(int i&#x3D;2;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">            for(int j&#x3D;1;j&lt;&#x3D;i;j++)&#123;</span><br><span class="line">                dp[i]+&#x3D;dp[j-1]*dp[i-j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>dynamic programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>138. Copy List with Random Pointer</title>
+    <url>/2021/02/01/copyRandomList/</url>
+    <content><![CDATA[<ul>
+<li>method 1<br>Using hashmap to map old node to new node  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    HashMap&lt;Node,Node&gt; oldToNew&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">    public Node copyRandomList(Node head) &#123;</span><br><span class="line">        Node curo&#x3D;head;</span><br><span class="line">        Node curn&#x3D;getClonedNode(head);</span><br><span class="line">        while(curo!&#x3D;null)&#123;</span><br><span class="line">            curn.next&#x3D;getClonedNode(curo.next);</span><br><span class="line">            curn.random&#x3D;getClonedNode(curo.random);</span><br><span class="line">            curn&#x3D;curn.next;</span><br><span class="line">            curo&#x3D;curo.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return oldToNew.get(head);</span><br><span class="line">    &#125;</span><br><span class="line">    private Node getClonedNode(Node head)&#123;</span><br><span class="line">        if(head&#x3D;&#x3D;null) return null;</span><br><span class="line">        if(oldToNew.containsKey(head)) return oldToNew.get(head);</span><br><span class="line">        Node n&#x3D;new Node(head.val);</span><br><span class="line">        oldToNew.put(head,n);</span><br><span class="line">        return n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+<ul>
+<li>method 2<br>Instead of using a hashmap, we put new node next to the old node to locate it. At last we need to unweave them.  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public Node copyRandomList(Node head) &#123;</span><br><span class="line">        if(head&#x3D;&#x3D;null) return null;</span><br><span class="line">        Node cur&#x3D;head;</span><br><span class="line">        while(cur!&#x3D;null)&#123;</span><br><span class="line">            Node n&#x3D;new Node(cur.val);</span><br><span class="line">            n.next&#x3D;cur.next;</span><br><span class="line">            cur.next&#x3D;n;</span><br><span class="line">            cur&#x3D;n.next;</span><br><span class="line">        &#125;</span><br><span class="line">        cur&#x3D;head;</span><br><span class="line">        while(cur!&#x3D;null)&#123;</span><br><span class="line">            cur.next.random&#x3D;cur.random&#x3D;&#x3D;null?null:cur.random.next;</span><br><span class="line">            cur&#x3D;cur.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        cur&#x3D;head;</span><br><span class="line">        Node newcur&#x3D;head.next;</span><br><span class="line">        Node newhead&#x3D;head.next;</span><br><span class="line">        while(cur!&#x3D;null)&#123;</span><br><span class="line">            cur.next&#x3D;newcur.next;</span><br><span class="line">            newcur.next&#x3D;newcur.next&#x3D;&#x3D;null?null:newcur.next.next;</span><br><span class="line">            cur&#x3D;cur.next;</span><br><span class="line">            newcur&#x3D;newcur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return newhead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>linked list</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>flatten</title>
+    <url>/2021/02/01/flatten/</url>
+    <content><![CDATA[<p>Using postorder traverse, first flatten the left subtree, then flatten the right subtree. Preserve current right node, point the right node of root to its current left node and point the left node to null. Find the last node of right subtree and connect previous right node to its right.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public void flatten(TreeNode root) &#123;</span><br><span class="line">        if(root&#x3D;&#x3D;null) return;</span><br><span class="line">        flatten(root.left);</span><br><span class="line">        flatten(root.right);</span><br><span class="line">        TreeNode right&#x3D;root.right;</span><br><span class="line">        root.right&#x3D;root.left;</span><br><span class="line">        root.left&#x3D;null;</span><br><span class="line">        TreeNode cur&#x3D;root;</span><br><span class="line">        while(cur.right!&#x3D;null)&#123;</span><br><span class="line">            cur&#x3D;cur.right;</span><br><span class="line">        &#125;</span><br><span class="line">        cur.right&#x3D;right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>depth first search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>139. Word Break</title>
+    <url>/2021/02/01/wordBreak/</url>
+    <content><![CDATA[<p>dp[i] means the possiblity of segmenting string[0…i-1]  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean wordBreak(String s, List&lt;String&gt; wordDict) &#123;</span><br><span class="line">        Set&lt;String&gt; dict&#x3D;new HashSet&lt;&gt;(wordDict);</span><br><span class="line">        boolean[] dp&#x3D;new boolean[s.length()+1];</span><br><span class="line">        dp[0]&#x3D;true;</span><br><span class="line">        for(int i&#x3D;1;i&lt;&#x3D;s.length();i++)&#123;</span><br><span class="line">            for(int j&#x3D;0;j&lt;i;j++)&#123;</span><br><span class="line">                if(dp[j]&amp;&amp;dict.contains(s.substring(j,i)))&#123;</span><br><span class="line">                    dp[i]&#x3D;true;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[s.length()];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>algorithm</category>
       </categories>
