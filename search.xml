@@ -1232,7 +1232,10 @@ s2 = s1 + s2;
   <entry>
     <title>rob</title>
     <url>/2021/02/02/rob/</url>
-    <content><![CDATA[<h3 id="198"><a href="#198" class="headerlink" title="198"></a>198</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int rob(int[] nums) &#123;</span><br><span class="line">        int n&#x3D;nums.length;</span><br><span class="line">        if(n&#x3D;&#x3D;0) return 0;</span><br><span class="line">        int dp_i&#x3D;nums[0];</span><br><span class="line">        int dp_i_2&#x3D;0;</span><br><span class="line">        int dp_i_1&#x3D;nums[0];</span><br><span class="line">        for(int i&#x3D;2;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">            dp_i&#x3D;Math.max(dp_i_1,dp_i_2+nums[i-1]);</span><br><span class="line">            dp_i_2&#x3D;dp_i_1;</span><br><span class="line">            dp_i_1&#x3D;dp_i;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp_i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content><![CDATA[<h3 id="198"><a href="#198" class="headerlink" title="198"></a>198</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int rob(int[] nums) &#123;</span><br><span class="line">        int n&#x3D;nums.length;</span><br><span class="line">        if(n&#x3D;&#x3D;0) return 0;</span><br><span class="line">        int dp_i&#x3D;nums[0];</span><br><span class="line">        int dp_i_2&#x3D;0;</span><br><span class="line">        int dp_i_1&#x3D;nums[0];</span><br><span class="line">        for(int i&#x3D;2;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">            dp_i&#x3D;Math.max(dp_i_1,dp_i_2+nums[i-1]);</span><br><span class="line">            dp_i_2&#x3D;dp_i_1;</span><br><span class="line">            dp_i_1&#x3D;dp_i;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp_i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+<h3 id="337"><a href="#337" class="headerlink" title="337"></a>337</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int rob(TreeNode root) &#123;</span><br><span class="line">        int[] res&#x3D;dfs(root);</span><br><span class="line">        return Math.max(res[0],res[1]);&#x2F;&#x2F;0 means not rob, 1 means rob</span><br><span class="line">    &#125;</span><br><span class="line">    private int[] dfs(TreeNode root)&#123;</span><br><span class="line">        if(root&#x3D;&#x3D;null) return new int[]&#123;0,0&#125;;</span><br><span class="line">        int[] left&#x3D;dfs(root.left);</span><br><span class="line">        int[] right&#x3D;dfs(root.right);</span><br><span class="line">        int[] res&#x3D;new int[2];</span><br><span class="line">        res[0]&#x3D;Math.max(left[0],left[1])+Math.max(right[0],right[1]);&#x2F;&#x2F;important</span><br><span class="line">        res[1]&#x3D;left[0]+right[0]+root.val;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>algorithm</category>
       </categories>
@@ -1309,6 +1312,80 @@ s2 = s1 + s2;
       <tags>
         <tag>leetcode</tag>
         <tag>depth first search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Bit Manipulation</title>
+    <url>/2021/02/03/bit-manipulation/</url>
+    <content><![CDATA[<ul>
+<li><p>n&amp;(n-1) could eliminate the last 1 of the binary representation of number n.  </p>
+<ul>
+<li><ol start="191">
+<li>Number of 1 Bits<br>Eleminate the last 1 until it reaches 0, the number of manipulation will be the answer  </li>
+</ol>
+</li>
+<li><ol start="231">
+<li>Power of Two<br>If the number is zero or the result after eliminating once the last 1 is zero, return true  </li>
+</ol>
+</li>
+<li><ol start="338">
+<li>Counting Bits<br>The same trick could apply here combined with dynamic programming  </li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p> a ^ a = 0, a ^ 0 = a  </p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>problem solving template</tag>
+        <tag>leetcode</tag>
+        <tag>bit manipulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>253. Meeting Rooms II</title>
+    <url>/2021/02/03/minMeetingRooms/</url>
+    <content><![CDATA[<ul>
+<li>The main idea here is that we are not really concerned with which meeting has ended. All we need is that some meeting ended thus making a room available. </li>
+<li>We put the start time and end time into two seperate arrays and sort them in ascending order. When we encounter an ending event, that means that some meeting that started earlier has ended now.   </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int minMeetingRooms(int[][] intervals) &#123;</span><br><span class="line">        int n&#x3D;intervals.length;</span><br><span class="line">        int[] start&#x3D;new int[n];</span><br><span class="line">        int[] end&#x3D;new int[n];</span><br><span class="line">        for(int i&#x3D;0;i&lt;n;i++)&#123;</span><br><span class="line">            start[i]&#x3D;intervals[i][0];</span><br><span class="line">            end[i]&#x3D;intervals[i][1];</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(start);</span><br><span class="line">        Arrays.sort(end);</span><br><span class="line">        int sp&#x3D;0;</span><br><span class="line">        int ep&#x3D;0;</span><br><span class="line">        int num&#x3D;0;</span><br><span class="line">        while(sp&lt;n)&#123;</span><br><span class="line">            if(start[sp]&gt;&#x3D;end[ep])&#123;</span><br><span class="line">                ep++;</span><br><span class="line">                num--;</span><br><span class="line">            &#125;</span><br><span class="line">            sp++;</span><br><span class="line">            num++;&#x2F;&#x2F;If a room got free, then this used_rooms +&#x3D; 1 wouldn&#39;t have any effect. used_rooms would remain the same in that case. If no room was free, then this would increase used_rooms</span><br><span class="line">        &#125;</span><br><span class="line">        return num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>greedy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>238. Product of Array Except Self</title>
+    <url>/2021/02/03/productExceptSelf/</url>
+    <content><![CDATA[<p>The idea is that product of array except self equals to product of left and product of right.<br>We can have two array to keep product of left and product of right of each element.<br>But we can also do it in O(1) space. We can first save the product of left in answer array. Then loop through the array from right to left and update a variable product of right to do the computation.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] productExceptSelf(int[] nums) &#123;</span><br><span class="line">        int n&#x3D;nums.length;</span><br><span class="line">        int[] ans&#x3D;new int[n];</span><br><span class="line">        if(n&#x3D;&#x3D;0) return ans;</span><br><span class="line">        ans[0]&#x3D;1;</span><br><span class="line">        for(int i&#x3D;1;i&lt;n;i++)&#123;</span><br><span class="line">            ans[i]&#x3D;ans[i-1]*nums[i-1];</span><br><span class="line">        &#125;</span><br><span class="line">        int pr&#x3D;1;</span><br><span class="line">        for(int i&#x3D;n-1;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            ans[i]*&#x3D;pr;</span><br><span class="line">            pr*&#x3D;nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>240. Search a 2D Matrix II</title>
+    <url>/2021/02/03/searchMatrix/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean searchMatrix(int[][] matrix, int target) &#123;</span><br><span class="line">        int m&#x3D;matrix.length-1;</span><br><span class="line">        int n&#x3D;matrix[0].length-1;</span><br><span class="line">        int i&#x3D;m,j&#x3D;0;</span><br><span class="line">        while(i&gt;&#x3D;0&amp;&amp;j&lt;&#x3D;n)&#123;</span><br><span class="line">            if(matrix[i][j]&#x3D;&#x3D;target) return true;</span><br><span class="line">            if(matrix[i][j]&lt;target)&#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                i--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>divide and conquer</tag>
       </tags>
   </entry>
 </search>
