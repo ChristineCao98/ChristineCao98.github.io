@@ -971,7 +971,7 @@ s2 = s1 + s2;
       </tags>
   </entry>
   <entry>
-    <title>groupAnagrams</title>
+    <title>49. Group Anagrams</title>
     <url>/2021/01/30/groupAnagrams/</url>
     <content><![CDATA[<ul>
 <li>The most important idea of this question is to use a hashmap to store all the lists of same anagrams.  </li>
@@ -1164,7 +1164,7 @@ s2 = s1 + s2;
       </tags>
   </entry>
   <entry>
-    <title>flatten</title>
+    <title>114. Flatten Binary Tree to Linked List</title>
     <url>/2021/02/01/flatten/</url>
     <content><![CDATA[<p>Using postorder traverse, first flatten the left subtree, then flatten the right subtree. Preserve current right node, point the right node of root to its current left node and point the left node to null. Find the last node of right subtree and connect previous right node to its right.  </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public void flatten(TreeNode root) &#123;</span><br><span class="line">        if(root&#x3D;&#x3D;null) return;</span><br><span class="line">        flatten(root.left);</span><br><span class="line">        flatten(root.right);</span><br><span class="line">        TreeNode right&#x3D;root.right;</span><br><span class="line">        root.right&#x3D;root.left;</span><br><span class="line">        root.left&#x3D;null;</span><br><span class="line">        TreeNode cur&#x3D;root;</span><br><span class="line">        while(cur.right!&#x3D;null)&#123;</span><br><span class="line">            cur&#x3D;cur.right;</span><br><span class="line">        &#125;</span><br><span class="line">        cur.right&#x3D;right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
@@ -1187,6 +1187,84 @@ s2 = s1 + s2;
       <tags>
         <tag>leetcode</tag>
         <tag>dynamic programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>courseSchedule</title>
+    <url>/2021/02/02/courseSchedule/</url>
+    <content><![CDATA[<h3 id="207"><a href="#207" class="headerlink" title="207"></a>207</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    boolean[] visited;</span><br><span class="line">    HashSet&lt;Integer&gt; checked&#x3D;new HashSet&lt;&gt;();</span><br><span class="line">    public boolean canFinish(int numCourses, int[][] prerequisites) &#123;</span><br><span class="line">        HashMap&lt;Integer,List&lt;Integer&gt;&gt; pre&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        for(int[] re:prerequisites)&#123;</span><br><span class="line">            if(!pre.containsKey(re[0]))&#123;</span><br><span class="line">                pre.put(re[0],new LinkedList&lt;Integer&gt;());</span><br><span class="line">            &#125;</span><br><span class="line">            pre.get(re[0]).add(re[1]);</span><br><span class="line">        &#125;</span><br><span class="line">        visited&#x3D;new boolean[numCourses];</span><br><span class="line">        for(int i&#x3D;0;i&lt;numCourses;i++)&#123;</span><br><span class="line">            if(isCycle(i,pre)) return false;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    private boolean isCycle(int course,HashMap&lt;Integer,List&lt;Integer&gt;&gt; pre)&#123;</span><br><span class="line">        if(checked.contains(course)) return false;</span><br><span class="line">        if(!pre.containsKey(course)) return false;</span><br><span class="line">        if(visited[course]) return true;</span><br><span class="line">        visited[course]&#x3D;true;</span><br><span class="line">        for(int i:pre.get(course))&#123;  </span><br><span class="line">            if(isCycle(i,pre)) return true;</span><br><span class="line">            checked.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        visited[course]&#x3D;false;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Notice that in this problem we don’t need to ‘make the choice’ and ‘revoke the choice’ in looping, because we do not have a track variable to keep.</p>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>backtracking</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>146. LRU Cache</title>
+    <url>/2021/02/02/lru/</url>
+    <content><![CDATA[<p>LinkedList has order, but its finding is time-consuming. HashMap is quick in finding but its data doesn’t have order. So we need to use linkedhashmap which combines the characteristics of them both.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class LRUCache &#123;</span><br><span class="line">    LinkedHashMap&lt;Integer,Integer&gt; keyToVal;</span><br><span class="line">    int cap;</span><br><span class="line">    public LRUCache(int capacity) &#123;</span><br><span class="line">        keyToVal&#x3D;new LinkedHashMap&lt;&gt;();</span><br><span class="line">        cap&#x3D;capacity;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int get(int key) &#123;</span><br><span class="line">        if(!keyToVal.containsKey(key)) return -1;</span><br><span class="line">        return makeRecent(key);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void put(int key, int value) &#123;</span><br><span class="line">        if(keyToVal.containsKey(key))&#123;</span><br><span class="line">            keyToVal.put(key,value);</span><br><span class="line">            makeRecent(key);</span><br><span class="line">        &#125;</span><br><span class="line">        else if(keyToVal.size()&#x3D;&#x3D;cap)&#123;</span><br><span class="line">            int re&#x3D;keyToVal.keySet().iterator().next();</span><br><span class="line">            keyToVal.remove(re);</span><br><span class="line">        &#125;</span><br><span class="line">        keyToVal.put(key,value);</span><br><span class="line">    &#125;</span><br><span class="line">    private int makeRecent(int key)&#123;</span><br><span class="line">        int val&#x3D;keyToVal.remove(key);</span><br><span class="line">        keyToVal.put(key,val);</span><br><span class="line">        return val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>design</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>152. Maximum Product Subarray</title>
+    <url>/2021/02/02/maxProduct/</url>
+    <content><![CDATA[<p>Since there might be negative numbers in the array, we must keep a min_cur parameter in addition to max_cur and res(because the max product might be disrupted by a single negative number)  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int maxProduct(int[] nums) &#123;</span><br><span class="line">        if(nums.length&#x3D;&#x3D;0) return 0;</span><br><span class="line">        int min_cur&#x3D;nums[0];</span><br><span class="line">        int max_cur&#x3D;nums[0];</span><br><span class="line">        int res&#x3D;max_cur;</span><br><span class="line">        for(int i&#x3D;1;i&lt;nums.length;i++)&#123;</span><br><span class="line">            int cur&#x3D;nums[i];</span><br><span class="line">            int temp&#x3D;min_cur;&#x2F;&#x2F;important</span><br><span class="line">            min_cur&#x3D;Math.min(min_cur*cur,Math.min(cur,max_cur*cur));</span><br><span class="line">            max_cur&#x3D;Math.max(cur,Math.max(temp*cur,max_cur*cur));</span><br><span class="line">            res&#x3D;Math.max(max_cur,res);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>dynamic programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rob</title>
+    <url>/2021/02/02/rob/</url>
+    <content><![CDATA[<h3 id="198"><a href="#198" class="headerlink" title="198"></a>198</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int rob(int[] nums) &#123;</span><br><span class="line">        int n&#x3D;nums.length;</span><br><span class="line">        if(n&#x3D;&#x3D;0) return 0;</span><br><span class="line">        int dp_i&#x3D;nums[0];</span><br><span class="line">        int dp_i_2&#x3D;0;</span><br><span class="line">        int dp_i_1&#x3D;nums[0];</span><br><span class="line">        for(int i&#x3D;2;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">            dp_i&#x3D;Math.max(dp_i_1,dp_i_2+nums[i-1]);</span><br><span class="line">            dp_i_2&#x3D;dp_i_1;</span><br><span class="line">            dp_i_1&#x3D;dp_i;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp_i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>dynamic programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>148. Sort List</title>
+    <url>/2021/02/02/sortList148/</url>
+    <content><![CDATA[<p>Using the idea of merge sort.<br>Notice that we split the linked list into two by pointing the last node of first half to null.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode sortList(ListNode head) &#123;</span><br><span class="line">        if(head&#x3D;&#x3D;null||head.next&#x3D;&#x3D;null) return head;</span><br><span class="line">        ListNode mid&#x3D;getMid(head);</span><br><span class="line">        ListNode left&#x3D;sortList(head);</span><br><span class="line">        ListNode right&#x3D;sortList(mid);</span><br><span class="line">        return merge(left,right);</span><br><span class="line">    &#125;</span><br><span class="line">    private ListNode getMid(ListNode head)&#123;</span><br><span class="line">        ListNode fast&#x3D;head;</span><br><span class="line">        ListNode slow&#x3D;head;</span><br><span class="line">        ListNode midPrev&#x3D;null;</span><br><span class="line">        while(fast!&#x3D;null&amp;&amp;fast.next!&#x3D;null)&#123;</span><br><span class="line">            midPrev&#x3D;midPrev&#x3D;&#x3D;null?head:midPrev.next;</span><br><span class="line">            fast&#x3D;fast.next.next;</span><br><span class="line">            slow&#x3D;slow.next;</span><br><span class="line">        &#125;</span><br><span class="line">        midPrev.next&#x3D;null;&#x2F;&#x2F;important</span><br><span class="line">        return slow;</span><br><span class="line">    &#125;</span><br><span class="line">    private ListNode merge(ListNode n1,ListNode n2)&#123;</span><br><span class="line">        ListNode dummyHead&#x3D;new ListNode();</span><br><span class="line">        ListNode cur&#x3D;dummyHead;</span><br><span class="line">        while(n1!&#x3D;null&amp;&amp;n2!&#x3D;null)&#123;</span><br><span class="line">            if(n1.val&lt;n2.val)&#123;</span><br><span class="line">                cur.next&#x3D;n1;</span><br><span class="line">                n1&#x3D;n1.next;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                cur.next&#x3D;n2;</span><br><span class="line">                n2&#x3D;n2.next;</span><br><span class="line">            &#125;</span><br><span class="line">            cur&#x3D;cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        cur.next&#x3D;n1&#x3D;&#x3D;null?n2:n1;</span><br><span class="line">        return dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>sort</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>208. Implement Trie (Prefix Tree)</title>
+    <url>/2021/02/02/trie/</url>
+    <content><![CDATA[<p>The structure of this data structure is shown below:<br><img src="/images/post_images/trie_diagram.png">  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Trie &#123;</span><br><span class="line">    TrieNode root;</span><br><span class="line">    &#x2F;** Initialize your data structure here. *&#x2F;</span><br><span class="line">    public Trie() &#123;</span><br><span class="line">        root&#x3D;new TrieNode();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;** Inserts a word into the trie. *&#x2F;</span><br><span class="line">    public void insert(String word) &#123;</span><br><span class="line">        TrieNode cur&#x3D;root;</span><br><span class="line">        for(char c:word.toCharArray())&#123;</span><br><span class="line">            if(!cur.containsKey(c))&#123;</span><br><span class="line">                cur.put(c,new TrieNode());</span><br><span class="line">            &#125;</span><br><span class="line">            cur&#x3D;cur.get(c);</span><br><span class="line">        &#125;</span><br><span class="line">        cur.setEnd();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;** Returns if the word is in the trie. *&#x2F;</span><br><span class="line">    public boolean search(String word) &#123;</span><br><span class="line">        TrieNode cur&#x3D;root;</span><br><span class="line">        for(char c:word.toCharArray())&#123;</span><br><span class="line">            if(!cur.containsKey(c)) return false;</span><br><span class="line">            cur&#x3D;cur.get(c);</span><br><span class="line">        &#125;</span><br><span class="line">        return cur!&#x3D;null&amp;&amp;cur.isEnd();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;** Returns if there is any word in the trie that starts with the given prefix. *&#x2F;</span><br><span class="line">    public boolean startsWith(String prefix) &#123;</span><br><span class="line">        TrieNode cur&#x3D;root;</span><br><span class="line">        for(char c:prefix.toCharArray())&#123;</span><br><span class="line">            if(!cur.containsKey(c)) return false;</span><br><span class="line">            cur&#x3D;cur.get(c);</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class TrieNode&#123;</span><br><span class="line">    private TrieNode[] list&#x3D;new TrieNode[26];</span><br><span class="line">    private boolean isEnd;</span><br><span class="line">    public boolean containsKey(char ch)&#123;</span><br><span class="line">        return list[ch-&#39;a&#39;]!&#x3D;null;</span><br><span class="line">    &#125;</span><br><span class="line">    public TrieNode get(char ch)&#123;</span><br><span class="line">        return list[ch-&#39;a&#39;];</span><br><span class="line">    &#125;</span><br><span class="line">    public void put(char ch,TrieNode node)&#123;</span><br><span class="line">        list[ch-&#39;a&#39;]&#x3D;node;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setEnd()&#123;</span><br><span class="line">        isEnd&#x3D;true;</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean isEnd()&#123;</span><br><span class="line">        return isEnd;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>design</tag>
       </tags>
   </entry>
 </search>
