@@ -1505,7 +1505,7 @@ s2 = s1 + s2;
       </tags>
   </entry>
   <entry>
-    <title>leastIntervall</title>
+    <title>621. Task Scheduler</title>
     <url>/2021/02/05/leastInterval/</url>
     <content><![CDATA[<ul>
 <li>total=idle+busy(length of the tasks) </li>
@@ -1513,6 +1513,47 @@ s2 = s1 + s2;
 <li>For other less or equally frequent tasks, idle_time-=max(f_max,f_self)  </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int leastInterval(char[] tasks, int n) &#123;</span><br><span class="line">        int[] freq&#x3D;new int[26];</span><br><span class="line">        for(char t:tasks)&#123;</span><br><span class="line">            freq[t-&#39;A&#39;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(freq);</span><br><span class="line">        int fmax&#x3D;freq[25];</span><br><span class="line">        int idle&#x3D;(fmax-1)*n;</span><br><span class="line">        for(int i&#x3D;freq.length-2;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            idle-&#x3D;Math.min(fmax-1,freq[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        idle&#x3D;Math.max(0,idle);</span><br><span class="line">        return idle+tasks.length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>greedy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>countSubstrings</title>
+    <url>/2021/02/05/countSubstrings/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int countSubstrings(String s) &#123;</span><br><span class="line">        int n&#x3D;s.length();</span><br><span class="line">        int ans&#x3D;0;</span><br><span class="line">        if(n&#x3D;&#x3D;0) return 0;</span><br><span class="line">        boolean[][] dp&#x3D;new boolean[n][n];</span><br><span class="line">        for(int i&#x3D;0;i&lt;n;i++) &#123;</span><br><span class="line">            dp[i][i]&#x3D;true;</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;&#x2F;&#x2F;count substring with single character</span><br><span class="line">        for(int i&#x3D;0;i&lt;n-1;i++)&#123;</span><br><span class="line">            dp[i][i+1]&#x3D;s.charAt(i)&#x3D;&#x3D;s.charAt(i+1);</span><br><span class="line">            ans+&#x3D;(dp[i][i+1]?1:0);</span><br><span class="line">        &#125;&#x2F;&#x2F;count substring with length equal to 2</span><br><span class="line">        for(int len&#x3D;2;len&lt;n;len++)&#123;</span><br><span class="line">            for(int i&#x3D;0,j&#x3D;i+len;j&lt;n;i++,j++)&#123;</span><br><span class="line">                dp[i][j]&#x3D;dp[i+1][j-1]&amp;&amp;s.charAt(i)&#x3D;&#x3D;s.charAt(j);</span><br><span class="line">                ans+&#x3D;(dp[i][j]?1:0);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>dynamic programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Monotonic Stack</title>
+    <url>/2021/02/05/monotonicstack/</url>
+    <content><![CDATA[<h3 id="739"><a href="#739" class="headerlink" title="739"></a>739</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] dailyTemperatures(int[] T) &#123;</span><br><span class="line">        Stack&lt;Integer&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">        int[] res&#x3D;new int[T.length];</span><br><span class="line">        for(int i&#x3D;T.length-1;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            while(!stack.isEmpty()&amp;&amp;T[stack.peek()]&lt;&#x3D;T[i])&#123;</span><br><span class="line">                stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            res[i]&#x3D;stack.isEmpty()?0:stack.peek()-i;</span><br><span class="line">            stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>monotonic stack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>partitionLabels</title>
+    <url>/2021/02/05/partitionLabels/</url>
+    <content><![CDATA[<ul>
+<li>Maintain an array that keeps the index where each character appears last.  </li>
+<li>Loop through the string, for every character we encounter, update the farthest index we can reach so far.  </li>
+<li>If we are at the end of the partition (i == j) then we’ll append a partition size to our answer, and set the start of our new partition to i+1.  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;Integer&gt; partitionLabels(String S) &#123;</span><br><span class="line">        int[] last&#x3D;new int[26];</span><br><span class="line">        for(int i&#x3D;0;i&lt;S.length();i++)&#123;</span><br><span class="line">            last[S.charAt(i)-&#39;a&#39;]&#x3D;i;</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;Integer&gt; res&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">        int anchor&#x3D;0;</span><br><span class="line">        int j&#x3D;0;</span><br><span class="line">        for(int i&#x3D;0;i&lt;S.length();i++)&#123;</span><br><span class="line">            j&#x3D;Math.max(j,last[S.charAt(i)-&#39;a&#39;]);</span><br><span class="line">            if(j&#x3D;&#x3D;i)&#123;</span><br><span class="line">                res.add(i-anchor+1);</span><br><span class="line">                anchor&#x3D;i+1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>algorithm</category>
       </categories>
