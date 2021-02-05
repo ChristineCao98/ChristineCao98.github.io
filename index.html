@@ -184,6 +184,218 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/05/leastInterval/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/05/leastInterval/" class="post-title-link" itemprop="url">leastIntervall</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-05 00:23:45 / Modified: 00:28:18" itemprop="dateCreated datePublished" datetime="2021-02-05T00:23:45+00:00">2021-02-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>total=idle+busy(length of the tasks) </li>
+<li>Maximum possible number of idle slots is defined by the frequency of the most frequent task: idle_time &lt;= (f_max - 1) * n.  </li>
+<li>For other less or equally frequent tasks, idle_time-=max(f_max,f_self)  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int leastInterval(char[] tasks, int n) &#123;</span><br><span class="line">        int[] freq&#x3D;new int[26];</span><br><span class="line">        for(char t:tasks)&#123;</span><br><span class="line">            freq[t-&#39;A&#39;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(freq);</span><br><span class="line">        int fmax&#x3D;freq[25];</span><br><span class="line">        int idle&#x3D;(fmax-1)*n;</span><br><span class="line">        for(int i&#x3D;freq.length-2;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            idle-&#x3D;Math.min(fmax-1,freq[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        idle&#x3D;Math.max(0,idle);</span><br><span class="line">        return idle+tasks.length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/04/subarraySum/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/04/subarraySum/" class="post-title-link" itemprop="url">560. Subarray Sum Equals K</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-02-04 23:39:48" itemprop="dateCreated datePublished" datetime="2021-02-04T23:39:48+00:00">2021-02-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-05 00:24:36" itemprop="dateModified" datetime="2021-02-05T00:24:36+00:00">2021-02-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int subarraySum(int[] nums, int k) &#123;</span><br><span class="line">        HashMap&lt;Integer,Integer&gt; hm&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        hm.put(0,1);</span><br><span class="line">        int prefix&#x3D;0;</span><br><span class="line">        int res&#x3D;0;</span><br><span class="line">        for(int num:nums)&#123;</span><br><span class="line">            prefix+&#x3D;num;            </span><br><span class="line">            res+&#x3D;hm.getOrDefault(prefix-k,0);&#x2F;&#x2F;notice we should first search hm then update it, cuz you can only search for the prefixes before you.</span><br><span class="line">            hm.put(prefix,hm.getOrDefault(prefix,0)+1);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/04/findTargetSumWays/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/04/findTargetSumWays/" class="post-title-link" itemprop="url">findTargetSumWays</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-04 23:22:50 / Modified: 23:23:32" itemprop="dateCreated datePublished" datetime="2021-02-04T23:22:50+00:00">2021-02-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    HashMap&lt;String,Integer&gt; mem&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">    int n;</span><br><span class="line">    public int findTargetSumWays(int[] nums, int S) &#123;</span><br><span class="line">        n&#x3D;nums.length;</span><br><span class="line">        return ways(nums,S,0);</span><br><span class="line">    &#125;</span><br><span class="line">    private int ways(int[] nums,int res,int pos)&#123;</span><br><span class="line">        if(pos&#x3D;&#x3D;n)&#123;</span><br><span class="line">            return res&#x3D;&#x3D;0?1:0;</span><br><span class="line">        &#125;</span><br><span class="line">        String key&#x3D;res+&quot;*&quot;+pos;</span><br><span class="line">        if(mem.containsKey(key))&#123;</span><br><span class="line">            return mem.get(key);</span><br><span class="line">        &#125;</span><br><span class="line">        int num&#x3D;ways(nums,res+nums[pos],pos+1)+ways(nums,res-nums[pos],pos+1);</span><br><span class="line">        mem.put(key,num);</span><br><span class="line">        return num;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/04/findAnagrams/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -692,216 +904,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/03/minMeetingRooms/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/03/minMeetingRooms/" class="post-title-link" itemprop="url">253. Meeting Rooms II</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-02-03 16:28:30 / Modified: 21:48:19" itemprop="dateCreated datePublished" datetime="2021-02-03T16:28:30+00:00">2021-02-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>The main idea here is that we are not really concerned with which meeting has ended. All we need is that some meeting ended thus making a room available. </li>
-<li>We put the start time and end time into two seperate arrays and sort them in ascending order. When we encounter an ending event, that means that some meeting that started earlier has ended now.   </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int minMeetingRooms(int[][] intervals) &#123;</span><br><span class="line">        int n&#x3D;intervals.length;</span><br><span class="line">        int[] start&#x3D;new int[n];</span><br><span class="line">        int[] end&#x3D;new int[n];</span><br><span class="line">        for(int i&#x3D;0;i&lt;n;i++)&#123;</span><br><span class="line">            start[i]&#x3D;intervals[i][0];</span><br><span class="line">            end[i]&#x3D;intervals[i][1];</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(start);</span><br><span class="line">        Arrays.sort(end);</span><br><span class="line">        int sp&#x3D;0;</span><br><span class="line">        int ep&#x3D;0;</span><br><span class="line">        int num&#x3D;0;</span><br><span class="line">        while(sp&lt;n)&#123;</span><br><span class="line">            if(start[sp]&gt;&#x3D;end[ep])&#123;</span><br><span class="line">                ep++;</span><br><span class="line">                num--;</span><br><span class="line">            &#125;</span><br><span class="line">            sp++;</span><br><span class="line">            num++;&#x2F;&#x2F;If a room got free, then this used_rooms +&#x3D; 1 wouldn&#39;t have any effect. used_rooms would remain the same in that case. If no room was free, then this would increase used_rooms</span><br><span class="line">        &#125;</span><br><span class="line">        return num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/03/searchMatrix/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/03/searchMatrix/" class="post-title-link" itemprop="url">240. Search a 2D Matrix II</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-02-03 15:25:55 / Modified: 21:48:36" itemprop="dateCreated datePublished" datetime="2021-02-03T15:25:55+00:00">2021-02-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean searchMatrix(int[][] matrix, int target) &#123;</span><br><span class="line">        int m&#x3D;matrix.length-1;</span><br><span class="line">        int n&#x3D;matrix[0].length-1;</span><br><span class="line">        int i&#x3D;m,j&#x3D;0;</span><br><span class="line">        while(i&gt;&#x3D;0&amp;&amp;j&lt;&#x3D;n)&#123;</span><br><span class="line">            if(matrix[i][j]&#x3D;&#x3D;target) return true;</span><br><span class="line">            if(matrix[i][j]&lt;target)&#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                i--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/03/productExceptSelf/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/03/productExceptSelf/" class="post-title-link" itemprop="url">238. Product of Array Except Self</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-02-03 15:16:38 / Modified: 15:20:28" itemprop="dateCreated datePublished" datetime="2021-02-03T15:16:38+00:00">2021-02-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>The idea is that product of array except self equals to product of left and product of right.<br>We can have two array to keep product of left and product of right of each element.<br>But we can also do it in O(1) space. We can first save the product of left in answer array. Then loop through the array from right to left and update a variable product of right to do the computation.  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] productExceptSelf(int[] nums) &#123;</span><br><span class="line">        int n&#x3D;nums.length;</span><br><span class="line">        int[] ans&#x3D;new int[n];</span><br><span class="line">        if(n&#x3D;&#x3D;0) return ans;</span><br><span class="line">        ans[0]&#x3D;1;</span><br><span class="line">        for(int i&#x3D;1;i&lt;n;i++)&#123;</span><br><span class="line">            ans[i]&#x3D;ans[i-1]*nums[i-1];</span><br><span class="line">        &#125;</span><br><span class="line">        int pr&#x3D;1;</span><br><span class="line">        for(int i&#x3D;n-1;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            ans[i]*&#x3D;pr;</span><br><span class="line">            pr*&#x3D;nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
     <div class="tag-cloud">
@@ -1017,7 +1023,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
