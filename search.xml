@@ -1682,7 +1682,7 @@ s2 = s1 + s2;
       </tags>
   </entry>
   <entry>
-    <title>countPrimes</title>
+    <title>204. Count Primes</title>
     <url>/2021/02/10/countPrimes/</url>
     <content><![CDATA[<p>The time complexity of brute-force method of this question is O(n^2).<br>So the first optimization is to adopt the method of exclusion.  </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int countPrimes(int n) &#123;</span><br><span class="line">    boolean[] isPrim &#x3D; new boolean[n];</span><br><span class="line">    &#x2F;&#x2F; 将数组都初始化为 true</span><br><span class="line">    Arrays.fill(isPrim, true);</span><br><span class="line"></span><br><span class="line">    for (int i &#x3D; 2; i &lt; n; i++) </span><br><span class="line">        if (isPrim[i]) </span><br><span class="line">            &#x2F;&#x2F; i 的倍数不可能是素数了</span><br><span class="line">            for (int j &#x3D; 2 * i; j &lt; n; j +&#x3D; i) </span><br><span class="line">                    isPrim[j] &#x3D; false;</span><br><span class="line"></span><br><span class="line">    int count &#x3D; 0;</span><br><span class="line">    for (int i &#x3D; 2; i &lt; n; i++)</span><br><span class="line">        if (isPrim[i]) count++;</span><br><span class="line"></span><br><span class="line">    return count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
