@@ -28,7 +28,7 @@
 <meta property="og:description" content="We need to transform dividend and divisor to negative to avoid overflow because negative numbers have a wider range than positive. We can do this by the method of power of two  Time Complexity : O(lo">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-02-16T00:06:48.000Z">
-<meta property="article:modified_time" content="2021-02-16T00:31:58.301Z">
+<meta property="article:modified_time" content="2021-02-16T00:33:35.343Z">
 <meta property="article:author" content="Christine Cao">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="math">
@@ -214,7 +214,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-02-16 00:06:48 / Modified: 00:31:58" itemprop="dateCreated datePublished" datetime="2021-02-16T00:06:48+00:00">2021-02-16</time>
+              <time title="Created: 2021-02-16 00:06:48 / Modified: 00:33:35" itemprop="dateCreated datePublished" datetime="2021-02-16T00:06:48+00:00">2021-02-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,7 +246,7 @@
 </ul>
 </li>
 <li>Remember to deal with the only case that would cause overflow.</li>
-<li>Do not let the value+value calculation in condition  overflow</li>
+<li>Do not let the value+value calculation in condition overflow</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    private static int HALF_MIN&#x3D;Integer.MIN_VALUE&#x2F;2;</span><br><span class="line">    public int divide(int dividend, int divisor) &#123;</span><br><span class="line">        if (dividend &#x3D;&#x3D; Integer.MIN_VALUE &amp;&amp; divisor &#x3D;&#x3D; -1) &#123;</span><br><span class="line">        return Integer.MAX_VALUE;</span><br><span class="line">    &#125;&#x2F;&#x2F;IMPORTANT, the only case that overflows</span><br><span class="line">        int res&#x3D;0;</span><br><span class="line">        int pos&#x3D;0;</span><br><span class="line">        if(dividend&gt;0)&#123;</span><br><span class="line">            dividend&#x3D;-dividend;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        if(divisor&gt;0)&#123;</span><br><span class="line">            divisor&#x3D;-divisor;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        while(dividend&lt;&#x3D;divisor)&#123;</span><br><span class="line">            int value&#x3D;divisor;</span><br><span class="line">            int pt&#x3D;1;</span><br><span class="line">            while(value&gt;&#x3D;HALF_MIN&amp;&amp;value+value&gt;&#x3D;dividend)&#123;</span><br><span class="line">                pt+&#x3D;pt;</span><br><span class="line">                value+&#x3D;value;</span><br><span class="line">            &#125;</span><br><span class="line">            res+&#x3D;pt;</span><br><span class="line">            dividend-&#x3D;value;</span><br><span class="line">        &#125;</span><br><span class="line">        return pos%2&#x3D;&#x3D;0?res:-res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
