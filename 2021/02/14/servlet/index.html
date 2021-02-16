@@ -20,16 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="Basic Two architectures CS architectureclient server   drawbacks If software needs updating, all of them should be updated Hard to maintain: you need to maintain every client software Every client nee">
+<meta property="og:type" content="article">
 <meta property="og:title" content="servlet">
 <meta property="og:url" content="http://example.com/2021/02/14/servlet/index.html">
 <meta property="og:site_name" content="Christine Cao&#39;s Blog">
+<meta property="og:description" content="Basic Two architectures CS architectureclient server   drawbacks If software needs updating, all of them should be updated Hard to maintain: you need to maintain every client software Every client nee">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/post_images/servlet_diagram1.png">
 <meta property="article:published_time" content="2021-02-14T20:11:43.000Z">
-<meta property="article:modified_time" content="2021-02-14T20:11:43.138Z">
+<meta property="article:modified_time" content="2021-02-14T23:00:42.388Z">
 <meta property="article:author" content="Christine Cao">
-<meta property="article:tag" content="Java">
+<meta property="article:tag" content="java web">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/post_images/servlet_diagram1.png">
 
 <link rel="canonical" href="http://example.com/2021/02/14/servlet/">
 
@@ -209,8 +213,18 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-02-14 20:11:43" itemprop="dateCreated datePublished" datetime="2021-02-14T20:11:43+00:00">2021-02-14</time>
+              <time title="Created: 2021-02-14 20:11:43 / Modified: 23:00:42" itemprop="dateCreated datePublished" datetime="2021-02-14T20:11:43+00:00">2021-02-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
             </span>
 
           
@@ -224,7 +238,50 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h1 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h1><ul>
+<li>Two architectures<ul>
+<li>CS architecture<br>client server  </li>
+<li>drawbacks<ul>
+<li>If software needs updating, all of them should be updated</li>
+<li>Hard to maintain: you need to maintain every client software</li>
+<li>Every client needs to install client software</li>
+</ul>
+</li>
+<li>BS architecture  <ul>
+<li>browser server  </li>
+<li>Client can visit server through browsers  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Common status code  <ul>
+<li>200: successful</li>
+<li>300/301: redirection  </li>
+<li>404: resources do not exist </li>
+<li>403: lack authorization  </li>
+<li>500: server error(usually it is because of false code)</li>
+</ul>
+</li>
+<li>We can specify the default page by editing <welcome-file-list> in project/WEB_INFO/web.xml. </li>
+<li>virtual path  </li>
+<li>method 1(need rebooting)<br>To configure web project to directories other than webapps.<br>In host tag of conf/server.xml:  <ul>
+<li>docBase=”” actual path  </li>
+<li>path=”” virtual path(absolute path/relative path(relative to   webapps))<br>It means that visiting path equals visiting docBase</li>
+</ul>
+</li>
+<li>method 2(doesn’t need rebooting)<br>Create a new file named project_name.xml in D:\xampp\tomcat\conf\Catalina\localhost and add a row which is the same as method 1.  </li>
+<li>virtual host  <ul>
+<li>the process of DNS<br><img src="/images/post_images/servlet_diagram1.png"><br>If we wanna visit a domain, we will first look for local resolution. If there is not a mapping, we will then look for internet resolution.  </li>
+<li>method<br>For example if we wanna visit localhost by <a target="_blank" rel="noopener" href="http://www.test.com/">www.test.com</a>  <ul>
+<li>In conf/server.xml:<br>&lt;Host appBase=””(the actual path of your project) name=”<a target="_blank" rel="noopener" href="http://www.test.com&quot;&gt;/">www.test.com&quot;&gt;</a><br>&lt;Context docBase=””(actual path) path=”/“(root directory)&gt;</Host></li>
+<li>Change default host to <a target="_blank" rel="noopener" href="http://www.test.com/">www.test.com</a></li>
+<li>Add a ip-domain name mapping to host file in C:\Windows\System32\drivers\etc</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
     </div>
 
     
@@ -232,6 +289,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java-web/" rel="tag"><i class="fa fa-tag"></i> java web</a>
+          </div>
 
         
 
@@ -242,7 +302,10 @@
     <a href="/2021/02/11/isPowerOfThree/" rel="prev" title="isPowerOfThree">
       <i class="fa fa-chevron-left"></i> isPowerOfThree
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/15/mybatis/" rel="next" title="mybatis">
+      mybatis <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -301,6 +364,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic"><span class="nav-number">1.</span> <span class="nav-text">Basic</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -316,7 +380,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">85</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -329,7 +393,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

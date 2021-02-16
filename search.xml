@@ -1756,6 +1756,130 @@ s2 = s1 + s2;
   <entry>
     <title>servlet</title>
     <url>/2021/02/14/servlet/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h1><ul>
+<li>Two architectures<ul>
+<li>CS architecture<br>client server  </li>
+<li>drawbacks<ul>
+<li>If software needs updating, all of them should be updated</li>
+<li>Hard to maintain: you need to maintain every client software</li>
+<li>Every client needs to install client software</li>
+</ul>
+</li>
+<li>BS architecture  <ul>
+<li>browser server  </li>
+<li>Client can visit server through browsers  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Common status code  <ul>
+<li>200: successful</li>
+<li>300/301: redirection  </li>
+<li>404: resources do not exist </li>
+<li>403: lack authorization  </li>
+<li>500: server error(usually it is because of false code)</li>
+</ul>
+</li>
+<li>We can specify the default page by editing <welcome-file-list> in project/WEB_INFO/web.xml. </li>
+<li>virtual path  </li>
+<li>method 1(need rebooting)<br>To configure web project to directories other than webapps.<br>In host tag of conf/server.xml:  <ul>
+<li>docBase=”” actual path  </li>
+<li>path=”” virtual path(absolute path/relative path(relative to   webapps))<br>It means that visiting path equals visiting docBase</li>
+</ul>
+</li>
+<li>method 2(doesn’t need rebooting)<br>Create a new file named project_name.xml in D:\xampp\tomcat\conf\Catalina\localhost and add a row which is the same as method 1.  </li>
+<li>virtual host  <ul>
+<li>the process of DNS<br><img src="/images/post_images/servlet_diagram1.png"><br>If we wanna visit a domain, we will first look for local resolution. If there is not a mapping, we will then look for internet resolution.  </li>
+<li>method<br>For example if we wanna visit localhost by <a href="http://www.test.com/">www.test.com</a>  <ul>
+<li>In conf/server.xml:<br>&lt;Host appBase=””(the actual path of your project) name=”<a href="http://www.test.com&quot;&gt;/">www.test.com&quot;&gt;</a><br>&lt;Context docBase=””(actual path) path=”/“(root directory)&gt;</Host></li>
+<li>Change default host to <a href="http://www.test.com/">www.test.com</a></li>
+<li>Add a ip-domain name mapping to host file in C:\Windows\System32\drivers\etc</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>java web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>29. Divide Two Integers</title>
+    <url>/2021/02/16/divide/</url>
+    <content><![CDATA[<ul>
+<li>We need to transform dividend and divisor to negative to avoid overflow because negative numbers have a wider range than positive.</li>
+<li>We can do this by the method of power of two </li>
+<li>Time Complexity : O(log^2(n))  <ul>
+<li>An exponential search takes O(log(n))</li>
+<li>Each time we need to update the dividend. In the worst case, we were left with a dividend slightly less than half of the previous dividend</li>
+</ul>
+</li>
+<li>Remember to deal with the only case that would cause overflow.</li>
+<li>Do not let the value+value calculation in condition  overflow</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    private static int HALF_MIN&#x3D;Integer.MIN_VALUE&#x2F;2;</span><br><span class="line">    public int divide(int dividend, int divisor) &#123;</span><br><span class="line">        if (dividend &#x3D;&#x3D; Integer.MIN_VALUE &amp;&amp; divisor &#x3D;&#x3D; -1) &#123;</span><br><span class="line">        return Integer.MAX_VALUE;</span><br><span class="line">    &#125;&#x2F;&#x2F;IMPORTANT, the only case that overflows</span><br><span class="line">        int res&#x3D;0;</span><br><span class="line">        int pos&#x3D;0;</span><br><span class="line">        if(dividend&gt;0)&#123;</span><br><span class="line">            dividend&#x3D;-dividend;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        if(divisor&gt;0)&#123;</span><br><span class="line">            divisor&#x3D;-divisor;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        while(dividend&lt;&#x3D;divisor)&#123;</span><br><span class="line">            int value&#x3D;divisor;</span><br><span class="line">            int pt&#x3D;1;</span><br><span class="line">            while(value&gt;&#x3D;HALF_MIN&amp;&amp;value+value&gt;&#x3D;dividend)&#123;</span><br><span class="line">                pt+&#x3D;pt;</span><br><span class="line">                value+&#x3D;value;</span><br><span class="line">            &#125;</span><br><span class="line">            res+&#x3D;pt;</span><br><span class="line">            dividend-&#x3D;value;</span><br><span class="line">        &#125;</span><br><span class="line">        return pos%2&#x3D;&#x3D;0?res:-res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>22. Generate Parentheses</title>
+    <url>/2021/02/15/generateParenthesis/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    List&lt;String&gt; res&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">    int n;</span><br><span class="line">    public List&lt;String&gt; generateParenthesis(int n) &#123;</span><br><span class="line">        StringBuilder track&#x3D;new StringBuilder();</span><br><span class="line">        this.n&#x3D;n;</span><br><span class="line">        backtrack(track,0,0);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    private void backtrack(StringBuilder track,int left,int right)&#123;</span><br><span class="line">        if(right&gt;left)&#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if(left&gt;n)&#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if(left&#x3D;&#x3D;n&amp;&amp;right&#x3D;&#x3D;n)&#123;</span><br><span class="line">            res.add(track.toString());</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        track.append(&#39;(&#39;);</span><br><span class="line">        backtrack(track,left+1,right);</span><br><span class="line">        track.deleteCharAt(track.length()-1);</span><br><span class="line">        track.append(&#39;)&#39;);</span><br><span class="line">        backtrack(track,left,right+1);</span><br><span class="line">        track.deleteCharAt(track.length()-1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>backtracking</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>11. Container With Most Water</title>
+    <url>/2021/02/15/maxArea/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int maxArea(int[] height) &#123;</span><br><span class="line">        int left&#x3D;0;</span><br><span class="line">        int right&#x3D;height.length-1;</span><br><span class="line">        int max&#x3D;0;</span><br><span class="line">        while(left&lt;right)&#123;</span><br><span class="line">            if(height[left]&lt;height[right])&#123;</span><br><span class="line">                max&#x3D;Math.max(max,(right-left)*height[left]);</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                max&#x3D;Math.max(max,(right-left)*height[right]);</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>two pointers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>8. String to Integer (atoi)</title>
+    <url>/2021/02/15/myAtoi/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int myAtoi(String s) &#123;</span><br><span class="line">        int n&#x3D;s.length();</span><br><span class="line">        boolean pos&#x3D;true;</span><br><span class="line">        int i&#x3D;0;</span><br><span class="line">        while(i!&#x3D;n&amp;&amp;s.charAt(i)&#x3D;&#x3D;&#39; &#39;)&#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        if(i&#x3D;&#x3D;n) return 0;</span><br><span class="line">        if(s.charAt(i)&#x3D;&#x3D;&#39;-&#39;||s.charAt(i)&#x3D;&#x3D;&#39;+&#39;)&#123;</span><br><span class="line">            pos&#x3D;s.charAt(i)&#x3D;&#x3D;&#39;-&#39;?false:true;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        int res&#x3D;0;</span><br><span class="line">        while(i&lt;n&amp;&amp;Character.isDigit(s.charAt(i)))&#123;</span><br><span class="line">            if(res&gt;Integer.MAX_VALUE&#x2F;10||(res&#x3D;&#x3D;Integer.MAX_VALUE&#x2F;10&amp;&amp;s.charAt(i)-&#39;0&#39;&gt;Integer.MAX_VALUE%10))&#123;</span><br><span class="line">                return pos?Integer.MAX_VALUE:Integer.MIN_VALUE;</span><br><span class="line">            &#125;</span><br><span class="line">            res&#x3D;res*10+s.charAt(i++)-&#39;0&#39;;</span><br><span class="line">        &#125;</span><br><span class="line">        return pos?res:-res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>string</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mybatis</title>
+    <url>/2021/02/15/mybatis/</url>
+    <content><![CDATA[<h1 id="basics"><a href="#basics" class="headerlink" title="basics"></a>basics</h1><ul>
+<li>MyBatis可以简化JDBC操作，实现数据的持久化</li>
+<li>ORM: Object Relational Mapping <h2 id="MyBatis开发步骤"><a href="#MyBatis开发步骤" class="headerlink" title="MyBatis开发步骤"></a>MyBatis开发步骤</h2></li>
+<li>配置MyBatis<br>配置数据库信息和需要加载的映射文件<br>表 - 类<br>映射文件 xxxMapper.xml:增删改查标签<select></select><br>测试类:session.selectOne(“需要查询的namespace.id”,sql的参数值)</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>java frame</tag>
+      </tags>
   </entry>
 </search>
