@@ -184,6 +184,146 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/06/mySqrt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/06/mySqrt/" class="post-title-link" itemprop="url">69. Sqrt(x)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-02-06 22:25:15" itemprop="dateCreated datePublished" datetime="2021-02-06T22:25:15+00:00">2021-02-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-07 00:47:24" itemprop="dateModified" datetime="2021-02-07T00:47:24+00:00">2021-02-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int mySqrt(int x) &#123;</span><br><span class="line">        if(x&lt;2) return x;</span><br><span class="line">        int left&#x3D;0;</span><br><span class="line">        int right&#x3D;x&#x2F;2;</span><br><span class="line">        int pivot;</span><br><span class="line">        long num;</span><br><span class="line">        while(left&lt;&#x3D;right)&#123;</span><br><span class="line">            pivot&#x3D;left+(right-left)&#x2F;2;</span><br><span class="line">            num&#x3D;(long)pivot*pivot;</span><br><span class="line">            if(num&gt;x)&#123;</span><br><span class="line">                right&#x3D;pivot-1;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(num&lt;x)&#123;</span><br><span class="line">                left&#x3D;pivot+1;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                return pivot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/06/plusOne/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/06/plusOne/" class="post-title-link" itemprop="url">plusOne</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-06 22:05:35 / Modified: 22:06:19" itemprop="dateCreated datePublished" datetime="2021-02-06T22:05:35+00:00">2021-02-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] plusOne(int[] digits) &#123;</span><br><span class="line">        int carry&#x3D;1;</span><br><span class="line">        for(int i&#x3D;digits.length-1;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            int temp&#x3D;digits[i];</span><br><span class="line">            digits[i]&#x3D;(digits[i]+carry)%10;</span><br><span class="line">            carry&#x3D;(temp+carry)&#x2F;10;</span><br><span class="line">        &#125;</span><br><span class="line">        if(carry!&#x3D;0)&#123;</span><br><span class="line">            int[] res&#x3D;new int[digits.length+1];</span><br><span class="line">            res[0]&#x3D;1;</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">        return digits;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/06/countAndSay/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -742,155 +882,15 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/04/subarraySum/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/04/subarraySum/" class="post-title-link" itemprop="url">560. Subarray Sum Equals K</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-02-04 23:39:48" itemprop="dateCreated datePublished" datetime="2021-02-04T23:39:48+00:00">2021-02-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-02-05 00:24:36" itemprop="dateModified" datetime="2021-02-05T00:24:36+00:00">2021-02-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int subarraySum(int[] nums, int k) &#123;</span><br><span class="line">        HashMap&lt;Integer,Integer&gt; hm&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        hm.put(0,1);</span><br><span class="line">        int prefix&#x3D;0;</span><br><span class="line">        int res&#x3D;0;</span><br><span class="line">        for(int num:nums)&#123;</span><br><span class="line">            prefix+&#x3D;num;            </span><br><span class="line">            res+&#x3D;hm.getOrDefault(prefix-k,0);&#x2F;&#x2F;notice we should first search hm then update it, cuz you can only search for the prefixes before you.</span><br><span class="line">            hm.put(prefix,hm.getOrDefault(prefix,0)+1);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/04/findTargetSumWays/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/04/findTargetSumWays/" class="post-title-link" itemprop="url">findTargetSumWays</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-02-04 23:22:50 / Modified: 23:23:32" itemprop="dateCreated datePublished" datetime="2021-02-04T23:22:50+00:00">2021-02-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    HashMap&lt;String,Integer&gt; mem&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">    int n;</span><br><span class="line">    public int findTargetSumWays(int[] nums, int S) &#123;</span><br><span class="line">        n&#x3D;nums.length;</span><br><span class="line">        return ways(nums,S,0);</span><br><span class="line">    &#125;</span><br><span class="line">    private int ways(int[] nums,int res,int pos)&#123;</span><br><span class="line">        if(pos&#x3D;&#x3D;n)&#123;</span><br><span class="line">            return res&#x3D;&#x3D;0?1:0;</span><br><span class="line">        &#125;</span><br><span class="line">        String key&#x3D;res+&quot;*&quot;+pos;</span><br><span class="line">        if(mem.containsKey(key))&#123;</span><br><span class="line">            return mem.get(key);</span><br><span class="line">        &#125;</span><br><span class="line">        int num&#x3D;ways(nums,res+nums[pos],pos+1)+ways(nums,res-nums[pos],pos+1);</span><br><span class="line">        mem.put(key,num);</span><br><span class="line">        return num;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
     <div class="tag-cloud">
       <div class="tag-cloud-tags" id="tags">
-        <a href="/tags/array/" style="font-size: 16px; color: #fff">array</a> <a href="/tags/backtracking/" style="font-size: 16px; color: #fff">backtracking</a> <a href="/tags/basic-syntax/" style="font-size: 16px; color: #fff">basic syntax</a> <a href="/tags/binary-search/" style="font-size: 16px; color: #fff">binary search</a> <a href="/tags/bit-manipulation/" style="font-size: 16px; color: #fff">bit manipulation</a> <a href="/tags/breadth-first-search/" style="font-size: 16px; color: #fff">breadth first search</a> <a href="/tags/core-learning/" style="font-size: 16px; color: #fff">core learning</a> <a href="/tags/depth-first-search/" style="font-size: 16px; color: #fff">depth first search</a> <a href="/tags/design/" style="font-size: 16px; color: #fff">design</a> <a href="/tags/divide-and-conquer/" style="font-size: 16px; color: #fff">divide and conquer</a> <a href="/tags/dynamic-programming/" style="font-size: 16px; color: #fff">dynamic programming</a> <a href="/tags/greedy/" style="font-size: 16px; color: #fff">greedy</a> <a href="/tags/hashmap/" style="font-size: 16px; color: #fff">hashmap</a> <a href="/tags/hashset/" style="font-size: 16px; color: #fff">hashset</a> <a href="/tags/java-frame/" style="font-size: 16px; color: #fff">java frame</a> <a href="/tags/java-web/" style="font-size: 16px; color: #fff">java web</a> <a href="/tags/leetcode/" style="font-size: 16px; color: #fff">leetcode</a> <a href="/tags/linked-list/" style="font-size: 16px; color: #fff">linked list</a> <a href="/tags/math/" style="font-size: 16px; color: #fff">math</a> <a href="/tags/monotonic-stack/" style="font-size: 16px; color: #fff">monotonic stack</a> <a href="/tags/prefix-sum/" style="font-size: 16px; color: #fff">prefix sum</a> <a href="/tags/problem-solving-template/" style="font-size: 16px; color: #fff">problem solving template</a> <a href="/tags/quick-find/" style="font-size: 16px; color: #fff">quick find</a> <a href="/tags/recursion/" style="font-size: 16px; color: #fff">recursion</a> <a href="/tags/sliding-window/" style="font-size: 16px; color: #fff">sliding window</a> <a href="/tags/sort/" style="font-size: 16px; color: #fff">sort</a> <a href="/tags/stack/" style="font-size: 16px; color: #fff">stack</a> <a href="/tags/string/" style="font-size: 16px; color: #fff">string</a> <a href="/tags/two-pointers/" style="font-size: 16px; color: #fff">two pointers</a>
+        <a href="/tags/array/" style="font-size: 16px; color: #fff">array</a> <a href="/tags/backtracking/" style="font-size: 16px; color: #fff">backtracking</a> <a href="/tags/basic-syntax/" style="font-size: 16px; color: #fff">basic syntax</a> <a href="/tags/binary-first-search/" style="font-size: 16px; color: #fff">binary first search</a> <a href="/tags/binary-search/" style="font-size: 16px; color: #fff">binary search</a> <a href="/tags/bit-manipulation/" style="font-size: 16px; color: #fff">bit manipulation</a> <a href="/tags/breadth-first-search/" style="font-size: 16px; color: #fff">breadth first search</a> <a href="/tags/core-learning/" style="font-size: 16px; color: #fff">core learning</a> <a href="/tags/depth-first-search/" style="font-size: 16px; color: #fff">depth first search</a> <a href="/tags/design/" style="font-size: 16px; color: #fff">design</a> <a href="/tags/divide-and-conquer/" style="font-size: 16px; color: #fff">divide and conquer</a> <a href="/tags/dynamic-programming/" style="font-size: 16px; color: #fff">dynamic programming</a> <a href="/tags/greedy/" style="font-size: 16px; color: #fff">greedy</a> <a href="/tags/hashmap/" style="font-size: 16px; color: #fff">hashmap</a> <a href="/tags/hashset/" style="font-size: 16px; color: #fff">hashset</a> <a href="/tags/java-frame/" style="font-size: 16px; color: #fff">java frame</a> <a href="/tags/java-web/" style="font-size: 16px; color: #fff">java web</a> <a href="/tags/leetcode/" style="font-size: 16px; color: #fff">leetcode</a> <a href="/tags/linked-list/" style="font-size: 16px; color: #fff">linked list</a> <a href="/tags/math/" style="font-size: 16px; color: #fff">math</a> <a href="/tags/monotonic-stack/" style="font-size: 16px; color: #fff">monotonic stack</a> <a href="/tags/prefix-sum/" style="font-size: 16px; color: #fff">prefix sum</a> <a href="/tags/problem-solving-template/" style="font-size: 16px; color: #fff">problem solving template</a> <a href="/tags/quick-find/" style="font-size: 16px; color: #fff">quick find</a> <a href="/tags/recursion/" style="font-size: 16px; color: #fff">recursion</a> <a href="/tags/sliding-window/" style="font-size: 16px; color: #fff">sliding window</a> <a href="/tags/sort/" style="font-size: 16px; color: #fff">sort</a> <a href="/tags/stack/" style="font-size: 16px; color: #fff">stack</a> <a href="/tags/string/" style="font-size: 16px; color: #fff">string</a> <a href="/tags/two-pointers/" style="font-size: 16px; color: #fff">two pointers</a>
       </div>
     </div>
     <br>
@@ -1001,7 +1001,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">89</span>
+          <span class="site-state-item-count">91</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1014,7 +1014,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

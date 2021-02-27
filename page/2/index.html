@@ -184,6 +184,292 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/15/mybatis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/15/mybatis/" class="post-title-link" itemprop="url">mybatis</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-02-15 16:34:00" itemprop="dateCreated datePublished" datetime="2021-02-15T16:34:00+00:00">2021-02-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-20 23:15:50" itemprop="dateModified" datetime="2021-02-20T23:15:50+00:00">2021-02-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="basics"><a href="#basics" class="headerlink" title="basics"></a>basics</h1><ul>
+<li>MyBatis可以简化JDBC操作，实现数据的持久化</li>
+<li>ORM: Object Relational Mapping </li>
+</ul>
+<h2 id="MyBatis开发步骤"><a href="#MyBatis开发步骤" class="headerlink" title="MyBatis开发步骤"></a>MyBatis开发步骤</h2><h3 id="配置MyBatis"><a href="#配置MyBatis" class="headerlink" title="配置MyBatis"></a>配置MyBatis</h3><p>配置数据库信息和需要加载的映射文件<br>表 - 类<br>映射文件 xxxMapper.xml:增删改查标签<select></select><br>测试类:session.selectOne(“需要查询的namespace.id”,sql的参数值)</p>
+<ul>
+<li>MyBatis约定parameterType 和resultType都只能有一个</li>
+<li>如果使用的transaction manager 为JDBC，则需要手工提交，即session.commit()</li>
+</ul>
+<h3 id="动态代理方式的CRUD"><a href="#动态代理方式的CRUD" class="headerlink" title="动态代理方式的CRUD"></a>动态代理方式的CRUD</h3><ul>
+<li>原则：约定优于配置  <ul>
+<li>硬编码方式：在java文件中set</li>
+<li>配置方式：在xml文件中配置  </li>
+<li>约定</li>
+</ul>
+</li>
+<li>匹配(约定)的过程<ul>
+<li>根据接口名找到mapper.xml文件(要求namespace=接口全类名)</li>
+<li>根据接口的方法名找到mapper.xml文件中的SQL标签(方法名=SQL标签的id值)<br>以上两点可以保证当我们调用接口中的方法时，程序能自动定位到某一个mapper.xml文件中的sql标签<br>习惯：mapper.xml文件和接口放在同一个包下(注意修改config.xml中加载mapper文件的路径)</li>
+<li>执行<br>PersonMapper personmapper=session.getMapper(PersonMapper.class);<br>personmapper.method();</li>
+</ul>
+</li>
+</ul>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ul>
+<li>可以将配置信息单独放入db.properties文件(kv对)中然后再动态引入，引入后使用${key}取出value。  </li>
+<li>*注意：&amp;符号只在xml文件中需要转义成&amp;**  </li>
+<li>全局参数<br>在config.xml中设置  </li>
+<li>别名(大小写不敏感)<ul>
+<li>设置单个别名  </li>
+<li>批量设置别名<br>除了自定义别名外，mybatis还内置了一些常见类的别名  </li>
+</ul>
+</li>
+</ul>
+<h3 id="类型处理器"><a href="#类型处理器" class="headerlink" title="类型处理器"></a>类型处理器</h3><ul>
+<li>Mybatis自带一些常见类型的处理器  </li>
+<li>自定义处理器  <ul>
+<li>实例：<br>实体类student：<br>Boolean stusex：true 男 false 女<br>表Student：<br>int stusex： 1 男 0 女  </li>
+<li>自定义类型转换器步骤：  <ul>
+<li>创建转换器：实现一个TypeHandler接口<br>通过阅读源码，发现此接口有一个实现类BaseTypeHandler(更简单)   <ul>
+<li>实现接口  </li>
+<li>继承类<br>set: java -&gt; DB<br>get: DB -&gt; java </li>
+</ul>
+</li>
+<li>配置typeHandlers  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="parameterType"><a href="#parameterType" class="headerlink" title="parameterType"></a>parameterType</h3><ul>
+<li>如果参数是简单类型(八个基本类型＋String)，则可以使用任何占位符，#{xxxx}(也可以用${value},但占位符只能是’value’)</li>
+<li>如果是对象类型，则必须是对象的属性，#{属性名}(或${属性名})，严格区分大小写</li>
+<li>#{}和&amp;{}  <ul>
+<li>相同  <ul>
+<li>都可以获取对象的值(嵌套类型对象)  <ul>
+<li>模糊查询  <ul>
+<li>方式一：person.setName(“%ch%”)(用#{name})</li>
+<li>方式二：’%${name}%’</li>
+</ul>
+</li>
+<li>输入对象为HashMap<br>example: where id=#{personid}<br>用map中key的值匹配占位符#{personid}，如果匹配成功，就用value值替换它</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>不同<br>#{}自动给String加上引号，${}原样输出，但是适合用于动态排序<br>example:select name,age,personsex,id from person order by ${value} desc</li>
+</ul>
+</li>
+<li>#{}可以防止sql注入，${}不行<ul>
+<li>调用存储过程实现查询，statementType=CALLABLE<br>存储过程的输入参数，在MyBatis用map传递(HashMap),输出参数通过map的get方法获得 </li>
+</ul>
+</li>
+</ul>
+<h3 id="resultType"><a href="#resultType" class="headerlink" title="resultType"></a>resultType</h3><ul>
+<li>如果返回类型是对象，无论一个或多个，都写成org.lanqiao.entity.Person这种形式 </li>
+<li>输出类型为HashMap<br>一个hashmap对应<strong>一个</strong>学生的多个元素  </li>
+<li>当属性名和字段名不一致时，除了使用resultMap外，还可以使用resultType＋HashMap,即表的字段名 “类的属性名”<br>example:    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;select&gt;</span><br><span class="line">   select id &quot;personno&quot;,age &quot;page&quot; from person </span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h3></li>
+<li><where>标签会自动处理第一个<if>标签里的and，但不会处理其他if的and</li>
+<li><foreach>  
+* example:
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ids&#x3D;&#123;1,2,53&#125; </span><br><span class="line">select * from student where id in(1,2,53)&#x2F;&#x2F;foreach的作用就是进行两者的转化</span><br></pre></td></tr></table></figure>
+* <foreach>迭代的类型  
+  * 数组、对象数组、集合、属性(如果类的属性是一个可迭代对象)  
+  * 需要设定open, item, close, seperator  
+  * 简单类型的数组：在mapper.xml中必须用array代替
+  * 集合：在mapper.xml中必须用list代替
+  * 对象数组：   
+    * parametertype="object[]"，其他仍用array代替
+    * #{item.property}</li>
+<li>myBatis SQL片段  <ul>
+<li>提取相似代码  </li>
+<li>引用<br><sql id="objectArray"> </sql><br>在需要的地方：<br><include refid="namespace.objectArray">(如果在本mapper下引用则可以省略namespace)</li>
+</ul>
+</li>
+</ul>
+<h3 id="关联查询"><a href="#关联查询" class="headerlink" title="关联查询"></a>关联查询</h3><p>MyBatis认为多对一、多对多的本质就是一对多的变化  </p>
+<ul>
+<li>一对一  <ul>
+<li>业务扩展类  </li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/14/servlet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/14/servlet/" class="post-title-link" itemprop="url">servlet</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-14 20:11:43 / Modified: 23:00:42" itemprop="dateCreated datePublished" datetime="2021-02-14T20:11:43+00:00">2021-02-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h1><ul>
+<li>Two architectures<ul>
+<li>CS architecture<br>client server  </li>
+<li>drawbacks<ul>
+<li>If software needs updating, all of them should be updated</li>
+<li>Hard to maintain: you need to maintain every client software</li>
+<li>Every client needs to install client software</li>
+</ul>
+</li>
+<li>BS architecture  <ul>
+<li>browser server  </li>
+<li>Client can visit server through browsers  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Common status code  <ul>
+<li>200: successful</li>
+<li>300/301: redirection  </li>
+<li>404: resources do not exist </li>
+<li>403: lack authorization  </li>
+<li>500: server error(usually it is because of false code)</li>
+</ul>
+</li>
+<li>We can specify the default page by editing <welcome-file-list> in project/WEB_INFO/web.xml. </li>
+<li>virtual path  </li>
+<li>method 1(need rebooting)<br>To configure web project to directories other than webapps.<br>In host tag of conf/server.xml:  <ul>
+<li>docBase=”” actual path  </li>
+<li>path=”” virtual path(absolute path/relative path(relative to   webapps))<br>It means that visiting path equals visiting docBase</li>
+</ul>
+</li>
+<li>method 2(doesn’t need rebooting)<br>Create a new file named project_name.xml in D:\xampp\tomcat\conf\Catalina\localhost and add a row which is the same as method 1.  </li>
+<li>virtual host  <ul>
+<li>the process of DNS<br><img src="/images/post_images/servlet_diagram1.png"><br>If we wanna visit a domain, we will first look for local resolution. If there is not a mapping, we will then look for internet resolution.  </li>
+<li>method<br>For example if we wanna visit localhost by <a target="_blank" rel="noopener" href="http://www.test.com/">www.test.com</a>  <ul>
+<li>In conf/server.xml:<br>&lt;Host appBase=””(the actual path of your project) name=”<a target="_blank" rel="noopener" href="http://www.test.com&quot;&gt;/">www.test.com&quot;&gt;</a><br>&lt;Context docBase=””(actual path) path=”/“(root directory)&gt;</Host></li>
+<li>Change default host to <a target="_blank" rel="noopener" href="http://www.test.com/">www.test.com</a></li>
+<li>Add a ip-domain name mapping to host file in C:\Windows\System32\drivers\etc</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/11/isPowerOfThree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -735,155 +1021,15 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/06/mySqrt/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/06/mySqrt/" class="post-title-link" itemprop="url">69. Sqrt(x)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-02-06 22:25:15" itemprop="dateCreated datePublished" datetime="2021-02-06T22:25:15+00:00">2021-02-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-02-07 00:47:24" itemprop="dateModified" datetime="2021-02-07T00:47:24+00:00">2021-02-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int mySqrt(int x) &#123;</span><br><span class="line">        if(x&lt;2) return x;</span><br><span class="line">        int left&#x3D;0;</span><br><span class="line">        int right&#x3D;x&#x2F;2;</span><br><span class="line">        int pivot;</span><br><span class="line">        long num;</span><br><span class="line">        while(left&lt;&#x3D;right)&#123;</span><br><span class="line">            pivot&#x3D;left+(right-left)&#x2F;2;</span><br><span class="line">            num&#x3D;(long)pivot*pivot;</span><br><span class="line">            if(num&gt;x)&#123;</span><br><span class="line">                right&#x3D;pivot-1;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(num&lt;x)&#123;</span><br><span class="line">                left&#x3D;pivot+1;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                return pivot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/06/plusOne/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/06/plusOne/" class="post-title-link" itemprop="url">plusOne</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-02-06 22:05:35 / Modified: 22:06:19" itemprop="dateCreated datePublished" datetime="2021-02-06T22:05:35+00:00">2021-02-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] plusOne(int[] digits) &#123;</span><br><span class="line">        int carry&#x3D;1;</span><br><span class="line">        for(int i&#x3D;digits.length-1;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            int temp&#x3D;digits[i];</span><br><span class="line">            digits[i]&#x3D;(digits[i]+carry)%10;</span><br><span class="line">            carry&#x3D;(temp+carry)&#x2F;10;</span><br><span class="line">        &#125;</span><br><span class="line">        if(carry!&#x3D;0)&#123;</span><br><span class="line">            int[] res&#x3D;new int[digits.length+1];</span><br><span class="line">            res[0]&#x3D;1;</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">        return digits;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
     <div class="tag-cloud">
       <div class="tag-cloud-tags" id="tags">
-        <a href="/tags/array/" style="font-size: 16px; color: #fff">array</a> <a href="/tags/backtracking/" style="font-size: 16px; color: #fff">backtracking</a> <a href="/tags/basic-syntax/" style="font-size: 16px; color: #fff">basic syntax</a> <a href="/tags/binary-search/" style="font-size: 16px; color: #fff">binary search</a> <a href="/tags/bit-manipulation/" style="font-size: 16px; color: #fff">bit manipulation</a> <a href="/tags/breadth-first-search/" style="font-size: 16px; color: #fff">breadth first search</a> <a href="/tags/core-learning/" style="font-size: 16px; color: #fff">core learning</a> <a href="/tags/depth-first-search/" style="font-size: 16px; color: #fff">depth first search</a> <a href="/tags/design/" style="font-size: 16px; color: #fff">design</a> <a href="/tags/divide-and-conquer/" style="font-size: 16px; color: #fff">divide and conquer</a> <a href="/tags/dynamic-programming/" style="font-size: 16px; color: #fff">dynamic programming</a> <a href="/tags/greedy/" style="font-size: 16px; color: #fff">greedy</a> <a href="/tags/hashmap/" style="font-size: 16px; color: #fff">hashmap</a> <a href="/tags/hashset/" style="font-size: 16px; color: #fff">hashset</a> <a href="/tags/java-frame/" style="font-size: 16px; color: #fff">java frame</a> <a href="/tags/java-web/" style="font-size: 16px; color: #fff">java web</a> <a href="/tags/leetcode/" style="font-size: 16px; color: #fff">leetcode</a> <a href="/tags/linked-list/" style="font-size: 16px; color: #fff">linked list</a> <a href="/tags/math/" style="font-size: 16px; color: #fff">math</a> <a href="/tags/monotonic-stack/" style="font-size: 16px; color: #fff">monotonic stack</a> <a href="/tags/prefix-sum/" style="font-size: 16px; color: #fff">prefix sum</a> <a href="/tags/problem-solving-template/" style="font-size: 16px; color: #fff">problem solving template</a> <a href="/tags/quick-find/" style="font-size: 16px; color: #fff">quick find</a> <a href="/tags/recursion/" style="font-size: 16px; color: #fff">recursion</a> <a href="/tags/sliding-window/" style="font-size: 16px; color: #fff">sliding window</a> <a href="/tags/sort/" style="font-size: 16px; color: #fff">sort</a> <a href="/tags/stack/" style="font-size: 16px; color: #fff">stack</a> <a href="/tags/string/" style="font-size: 16px; color: #fff">string</a> <a href="/tags/two-pointers/" style="font-size: 16px; color: #fff">two pointers</a>
+        <a href="/tags/array/" style="font-size: 16px; color: #fff">array</a> <a href="/tags/backtracking/" style="font-size: 16px; color: #fff">backtracking</a> <a href="/tags/basic-syntax/" style="font-size: 16px; color: #fff">basic syntax</a> <a href="/tags/binary-first-search/" style="font-size: 16px; color: #fff">binary first search</a> <a href="/tags/binary-search/" style="font-size: 16px; color: #fff">binary search</a> <a href="/tags/bit-manipulation/" style="font-size: 16px; color: #fff">bit manipulation</a> <a href="/tags/breadth-first-search/" style="font-size: 16px; color: #fff">breadth first search</a> <a href="/tags/core-learning/" style="font-size: 16px; color: #fff">core learning</a> <a href="/tags/depth-first-search/" style="font-size: 16px; color: #fff">depth first search</a> <a href="/tags/design/" style="font-size: 16px; color: #fff">design</a> <a href="/tags/divide-and-conquer/" style="font-size: 16px; color: #fff">divide and conquer</a> <a href="/tags/dynamic-programming/" style="font-size: 16px; color: #fff">dynamic programming</a> <a href="/tags/greedy/" style="font-size: 16px; color: #fff">greedy</a> <a href="/tags/hashmap/" style="font-size: 16px; color: #fff">hashmap</a> <a href="/tags/hashset/" style="font-size: 16px; color: #fff">hashset</a> <a href="/tags/java-frame/" style="font-size: 16px; color: #fff">java frame</a> <a href="/tags/java-web/" style="font-size: 16px; color: #fff">java web</a> <a href="/tags/leetcode/" style="font-size: 16px; color: #fff">leetcode</a> <a href="/tags/linked-list/" style="font-size: 16px; color: #fff">linked list</a> <a href="/tags/math/" style="font-size: 16px; color: #fff">math</a> <a href="/tags/monotonic-stack/" style="font-size: 16px; color: #fff">monotonic stack</a> <a href="/tags/prefix-sum/" style="font-size: 16px; color: #fff">prefix sum</a> <a href="/tags/problem-solving-template/" style="font-size: 16px; color: #fff">problem solving template</a> <a href="/tags/quick-find/" style="font-size: 16px; color: #fff">quick find</a> <a href="/tags/recursion/" style="font-size: 16px; color: #fff">recursion</a> <a href="/tags/sliding-window/" style="font-size: 16px; color: #fff">sliding window</a> <a href="/tags/sort/" style="font-size: 16px; color: #fff">sort</a> <a href="/tags/stack/" style="font-size: 16px; color: #fff">stack</a> <a href="/tags/string/" style="font-size: 16px; color: #fff">string</a> <a href="/tags/two-pointers/" style="font-size: 16px; color: #fff">two pointers</a>
       </div>
     </div>
     <br>
@@ -994,7 +1140,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">89</span>
+          <span class="site-state-item-count">91</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1007,7 +1153,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
