@@ -184,6 +184,349 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/10/reverseBits/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/10/reverseBits/" class="post-title-link" itemprop="url">190. Reverse Bits</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-10 22:10:50 / Modified: 22:12:17" itemprop="dateCreated datePublished" datetime="2021-02-10T22:10:50+00:00">2021-02-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    &#x2F;&#x2F; you need treat n as an unsigned value</span><br><span class="line">    public int reverseBits(int n) &#123;</span><br><span class="line">        int ans&#x3D;0;</span><br><span class="line">        for(int i&#x3D;0;i&lt;32;i++)&#123;</span><br><span class="line">            ans&lt;&lt;&#x3D;1;</span><br><span class="line">            ans|&#x3D;n&amp;1;&#x2F;&#x2F;ans+&#x3D;n&amp;1(notice n&amp;1 is to retrieve the last bit)</span><br><span class="line">            n&gt;&gt;&#x3D;1;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/10/trailingZeroes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/10/trailingZeroes/" class="post-title-link" itemprop="url">172. Factorial Trailing Zeroes</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-10 21:59:53 / Modified: 22:05:08" itemprop="dateCreated datePublished" datetime="2021-02-10T21:59:53+00:00">2021-02-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>This question is equal to finding the number of 5 in the factorial of n.<br>For example, for 125, we can do this:<br>125/5=25.(There are 25 5s in 125)<br>125/25(25/5)=5(There are 5 25s in 125)<br>125/125(5/5)=1(There is 1 125 in 125)<br>Because there are overlapping parts(125 is included in 25s and 5s,etc), the result would be 25+5+1=31.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int trailingZeroes(int n) &#123;</span><br><span class="line">        if(n&#x3D;&#x3D;0) return 0;</span><br><span class="line">        int count&#x3D;0;</span><br><span class="line">        while(n&#x2F;5!&#x3D;0)&#123;</span><br><span class="line">            count+&#x3D;n&#x2F;5;</span><br><span class="line">            n&#x2F;&#x3D;5;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/10/findMissingRanges/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/10/findMissingRanges/" class="post-title-link" itemprop="url">163. Missing Ranges</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-10 21:12:51 / Modified: 21:20:49" itemprop="dateCreated datePublished" datetime="2021-02-10T21:12:51+00:00">2021-02-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Notice that we could build a function to encapsulate the code block that does the same thing.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;String&gt; findMissingRanges(int[] nums, int lower, int upper) &#123;</span><br><span class="line">        int bound&#x3D;lower;</span><br><span class="line">        List&lt;String&gt; res&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">        for(int num:nums)&#123;</span><br><span class="line">            &#x2F;&#x2F; if(num&#x3D;&#x3D;bound+1)&#123;</span><br><span class="line">            &#x2F;&#x2F;     res.add(String.valueOf(bound));</span><br><span class="line">            &#x2F;&#x2F; &#125;</span><br><span class="line">            &#x2F;&#x2F; else if(num&gt;bound+1)&#123;</span><br><span class="line">            &#x2F;&#x2F;     res.add(bound+&quot;-&gt;&quot;+(num-1));</span><br><span class="line">            &#x2F;&#x2F; &#125;</span><br><span class="line">            if(num&gt;&#x3D;bound+1)&#123;</span><br><span class="line">                res.add(formatRange(bound,num-1));</span><br><span class="line">            &#125;</span><br><span class="line">            bound&#x3D;num+1;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; if(upper&#x3D;&#x3D;bound)&#123;</span><br><span class="line">        &#x2F;&#x2F;     res.add(String.valueOf(upper));</span><br><span class="line">        &#x2F;&#x2F; &#125;</span><br><span class="line">        &#x2F;&#x2F; if(bound&lt;upper)&#123;</span><br><span class="line">        &#x2F;&#x2F;     res.add(bound+&quot;-&gt;&quot;+upper);</span><br><span class="line">        &#x2F;&#x2F; &#125;</span><br><span class="line">        if(upper&gt;&#x3D;bound)&#123;</span><br><span class="line">            res.add(formatRange(bound,upper));</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    String formatRange(int lower,int upper)&#123;</span><br><span class="line">        if(lower&#x3D;&#x3D;upper)&#123;</span><br><span class="line">            return String.valueOf(lower);</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            return lower+&quot;-&gt;&quot;+upper;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/07/generate/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/07/generate/" class="post-title-link" itemprop="url">118. Pascal's Triangle</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-07 00:44:31 / Modified: 00:45:42" itemprop="dateCreated datePublished" datetime="2021-02-07T00:44:31+00:00">2021-02-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; generate(int numRows) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">        if (numRows&#x3D;&#x3D;0) return res;</span><br><span class="line">        res.add(new ArrayList&lt;&gt;());</span><br><span class="line">        res.get(0).add(1);</span><br><span class="line">        for(int i&#x3D;1;i&lt;numRows;i++)&#123;</span><br><span class="line">            List&lt;Integer&gt; row&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">            List&lt;Integer&gt; prevrow&#x3D;res.get(i-1);</span><br><span class="line">            row.add(1);</span><br><span class="line">            for(int j&#x3D;1;j&lt;i;j++)&#123;</span><br><span class="line">                row.add(prevrow.get(j-1)+prevrow.get(j));</span><br><span class="line">            &#125;</span><br><span class="line">            row.add(1);</span><br><span class="line">            res.add(row);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/06/merge88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/06/merge88/" class="post-title-link" itemprop="url">88. Merge Sorted Array</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-02-06 23:05:28" itemprop="dateCreated datePublished" datetime="2021-02-06T23:05:28+00:00">2021-02-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-07 00:47:08" itemprop="dateModified" datetime="2021-02-07T00:47:08+00:00">2021-02-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public void merge(int[] nums1, int m, int[] nums2, int n) &#123;</span><br><span class="line">        int p1&#x3D;m-1;</span><br><span class="line">        int p2&#x3D;n-1;</span><br><span class="line">        for(int p&#x3D;m+n-1;p&gt;&#x3D;0;p--)&#123;</span><br><span class="line">            int n1&#x3D;p1&gt;&#x3D;0?nums1[p1]:Integer.MIN_VALUE;</span><br><span class="line">            int n2&#x3D;p2&gt;&#x3D;0?nums2[p2]:Integer.MIN_VALUE;</span><br><span class="line">            if(n1&gt;n2)&#123;</span><br><span class="line">                p1--;</span><br><span class="line">                nums1[p]&#x3D;n1;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                p2--;</span><br><span class="line">                nums1[p]&#x3D;n2;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/06/mySqrt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -536,352 +879,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/06/reverse7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/06/reverse7/" class="post-title-link" itemprop="url">7. Reverse Integer</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-02-06 17:32:51 / Modified: 17:54:22" itemprop="dateCreated datePublished" datetime="2021-02-06T17:32:51+00:00">2021-02-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>We want to repeatedly “pop” the last digit off of xx and “push” it to the back of the \text{rev}rev. In the end, \text{rev}rev will be the reverse of the xx.  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int reverse(int x) &#123;</span><br><span class="line">        int rev&#x3D;0;</span><br><span class="line">        while(x!&#x3D;0)&#123;</span><br><span class="line">            int pop&#x3D;x%10;</span><br><span class="line">            x&#x3D;x&#x2F;10;</span><br><span class="line">            if(rev&gt;Integer.MAX_VALUE&#x2F;10||rev&#x3D;&#x3D;Integer.MAX_VALUE&amp;&amp;pop&gt;7) return 0;</span><br><span class="line">            if(rev&lt;Integer.MIN_VALUE&#x2F;10||rev&#x3D;&#x3D;Integer.MIN_VALUE&amp;&amp;pop&lt;-8) return 0;</span><br><span class="line">            rev&#x3D;rev*10+pop;</span><br><span class="line">        &#125;</span><br><span class="line">        return rev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/05/partitionLabels/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/05/partitionLabels/" class="post-title-link" itemprop="url">partitionLabels</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-02-05 01:19:10 / Modified: 01:21:37" itemprop="dateCreated datePublished" datetime="2021-02-05T01:19:10+00:00">2021-02-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>Maintain an array that keeps the index where each character appears last.  </li>
-<li>Loop through the string, for every character we encounter, update the farthest index we can reach so far.  </li>
-<li>If we are at the end of the partition (i == j) then we’ll append a partition size to our answer, and set the start of our new partition to i+1.  </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;Integer&gt; partitionLabels(String S) &#123;</span><br><span class="line">        int[] last&#x3D;new int[26];</span><br><span class="line">        for(int i&#x3D;0;i&lt;S.length();i++)&#123;</span><br><span class="line">            last[S.charAt(i)-&#39;a&#39;]&#x3D;i;</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;Integer&gt; res&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">        int anchor&#x3D;0;</span><br><span class="line">        int j&#x3D;0;</span><br><span class="line">        for(int i&#x3D;0;i&lt;S.length();i++)&#123;</span><br><span class="line">            j&#x3D;Math.max(j,last[S.charAt(i)-&#39;a&#39;]);</span><br><span class="line">            if(j&#x3D;&#x3D;i)&#123;</span><br><span class="line">                res.add(i-anchor+1);</span><br><span class="line">                anchor&#x3D;i+1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/05/monotonicstack/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/05/monotonicstack/" class="post-title-link" itemprop="url">Monotonic Stack</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-02-05 01:05:01 / Modified: 01:06:13" itemprop="dateCreated datePublished" datetime="2021-02-05T01:05:01+00:00">2021-02-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="739"><a href="#739" class="headerlink" title="739"></a>739</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] dailyTemperatures(int[] T) &#123;</span><br><span class="line">        Stack&lt;Integer&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">        int[] res&#x3D;new int[T.length];</span><br><span class="line">        for(int i&#x3D;T.length-1;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            while(!stack.isEmpty()&amp;&amp;T[stack.peek()]&lt;&#x3D;T[i])&#123;</span><br><span class="line">                stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            res[i]&#x3D;stack.isEmpty()?0:stack.peek()-i;</span><br><span class="line">            stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/05/countSubstrings/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/05/countSubstrings/" class="post-title-link" itemprop="url">countSubstrings</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-02-05 00:48:17 / Modified: 00:49:34" itemprop="dateCreated datePublished" datetime="2021-02-05T00:48:17+00:00">2021-02-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int countSubstrings(String s) &#123;</span><br><span class="line">        int n&#x3D;s.length();</span><br><span class="line">        int ans&#x3D;0;</span><br><span class="line">        if(n&#x3D;&#x3D;0) return 0;</span><br><span class="line">        boolean[][] dp&#x3D;new boolean[n][n];</span><br><span class="line">        for(int i&#x3D;0;i&lt;n;i++) &#123;</span><br><span class="line">            dp[i][i]&#x3D;true;</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;&#x2F;&#x2F;count substring with single character</span><br><span class="line">        for(int i&#x3D;0;i&lt;n-1;i++)&#123;</span><br><span class="line">            dp[i][i+1]&#x3D;s.charAt(i)&#x3D;&#x3D;s.charAt(i+1);</span><br><span class="line">            ans+&#x3D;(dp[i][i+1]?1:0);</span><br><span class="line">        &#125;&#x2F;&#x2F;count substring with length equal to 2</span><br><span class="line">        for(int len&#x3D;2;len&lt;n;len++)&#123;</span><br><span class="line">            for(int i&#x3D;0,j&#x3D;i+len;j&lt;n;i++,j++)&#123;</span><br><span class="line">                dp[i][j]&#x3D;dp[i+1][j-1]&amp;&amp;s.charAt(i)&#x3D;&#x3D;s.charAt(j);</span><br><span class="line">                ans+&#x3D;(dp[i][j]?1:0);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/05/leastInterval/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/05/leastInterval/" class="post-title-link" itemprop="url">621. Task Scheduler</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-02-05 00:23:45 / Modified: 00:29:30" itemprop="dateCreated datePublished" datetime="2021-02-05T00:23:45+00:00">2021-02-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>total=idle+busy(length of the tasks) </li>
-<li>Maximum possible number of idle slots is defined by the frequency of the most frequent task: idle_time &lt;= (f_max - 1) * n.  </li>
-<li>For other less or equally frequent tasks, idle_time-=max(f_max,f_self)  </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int leastInterval(char[] tasks, int n) &#123;</span><br><span class="line">        int[] freq&#x3D;new int[26];</span><br><span class="line">        for(char t:tasks)&#123;</span><br><span class="line">            freq[t-&#39;A&#39;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(freq);</span><br><span class="line">        int fmax&#x3D;freq[25];</span><br><span class="line">        int idle&#x3D;(fmax-1)*n;</span><br><span class="line">        for(int i&#x3D;freq.length-2;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            idle-&#x3D;Math.min(fmax-1,freq[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        idle&#x3D;Math.max(0,idle);</span><br><span class="line">        return idle+tasks.length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1001,7 +998,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">96</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

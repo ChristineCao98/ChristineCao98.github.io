@@ -2061,4 +2061,75 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
         <tag>binary first search</tag>
       </tags>
   </entry>
+  <entry>
+    <title>134. Gas Station</title>
+    <url>/2021/02/27/anCompleteCircuit/</url>
+    <content><![CDATA[<ul>
+<li>It’s impossible to perform the road trip if sum(gas) &lt; sum(cost). In this situation the answer is -1.  </li>
+<li>It’s impossible to start at a station i if gas[i] - cost[i] &lt; 0, because then there is not enough gas in the tank to travel to i + 1 station.  </li>
+<li>Algorithm directly ensures that it’s possible to go from N to the station 0. And by using proof of contradiction we can also prove that it is possible for the last part of the round trip from the station 0 to the station N.  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int canCompleteCircuit(int[] gas, int[] cost) &#123;</span><br><span class="line">        int total&#x3D;0;</span><br><span class="line">        int cur&#x3D;0;</span><br><span class="line">        int start&#x3D;0;</span><br><span class="line">        for(int i&#x3D;0;i&lt;gas.length;i++)&#123;</span><br><span class="line">            total+&#x3D;gas[i]-cost[i];</span><br><span class="line">            cur+&#x3D;gas[i]-cost[i];</span><br><span class="line">            if(cur&lt;0)&#123;</span><br><span class="line">                cur&#x3D;0;</span><br><span class="line">                start&#x3D;i+1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return total&gt;&#x3D;0?start:-1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>greedy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>150. Evaluate Reverse Polish Notation</title>
+    <url>/2021/03/01/evalRPN/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int evalRPN(String[] tokens) &#123;</span><br><span class="line">        Stack&lt;Integer&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">        for(String s:tokens)&#123;</span><br><span class="line">            if(s.equals(&quot;+&quot;)||s.equals(&quot;-&quot;)||s.equals(&quot;*&quot;)||s.equals(&quot;&#x2F;&quot;))&#123;</span><br><span class="line">                int sec&#x3D;stack.pop();</span><br><span class="line">                int fir&#x3D;stack.pop();</span><br><span class="line">                switch(s)&#123;</span><br><span class="line">                    case &quot;+&quot;:stack.add(sec+fir);break;</span><br><span class="line">                    case &quot;-&quot;:stack.add(fir-sec);break;</span><br><span class="line">                    case &quot;*&quot;:stack.add(fir*sec);break;</span><br><span class="line">                    case &quot;&#x2F;&quot;:stack.add(fir&#x2F;sec);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                stack.add(Integer.valueOf(s));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>stack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>162. Find Peak Element</title>
+    <url>/2021/03/01/findPeakElement/</url>
+    <content><![CDATA[<p>We choose the interval after figuring out whether it lies in an ascending sequence or descending one(found by comparing nums[i]nums[i] to its right neighbour)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int findPeakElement(int[] nums) &#123;</span><br><span class="line">        int left&#x3D;0;</span><br><span class="line">        int right&#x3D;nums.length-1;</span><br><span class="line">        while(left&lt;right)&#123;</span><br><span class="line">            int mid&#x3D;(left+right)&#x2F;2;</span><br><span class="line">            if(nums[mid]&gt;nums[mid+1]) right&#x3D;mid;&#x2F;&#x2F;mid is included</span><br><span class="line">            else&#123;</span><br><span class="line">                left&#x3D;mid+1;&#x2F;&#x2F;mid is excluded</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>binary search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>166. Fraction to Recurring Decimal</title>
+    <url>/2021/03/02/fractionToDecimal/</url>
+    <content><![CDATA[<ul>
+<li>The key insight here is to notice that once the remainder starts repeating, so does the divided result.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String fractionToDecimal(int numerator, int denominator) &#123;</span><br><span class="line">        if(numerator&#x3D;&#x3D;0) return &quot;0&quot;;</span><br><span class="line">        StringBuilder res&#x3D;new StringBuilder();</span><br><span class="line">        if(numerator&lt;0^denominator&lt;0) res.append(&#39;-&#39;);</span><br><span class="line">        long dividend&#x3D;Math.abs(Long.valueOf(numerator));&#x2F;&#x2F;Long.valueOf() is necessary here, because converting Integer.MIN_VAL to positive will cause overflow</span><br><span class="line">        long divisor&#x3D;Math.abs(Long.valueOf(denominator));</span><br><span class="line">        res.append(String.valueOf(dividend&#x2F;divisor));</span><br><span class="line">        long remainder&#x3D;dividend%divisor;</span><br><span class="line">        if(remainder&#x3D;&#x3D;0) return res.toString();</span><br><span class="line">        res.append(&#39;.&#39;);</span><br><span class="line">        Map&lt;Long,Integer&gt; map&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        while(remainder!&#x3D;0)&#123;</span><br><span class="line">            if(map.containsKey(remainder))&#123;</span><br><span class="line">                res.insert(map.get(remainder),&quot;(&quot;);</span><br><span class="line">                res.append(&#39;)&#39;);</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            map.put(remainder,res.length());</span><br><span class="line">            remainder*&#x3D;10;</span><br><span class="line">            res.append(String.valueOf(remainder&#x2F;divisor));</span><br><span class="line">            remainder%&#x3D;divisor;&#x2F;&#x2F;Just like doing the long division</span><br><span class="line">        &#125;</span><br><span class="line">        return res.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>partition131</title>
+    <url>/2021/02/27/partition131/</url>
+    <content><![CDATA[<p>The aim to partition the string into all possible palindrome combinations. To achieve this, we must generate all possible substrings of a string by partitioning at every index until we reach the end of the string.<br>In saying this, it is apparent that we can adopt the method of backtracking to solve this problem.<br>When it comes to determine whether a string is a palindrome or not, instead of scanning the string every time, we can use a two dimensional boolean array to save the previous result.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    List&lt;List&lt;String&gt;&gt; res&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">    boolean[][] dp;</span><br><span class="line">    public List&lt;List&lt;String&gt;&gt; partition(String s) &#123;</span><br><span class="line">        int len&#x3D;s.length();</span><br><span class="line">        dp&#x3D;new boolean[len][len]; </span><br><span class="line">        List&lt;String&gt; track&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">        backtrack(s,0,track);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    private void backtrack(String s,int start,List&lt;String&gt; track)&#123;</span><br><span class="line">        if(start&#x3D;&#x3D;s.length())&#123;</span><br><span class="line">            res.add(new ArrayList&lt;&gt;(track));</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;start;i&lt;s.length();i++)&#123;</span><br><span class="line">            if(s.charAt(start)&#x3D;&#x3D;s.charAt(i)&amp;&amp;(i-start&lt;&#x3D;2||dp[start+1][i-1]))&#123;</span><br><span class="line">                dp[start][i]&#x3D;true;</span><br><span class="line">                track.add(s.substring(start,i+1));</span><br><span class="line">                backtrack(s,i+1,track);</span><br><span class="line">                track.remove(track.size()-1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>dynamic programming</tag>
+        <tag>backtracking</tag>
+      </tags>
+  </entry>
 </search>
