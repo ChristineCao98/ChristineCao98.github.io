@@ -184,6 +184,152 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/28/majorityElement/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/28/majorityElement/" class="post-title-link" itemprop="url">majorityElement</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-01-28 21:33:32 / Modified: 21:42:55" itemprop="dateCreated datePublished" datetime="2021-01-28T21:33:32+00:00">2021-01-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>Keep a variable ‘majority’ and keep a variable ‘count’.</li>
+<li>Loop through the array, if current number is not equal to majority, minus the count by one and if count equals zero, replace the majority with current number  </li>
+<li>If current number equals majority, increment count by 1.</li>
+<li>The idea behind this is that the majority element is guaranteed to be more than N/2, so the count of it will always be larger than 0 no matter how many it is offseted by other element.  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int majorityElement(int[] nums) &#123;</span><br><span class="line">        int majority&#x3D;nums[0];</span><br><span class="line">        int count&#x3D;1;</span><br><span class="line">        for(int i&#x3D;1;i&lt;nums.length;i++)&#123;</span><br><span class="line">            if(majority&#x3D;&#x3D;nums[i]) count++;</span><br><span class="line">            else&#123;</span><br><span class="line">                count--;</span><br><span class="line">                if(count&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    majority&#x3D;nums[i];</span><br><span class="line">                    count&#x3D;1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return majority;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/28/getIntersectionNode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/28/getIntersectionNode/" class="post-title-link" itemprop="url">160. Intersection of Two Linked Lists</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-01-28 16:41:07 / Modified: 16:57:21" itemprop="dateCreated datePublished" datetime="2021-01-28T16:41:07+00:00">2021-01-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>Loop through two lists to get their length of them  </li>
+<li>If the tail node of the two lists are different, return null</li>
+<li>Skip the longer list ahead X nodes, where X = abs(lenA-lenB).   </li>
+<li>Use two pointers until they meet.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public ListNode getIntersectionNode(ListNode headA, ListNode headB) &#123;</span><br><span class="line">       if(headA&#x3D;&#x3D;null||headB&#x3D;&#x3D;null) return null;</span><br><span class="line">       int lena&#x3D;0;</span><br><span class="line">       int lenb&#x3D;0;</span><br><span class="line">       ListNode curA&#x3D;headA;</span><br><span class="line">       ListNode curB&#x3D;headB;</span><br><span class="line">       while(curA.next!&#x3D;null)&#123;</span><br><span class="line">           lena++;</span><br><span class="line">           curA&#x3D;curA.next;</span><br><span class="line">       &#125;</span><br><span class="line">       while(curB.next!&#x3D;null)&#123;</span><br><span class="line">           lenb++;</span><br><span class="line">           curB&#x3D;curB.next;</span><br><span class="line">       &#125;</span><br><span class="line">       if(curA!&#x3D;curB) return null;</span><br><span class="line">       if(lena&gt;lenb)&#123;</span><br><span class="line">           headA&#x3D;skip(headA,lena-lenb);</span><br><span class="line">       &#125;</span><br><span class="line">       else&#123;</span><br><span class="line">           headB&#x3D;skip(headB,lenb-lena);</span><br><span class="line">       &#125;</span><br><span class="line">       while(headA!&#x3D;headB)&#123;</span><br><span class="line">           headA&#x3D;headA.next;</span><br><span class="line">           headB&#x3D;headB.next;</span><br><span class="line">       &#125;</span><br><span class="line">       return headA;</span><br><span class="line">   &#125;</span><br><span class="line">   private ListNode skip(ListNode head,int n)&#123;</span><br><span class="line">       while(n&gt;0)&#123;</span><br><span class="line">           head&#x3D;head.next;</span><br><span class="line">           n--;</span><br><span class="line">       &#125;</span><br><span class="line">       return head;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/28/min-stack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -794,184 +940,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/25/collections/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/25/collections/" class="post-title-link" itemprop="url">collections</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-01-25 21:54:11" itemprop="dateCreated datePublished" datetime="2021-01-25T21:54:11+00:00">2021-01-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-26 17:59:33" itemprop="dateModified" datetime="2021-01-26T17:59:33+00:00">2021-01-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="Collection-概述"><a href="#Collection-概述" class="headerlink" title="Collection 概述"></a>Collection 概述</h3><ul>
-<li>java.util包提供了集合类：Collection，它是除Map外所有其他集合类的根接口  </li>
-<li>主要包括三种集合类型  <ul>
-<li>List：一种有序列表的集合</li>
-<li>Set：一种保证没有重复元素的集合</li>
-<li>Map：一种通过键值（key-value）查找的映射表集合
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/25/collections/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/25/errorhandling/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/25/errorhandling/" class="post-title-link" itemprop="url">errorhandling</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-01-25 16:23:00" itemprop="dateCreated datePublished" datetime="2021-01-25T16:23:00+00:00">2021-01-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-26 12:01:37" itemprop="dateModified" datetime="2021-01-26T12:01:37+00:00">2021-01-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="Java中的异常"><a href="#Java中的异常" class="headerlink" title="Java中的异常"></a>Java中的异常</h3><ul>
-<li>Java的异常是class，Throwable是异常体系的根，它继承自Object。<ul>
-<li>Throwable有两个体系：Error和Exception，Error表示严重的错误，程序对此一般无能为力。</li>
-<li>而Exception则是运行时的错误，它可以被捕获并处理</li>
-</ul>
-</li>
-<li>Java规定  <ul>
-<li>必须捕获的异常，包括Exception及其子类，但不包括RuntimeException及其子类，这种类型的异常称为Checked Exception</li>
-<li>不需要捕获的异常，包括Error及其子类，RuntimeException及其子类。  </li>
-</ul>
-</li>
-<li>在方法定义的时候，使用throws Xxx表示该方法可能抛出的异常类型。**<em>调用方**</em>在调用的时候，必须强制捕获这些异常，否则编译器会报错。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/25/errorhandling/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1091,7 +1059,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">98</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
