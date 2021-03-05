@@ -22,13 +22,13 @@
 
   <meta name="description" content="20712345678910111213141516171819202122232425262728293031class Solution &amp;#123;    boolean[] visited;    HashSet&lt;Integer&gt; checked&#x3D;new HashSet&lt;&gt;();    public boolean canFinish(int numCou">
 <meta property="og:type" content="article">
-<meta property="og:title" content="courseSchedule">
+<meta property="og:title" content="Course Schedule">
 <meta property="og:url" content="http://example.com/2021/02/02/courseSchedule/index.html">
 <meta property="og:site_name" content="Christine Cao&#39;s Blog">
 <meta property="og:description" content="20712345678910111213141516171819202122232425262728293031class Solution &amp;#123;    boolean[] visited;    HashSet&lt;Integer&gt; checked&#x3D;new HashSet&lt;&gt;();    public boolean canFinish(int numCou">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-02-02T21:48:47.000Z">
-<meta property="article:modified_time" content="2021-02-02T21:51:19.310Z">
+<meta property="article:modified_time" content="2021-03-04T16:49:46.994Z">
 <meta property="article:author" content="Christine Cao">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="backtracking">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>courseSchedule | Christine Cao's Blog</title>
+  <title>Course Schedule | Christine Cao's Blog</title>
   
 
 
@@ -203,7 +203,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          courseSchedule
+          Course Schedule
         </h1>
 
         <div class="post-meta">
@@ -212,10 +212,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-02-02 21:48:47 / Modified: 21:51:19" itemprop="dateCreated datePublished" datetime="2021-02-02T21:48:47+00:00">2021-02-02</time>
+              <time title="Created: 2021-02-02 21:48:47" itemprop="dateCreated datePublished" datetime="2021-02-02T21:48:47+00:00">2021-02-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-04 16:49:46" itemprop="dateModified" datetime="2021-03-04T16:49:46+00:00">2021-03-04</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -238,8 +244,14 @@
 
       
         <h3 id="207"><a href="#207" class="headerlink" title="207"></a>207</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    boolean[] visited;</span><br><span class="line">    HashSet&lt;Integer&gt; checked&#x3D;new HashSet&lt;&gt;();</span><br><span class="line">    public boolean canFinish(int numCourses, int[][] prerequisites) &#123;</span><br><span class="line">        HashMap&lt;Integer,List&lt;Integer&gt;&gt; pre&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        for(int[] re:prerequisites)&#123;</span><br><span class="line">            if(!pre.containsKey(re[0]))&#123;</span><br><span class="line">                pre.put(re[0],new LinkedList&lt;Integer&gt;());</span><br><span class="line">            &#125;</span><br><span class="line">            pre.get(re[0]).add(re[1]);</span><br><span class="line">        &#125;</span><br><span class="line">        visited&#x3D;new boolean[numCourses];</span><br><span class="line">        for(int i&#x3D;0;i&lt;numCourses;i++)&#123;</span><br><span class="line">            if(isCycle(i,pre)) return false;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    private boolean isCycle(int course,HashMap&lt;Integer,List&lt;Integer&gt;&gt; pre)&#123;</span><br><span class="line">        if(checked.contains(course)) return false;</span><br><span class="line">        if(!pre.containsKey(course)) return false;</span><br><span class="line">        if(visited[course]) return true;</span><br><span class="line">        visited[course]&#x3D;true;</span><br><span class="line">        for(int i:pre.get(course))&#123;  </span><br><span class="line">            if(isCycle(i,pre)) return true;</span><br><span class="line">            checked.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        visited[course]&#x3D;false;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Notice that in this problem we don’t need to ‘make the choice’ and ‘revoke the choice’ in looping, because we do not have a track variable to keep.</p>
-
+<p>Notice that in this problem we don’t need to ‘make the choice’ and ‘revoke the choice’ in looping, because we do not have a track variable to keep.  </p>
+<h3 id="210"><a href="#210" class="headerlink" title="210"></a>210</h3><p>We are gonna use topological sorting here. </p>
+<ul>
+<li>First we need to be sure that there is no cycle in the graph.</li>
+<li>In topological sorting, it is guaranteed that for every directed edge UV(U-&gt;V), vertex U comes before vertex V in the ordering.  </li>
+<li>Combining dfs and stack, also keeping a visited array to keep track of the nodes that have been visited. We loop through each node and do dfs, in preorder position we set the visted to true and in postorder position we push the node into the stack.  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    boolean[] visited;</span><br><span class="line">    HashSet&lt;Integer&gt; checked&#x3D;new HashSet&lt;&gt;();</span><br><span class="line">    HashMap&lt;Integer,List&lt;Integer&gt;&gt; pre;</span><br><span class="line">    Stack&lt;Integer&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">    public boolean canFinish(int numCourses, int[][] prerequisites) &#123;</span><br><span class="line">        pre&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        for(int[] re:prerequisites)&#123;</span><br><span class="line">            if(!pre.containsKey(re[1]))&#123;</span><br><span class="line">                pre.put(re[1],new LinkedList&lt;Integer&gt;());</span><br><span class="line">            &#125;</span><br><span class="line">            pre.get(re[1]).add(re[0]);</span><br><span class="line">        &#125;</span><br><span class="line">        visited&#x3D;new boolean[numCourses];</span><br><span class="line">        for(int i&#x3D;0;i&lt;numCourses;i++)&#123;</span><br><span class="line">            if(isCycle(i,pre)) return false;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    private boolean isCycle(int course,HashMap&lt;Integer,List&lt;Integer&gt;&gt; pre)&#123;</span><br><span class="line">        if(checked.contains(course)) return false;</span><br><span class="line">        if(!pre.containsKey(course)) return false;</span><br><span class="line">        if(visited[course]) return true;</span><br><span class="line">        visited[course]&#x3D;true;</span><br><span class="line">        for(int i:pre.get(course))&#123;  </span><br><span class="line">            if(isCycle(i,pre)) return true;</span><br><span class="line">            checked.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        visited[course]&#x3D;false;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    public int[] findOrder(int numCourses, int[][] prerequisites) &#123;</span><br><span class="line">        if(!canFinish(numCourses,prerequisites)) return new int[]&#123;&#125;;</span><br><span class="line">        int[] res&#x3D;new int[numCourses];</span><br><span class="line">        visited&#x3D;new boolean[numCourses];</span><br><span class="line">        for(int i&#x3D;0;i&lt;numCourses;i++)&#123;</span><br><span class="line">            backtrack(i);</span><br><span class="line">        &#125;</span><br><span class="line">        int i&#x3D;0;</span><br><span class="line">        while(!stack.isEmpty())&#123;</span><br><span class="line">            res[i++]&#x3D;stack.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    private void backtrack(int course)&#123;</span><br><span class="line">        if(visited[course]) return;</span><br><span class="line">        visited[course]&#x3D;true;</span><br><span class="line">        if(pre.containsKey(course))&#123;</span><br><span class="line">            for(int i:pre.get(course))&#123;</span><br><span class="line">            backtrack(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(course);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -323,7 +335,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#207"><span class="nav-number">1.</span> <span class="nav-text">207</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#207"><span class="nav-number">1.</span> <span class="nav-text">207</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#210"><span class="nav-number">2.</span> <span class="nav-text">210</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -339,7 +351,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-count">99</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
