@@ -2190,4 +2190,26 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
         <tag>greedy</tag>
       </tags>
   </entry>
+  <entry>
+    <title>inorderSuccessor</title>
+    <url>/2021/03/05/inorderSuccessor/</url>
+    <content><![CDATA[<h3 id="method-1"><a href="#method-1" class="headerlink" title="method 1"></a>method 1</h3><p>The solution I came up with first did not utilise the properties of BST.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    boolean sign;</span><br><span class="line">    TreeNode successor;</span><br><span class="line">    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) &#123;</span><br><span class="line">        inorder(root,p);</span><br><span class="line">        return successor;</span><br><span class="line">    &#125;</span><br><span class="line">    public void inorder(TreeNode root,TreeNode p)&#123;</span><br><span class="line">        if(root&#x3D;&#x3D;null) return;</span><br><span class="line">        inorder(root.left,p);</span><br><span class="line">        if(sign)&#123;</span><br><span class="line">            successor&#x3D;root;</span><br><span class="line">            sign&#x3D;false;&#x2F;&#x2F;important,this condition can only be met once</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if(root&#x3D;&#x3D;p)&#123;</span><br><span class="line">            sign&#x3D;true;</span><br><span class="line">        &#125;</span><br><span class="line">        inorder(root.right,p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="method-2"><a href="#method-2" class="headerlink" title="method 2"></a>method 2</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public TreeNode inorderSuccessor(TreeNode root, TreeNode p) &#123;</span><br><span class="line">        TreeNode succ &#x3D; null;</span><br><span class="line">        while (root !&#x3D; null) &#123;</span><br><span class="line">            if (p.val &lt; root.val) &#123;</span><br><span class="line">                succ &#x3D; root;</span><br><span class="line">                root &#x3D; root.left;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                root &#x3D; root.right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return succ;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>explanation  <ul>
+<li>case 1: node has right subtree: find min in right subtree  </li>
+<li>case 2: no right subtree: go to the nearest ancestor for which given node would be in its left subtree.  </li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>depth first search</tag>
+      </tags>
+  </entry>
 </search>

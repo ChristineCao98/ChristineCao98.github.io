@@ -184,6 +184,80 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/26/numDecodings/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/26/numDecodings/" class="post-title-link" itemprop="url">91. Decode Ways</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-02-26 14:10:53" itemprop="dateCreated datePublished" datetime="2021-02-26T14:10:53+00:00">2021-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-27 13:33:21" itemprop="dateModified" datetime="2021-02-27T13:33:21+00:00">2021-02-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>dp[i] can get the baton from two other previous indices, either i-1 or i-2. But you first need to validate whether substring(i-1,i) and substring(i-2,i) is a valid code or not.<br><img src="/iamges/post_images/decode_diagram1.png">  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int numDecodings(String s) &#123;</span><br><span class="line">        int[] dp&#x3D;new int[s.length()+1];&#x2F;&#x2F;</span><br><span class="line">        int dp_i_2&#x3D;1;</span><br><span class="line">        int dp_i_1&#x3D;s.charAt(0)&#x3D;&#x3D;&#39;0&#39;?0:1;</span><br><span class="line">        &#x2F;&#x2F;dp[0]&#x3D;1;</span><br><span class="line">        &#x2F;&#x2F;dp[1]&#x3D;s.charAt(0)&#x3D;&#x3D;&#39;0&#39;?0:1;</span><br><span class="line">        int dp_i&#x3D;0;</span><br><span class="line">        for(int i&#x3D;2;i&lt;&#x3D;s.length();i++)&#123;</span><br><span class="line">            if(s.charAt(i-1)!&#x3D;&#39;0&#39;)&#123;</span><br><span class="line">                dp_i&#x3D;dp_i_1;</span><br><span class="line">            &#125;</span><br><span class="line">            int twoDigits&#x3D;Integer.valueOf(s.substring(i-2,i));</span><br><span class="line">            if(twoDigits&gt;9&amp;&amp;twoDigits&lt;27)&#123;</span><br><span class="line">                dp_i+&#x3D;dp_i_2;</span><br><span class="line">            &#125;</span><br><span class="line">            dp_i_2&#x3D;dp_i_1;</span><br><span class="line">            dp_i_1&#x3D;dp_i;</span><br><span class="line">            dp_i&#x3D;0;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp_i_1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/21/setZeroes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -910,116 +984,6 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/14/servlet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/14/servlet/" class="post-title-link" itemprop="url">servlet</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-02-14 20:11:43 / Modified: 23:00:42" itemprop="dateCreated datePublished" datetime="2021-02-14T20:11:43+00:00">2021-02-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h1><ul>
-<li>Two architectures<ul>
-<li>CS architecture<br>client server  </li>
-<li>drawbacks<ul>
-<li>If software needs updating, all of them should be updated</li>
-<li>Hard to maintain: you need to maintain every client software</li>
-<li>Every client needs to install client software</li>
-</ul>
-</li>
-<li>BS architecture  <ul>
-<li>browser server  </li>
-<li>Client can visit server through browsers  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Common status code  <ul>
-<li>200: successful</li>
-<li>300/301: redirection  </li>
-<li>404: resources do not exist </li>
-<li>403: lack authorization  </li>
-<li>500: server error(usually it is because of false code)</li>
-</ul>
-</li>
-<li>We can specify the default page by editing <welcome-file-list> in project/WEB_INFO/web.xml. </li>
-<li>virtual path  </li>
-<li>method 1(need rebooting)<br>To configure web project to directories other than webapps.<br>In host tag of conf/server.xml:  <ul>
-<li>docBase=”” actual path  </li>
-<li>path=”” virtual path(absolute path/relative path(relative to   webapps))<br>It means that visiting path equals visiting docBase</li>
-</ul>
-</li>
-<li>method 2(doesn’t need rebooting)<br>Create a new file named project_name.xml in D:\xampp\tomcat\conf\Catalina\localhost and add a row which is the same as method 1.  </li>
-<li>virtual host  <ul>
-<li>the process of DNS<br><img src="/images/post_images/servlet_diagram1.png"><br>If we wanna visit a domain, we will first look for local resolution. If there is not a mapping, we will then look for internet resolution.  </li>
-<li>method<br>For example if we wanna visit localhost by <a target="_blank" rel="noopener" href="http://www.test.com/">www.test.com</a>  <ul>
-<li>In conf/server.xml:<br>&lt;Host appBase=””(the actual path of your project) name=”<a target="_blank" rel="noopener" href="http://www.test.com&quot;&gt;/">www.test.com&quot;&gt;</a><br>&lt;Context docBase=””(actual path) path=”/“(root directory)&gt;</Host></li>
-<li>Change default host to <a target="_blank" rel="noopener" href="http://www.test.com/">www.test.com</a></li>
-<li>Add a ip-domain name mapping to host file in C:\Windows\System32\drivers\etc</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1139,7 +1103,7 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-count">100</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
