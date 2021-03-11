@@ -2125,7 +2125,7 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
       </tags>
   </entry>
   <entry>
-    <title>partition131</title>
+    <title>131. Palindrome Partitioning</title>
     <url>/2021/02/27/partition131/</url>
     <content><![CDATA[<p>The aim to partition the string into all possible palindrome combinations. To achieve this, we must generate all possible substrings of a string by partitioning at every index until we reach the end of the string.<br>In saying this, it is apparent that we can adopt the method of backtracking to solve this problem.<br>When it comes to determine whether a string is a palindrome or not, instead of scanning the string every time, we can use a two dimensional boolean array to save the previous result.  </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    List&lt;List&lt;String&gt;&gt; res&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">    boolean[][] dp;</span><br><span class="line">    public List&lt;List&lt;String&gt;&gt; partition(String s) &#123;</span><br><span class="line">        int len&#x3D;s.length();</span><br><span class="line">        dp&#x3D;new boolean[len][len]; </span><br><span class="line">        List&lt;String&gt; track&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">        backtrack(s,0,track);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    private void backtrack(String s,int start,List&lt;String&gt; track)&#123;</span><br><span class="line">        if(start&#x3D;&#x3D;s.length())&#123;</span><br><span class="line">            res.add(new ArrayList&lt;&gt;(track));</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;start;i&lt;s.length();i++)&#123;</span><br><span class="line">            if(s.charAt(start)&#x3D;&#x3D;s.charAt(i)&amp;&amp;(i-start&lt;&#x3D;2||dp[start+1][i-1]))&#123;</span><br><span class="line">                dp[start][i]&#x3D;true;</span><br><span class="line">                track.add(s.substring(start,i+1));</span><br><span class="line">                backtrack(s,i+1,track);</span><br><span class="line">                track.remove(track.size()-1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
@@ -2191,7 +2191,7 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
       </tags>
   </entry>
   <entry>
-    <title>inorderSuccessor</title>
+    <title>285. Inorder Successor in BST</title>
     <url>/2021/03/05/inorderSuccessor/</url>
     <content><![CDATA[<h3 id="method-1"><a href="#method-1" class="headerlink" title="method 1"></a>method 1</h3><p>The solution I came up with first did not utilise the properties of BST.</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    boolean sign;</span><br><span class="line">    TreeNode successor;</span><br><span class="line">    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) &#123;</span><br><span class="line">        inorder(root,p);</span><br><span class="line">        return successor;</span><br><span class="line">    &#125;</span><br><span class="line">    public void inorder(TreeNode root,TreeNode p)&#123;</span><br><span class="line">        if(root&#x3D;&#x3D;null) return;</span><br><span class="line">        inorder(root.left,p);</span><br><span class="line">        if(sign)&#123;</span><br><span class="line">            successor&#x3D;root;</span><br><span class="line">            sign&#x3D;false;&#x2F;&#x2F;important,this condition can only be met once</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if(root&#x3D;&#x3D;p)&#123;</span><br><span class="line">            sign&#x3D;true;</span><br><span class="line">        &#125;</span><br><span class="line">        inorder(root.right,p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -2210,6 +2210,106 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
       <tags>
         <tag>leetcode</tag>
         <tag>depth first search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>348. Design Tic-Tac-Toe</title>
+    <url>/2021/03/10/TicTacToe/</url>
+    <content><![CDATA[<p>We can use three arrays to keep track of the players’ moves, one for rows, one for columns and one for two diagonals. If player one makes a move, increment the corresponding row, column and diagonal by one and player two decrement.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class TicTacToe &#123;</span><br><span class="line">    int[] r;</span><br><span class="line">    int[] c;</span><br><span class="line">    int[] diagonal;</span><br><span class="line">    int n;</span><br><span class="line">    &#x2F;** Initialize your data structure here. *&#x2F;</span><br><span class="line">    public TicTacToe(int n) &#123;</span><br><span class="line">        r&#x3D;new int[n];</span><br><span class="line">        c&#x3D;new int[n];</span><br><span class="line">        diagonal&#x3D;new int[2];</span><br><span class="line">        this.n&#x3D;n;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;** Player &#123;player&#125; makes a move at (&#123;row&#125;, &#123;col&#125;).</span><br><span class="line">        @param row The row of the board.</span><br><span class="line">        @param col The column of the board.</span><br><span class="line">        @param player The player, can be either 1 or 2.</span><br><span class="line">        @return The current winning condition, can be either:</span><br><span class="line">                0: No one wins.</span><br><span class="line">                1: Player 1 wins.</span><br><span class="line">                2: Player 2 wins. *&#x2F;</span><br><span class="line">    public int move(int row, int col, int player) &#123;</span><br><span class="line">        int sign&#x3D;player&#x3D;&#x3D;1?1:-1;</span><br><span class="line">        r[row]+&#x3D;sign;</span><br><span class="line">        if(Math.abs(r[row])&#x3D;&#x3D;n) return r[row]&gt;0?1:2;</span><br><span class="line">        c[col]+&#x3D;sign;</span><br><span class="line">        if(Math.abs(c[col])&#x3D;&#x3D;n) return c[col]&gt;0?1:2;</span><br><span class="line">        if(row&#x3D;&#x3D;col)&#123;</span><br><span class="line">            diagonal[0]+&#x3D;sign;</span><br><span class="line">            if(Math.abs(diagonal[0])&#x3D;&#x3D;n) return diagonal[0]&gt;0?1:2;</span><br><span class="line">        &#125;</span><br><span class="line">        if(row+col&#x3D;&#x3D;n-1)&#123;</span><br><span class="line">            diagonal[1]+&#x3D;sign;</span><br><span class="line">            if(Math.abs(diagonal[1])&#x3D;&#x3D;n) return diagonal[1]&gt;0?1:2;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Your TicTacToe object will be instantiated and called as such:</span><br><span class="line"> * TicTacToe obj &#x3D; new TicTacToe(n);</span><br><span class="line"> * int param_1 &#x3D; obj.move(row,col,player);</span><br><span class="line"> *&#x2F;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>design</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>341. Flatten Nested List Iterator</title>
+    <url>/2021/03/10/NestedIterator/</url>
+    <content><![CDATA[<ul>
+<li>First we can see this as a nary tree, whose leaf nodes are integers and other nodes are lists with null val. We can traverse the whole nested list using dfs. However, the disadvantage of this method is that in most cases we require the iterator to be inactive(If you want a result, it will only calculate the one(or a small part) but not all of them).  </li>
+<li>Advanced method: Constantly flattening the first element of nested list until it is an integer. Whenever Next() is called, hasNext() will first be executed so it is always guaranteed that the first element will be integer. So we just return the first element and remove it from the list.  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class NestedIterator implements Iterator&lt;Integer&gt; &#123;</span><br><span class="line">    LinkedList&lt;NestedInteger&gt; list;</span><br><span class="line">    &#x2F;&#x2F;We need to reimplement nestedList to guarantee that it is a linkedlist so the executions will be more efficient.</span><br><span class="line">    public NestedIterator(List&lt;NestedInteger&gt; nestedList) &#123;</span><br><span class="line">        list&#x3D;new LinkedList&lt;&gt;(nestedList);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Integer next() &#123;</span><br><span class="line">        return list.remove(0).getInteger();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public boolean hasNext() &#123;</span><br><span class="line">        while(!list.isEmpty()&amp;&amp;!list.get(0).isInteger())&#123;</span><br><span class="line">            List&lt;NestedInteger&gt; first&#x3D;list.remove(0).getList();</span><br><span class="line">            for(int i&#x3D;first.size()-1;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">                list.addFirst(first.get(i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return !list.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>design</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>289. Game of Life</title>
+    <url>/2021/03/06/gameOfLife/</url>
+    <content><![CDATA[<p>The most important trick of this problem(to do it inplace) is to use different integers to denote live-&gt;dead and dead-&gt;live so that they won’t corrupt the initial values. In my solution, I use -1 and 2 to represent them respectively.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public void gameOfLife(int[][] board) &#123;</span><br><span class="line">        int[] neighbors&#x3D;new int[]&#123;-1,0,1&#125;;</span><br><span class="line">        int m&#x3D;board.length;</span><br><span class="line">        int n&#x3D;board[0].length;</span><br><span class="line">        for(int r&#x3D;0;r&lt;m;r++)&#123;</span><br><span class="line">            for(int c&#x3D;0;c&lt;n;c++)&#123;</span><br><span class="line">                int liveneighbor&#x3D;0;</span><br><span class="line">                for(int i&#x3D;0;i&lt;3;i++)&#123;</span><br><span class="line">                    for(int j&#x3D;0;j&lt;3;j++)&#123;</span><br><span class="line">                        if(!(neighbors[i]&#x3D;&#x3D;0&amp;&amp;neighbors[j]&#x3D;&#x3D;0))&#123;</span><br><span class="line">                            int row&#x3D;r+neighbors[i];</span><br><span class="line">                            int col&#x3D;c+neighbors[j];</span><br><span class="line">                            if(row&gt;&#x3D;0&amp;&amp;row&lt;m&amp;&amp;col&gt;&#x3D;0&amp;&amp;col&lt;n)&#123;</span><br><span class="line">                                if(Math.abs(board[row][col])&#x3D;&#x3D;1) liveneighbor++;</span><br><span class="line">                            &#125;</span><br><span class="line">                            </span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                if(board[r][c]&#x3D;&#x3D;0&amp;&amp;liveneighbor&#x3D;&#x3D;3) board[r][c]&#x3D;2;</span><br><span class="line">                if(board[r][c]&#x3D;&#x3D;1&amp;&amp;(liveneighbor&lt;2||liveneighbor&gt;3)) board[r][c]&#x3D;-1;</span><br><span class="line">                   &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                   for(int i&#x3D;0;i&lt;m;i++)&#123;</span><br><span class="line">                       for(int j&#x3D;0;j&lt;n;j++)&#123;</span><br><span class="line">                           if(board[i][j]&#x3D;&#x3D;2) board[i][j]&#x3D;1;</span><br><span class="line">                           if(board[i][j]&lt;0) board[i][j]&#x3D;0;</span><br><span class="line">                       &#125;</span><br><span class="line">                   &#125;</span><br><span class="line">                        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Follow up:  </p>
+<ul>
+<li><p>It would be computationally impossible to iterate a matrix that large.</p>
+</li>
+<li><p>It would not be possible to store that big a matrix entirely in memory. We have huge memory capacities these days i.e. of the order of hundreds of GBs. However, it still wouldn’t be enough to store such a large matrix in memory.</p>
+</li>
+<li><p>We would be wasting a lot of space if such a huge board only has a few live cells and the rest of them are all dead. In such a case, we have an extremely sparse matrix and it wouldn’t make sense to save the board as a “matrix”.</p>
+</li>
+<li><p>Solution:<br>For the first two situations, we read one row at a time from the file and at max we will have 3 rows in memory. We will keep discarding rows that are processed and then we will keep reading new rows from the file, one at a time.<br>For the third situation, we could only keep the set of the coordinates of live cells, and count the times of the appearance of its surrounding cells, use it to update the board.   </p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>334. Increasing Triplet Subsequence</title>
+    <url>/2021/03/08/increasingTriplet/</url>
+    <content><![CDATA[<p>The first solution that comes to my mind is to reuse the code for LIS.  But there is better solution for this problem that can reduce time complexity and space complexity to O(N) and O(1).<br>We only keep variables first_num and second_num and we loop through the array to update them and find if there is an element larger than both of them. In a nutshell it’s basically the same idea of LIS but we can shorten the array to size 3 based on the requirements.    </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean increasingTriplet(int[] nums) &#123;</span><br><span class="line">        int first_num&#x3D;Integer.MAX_VALUE;</span><br><span class="line">        int second_num&#x3D;Integer.MIN_VALUE;</span><br><span class="line">        for(int num:nums)&#123;</span><br><span class="line">            if(num&lt;first_num)&#123;</span><br><span class="line">                first_num&#x3D;num;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(num&lt;second_num)&#123;</span><br><span class="line">                second_num&#x3D;num;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                return true;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>328. Odd Even Linked List</title>
+    <url>/2021/03/08/oddEvenList/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode oddEvenList(ListNode head) &#123;</span><br><span class="line">        if(head&#x3D;&#x3D;null) return null;</span><br><span class="line">        ListNode odd&#x3D;head;</span><br><span class="line">        ListNode even&#x3D;head.next;</span><br><span class="line">        ListNode evenh&#x3D;even;</span><br><span class="line">        while(even!&#x3D;null&amp;&amp;even.next!&#x3D;null)&#123;</span><br><span class="line">            odd.next&#x3D;even.next;</span><br><span class="line">            even.next&#x3D;even.next.next;</span><br><span class="line">            odd&#x3D;odd.next;</span><br><span class="line">            even&#x3D;even.next; </span><br><span class="line">        &#125;</span><br><span class="line">        odd.next&#x3D;evenh;</span><br><span class="line">        return head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>linked list</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>324. Wiggle Sort II</title>
+    <url>/2021/03/08/wiggleSort/</url>
+    <content><![CDATA[<p>The main idea here is that we need to keep the median as far away as possible so we can get the correct answer in case like [4,5,5,6].  </p>
+<ul>
+<li>First we reuse the algorithm for finding the kth largest element to find the median of the array.  </li>
+<li>We loop through the array to allocate element larger than median to odd indexes starting from left to right and element smaller to even idexes starting from right to left. At last we allocate the rest medians.  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public void wiggleSort(int[] nums) &#123;</span><br><span class="line">        int med&#x3D;findMedian(nums);</span><br><span class="line">        int[] temp&#x3D;new int[nums.length];</span><br><span class="line">        int odd&#x3D;1;</span><br><span class="line">        int even&#x3D;nums.length%2&#x3D;&#x3D;0?nums.length-2:nums.length-1;</span><br><span class="line">        for(int num:nums)&#123;</span><br><span class="line">            if(num&gt;med)&#123;</span><br><span class="line">                temp[odd]&#x3D;num;</span><br><span class="line">                odd+&#x3D;2;</span><br><span class="line">            &#125;</span><br><span class="line">            if(num&lt;med)&#123;</span><br><span class="line">                temp[even]&#x3D;num;</span><br><span class="line">                even-&#x3D;2;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while(odd&lt;nums.length)&#123;</span><br><span class="line">            temp[odd]&#x3D;med;</span><br><span class="line">            odd+&#x3D;2;</span><br><span class="line">        &#125;</span><br><span class="line">        while(even&gt;&#x3D;0)&#123;</span><br><span class="line">            temp[even]&#x3D;med;</span><br><span class="line">            even-&#x3D;2;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;0;i&lt;nums.length;i++)&#123;</span><br><span class="line">            nums[i]&#x3D;temp[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    private int findMedian(int[] nums)&#123;</span><br><span class="line">        int med&#x3D;nums.length&#x2F;2;</span><br><span class="line">        int l&#x3D;0;</span><br><span class="line">        int r&#x3D;nums.length-1;</span><br><span class="line">        while(l&lt;&#x3D;r)&#123;</span><br><span class="line">            int pivot&#x3D;partition(nums,l,r);</span><br><span class="line">            if(pivot&lt;med)&#123;</span><br><span class="line">                l&#x3D;pivot+1;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(pivot&gt;med)&#123;</span><br><span class="line">                r&#x3D;pivot-1;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                return nums[pivot];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    private int partition(int[] nums,int start,int end)&#123;</span><br><span class="line">        if(start&#x3D;&#x3D;end) return start;</span><br><span class="line">        int pivot&#x3D;nums[start];</span><br><span class="line">        int i&#x3D;start;</span><br><span class="line">        int j&#x3D;end+1;</span><br><span class="line">        while(true)&#123;</span><br><span class="line">            while(nums[++i]&lt;pivot)&#123;</span><br><span class="line">                if(i&#x3D;&#x3D;end) break;</span><br><span class="line">            &#125;</span><br><span class="line">            while(nums[--j]&gt;&#x3D;pivot)&#123;</span><br><span class="line">                if(j&#x3D;&#x3D;start) break;</span><br><span class="line">            &#125;</span><br><span class="line">            if(i&gt;&#x3D;j) break;</span><br><span class="line">            swap(nums,i,j);</span><br><span class="line">        &#125;</span><br><span class="line">        swap(nums,j,start);</span><br><span class="line">        return j;</span><br><span class="line">    &#125;</span><br><span class="line">    private void swap(int[] nums,int p,int q)&#123;</span><br><span class="line">        int temp&#x3D;nums[p];</span><br><span class="line">        nums[p]&#x3D;nums[q];</span><br><span class="line">        nums[q]&#x3D;temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>sort</tag>
       </tags>
   </entry>
 </search>
