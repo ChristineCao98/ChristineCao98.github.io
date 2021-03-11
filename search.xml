@@ -2139,7 +2139,7 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
       </tags>
   </entry>
   <entry>
-    <title>179. Largest Number</title>
+    <title>189. Rotate Array</title>
     <url>/2021/03/03/rotate189/</url>
     <content><![CDATA[<h3 id="method1-Using-Cyclic-Replacements"><a href="#method1-Using-Cyclic-Replacements" class="headerlink" title="method1 Using Cyclic Replacements"></a>method1 Using Cyclic Replacements</h3><ul>
 <li>We need to be aware that if n%k=0 there might be more than one cycle. However, we can prove that if at some point we hit the original position with some elements not being moved, then the next position is guaranteed not moved.</li>
@@ -2310,6 +2310,42 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
       <tags>
         <tag>leetcode</tag>
         <tag>sort</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>371. Sum of Two Integers</title>
+    <url>/2021/03/11/getSum371/</url>
+    <content><![CDATA[<p>First we need to turn both a and b to positive and we need to make sure that a&gt;b. If the signs of a and b are different, then it is considered to be a-b; If identical, then a+b.  </p>
+<ul>
+<li>For a+b, we can get the result by manipulation of its sum without carry and carry. We get the former by XOR and latter by (a&amp;b)&lt;&lt;1.  </li>
+<li>For a-b, we can get the result by manipulation of its sum without carry and carry. We get the former by XOR and latter by (~a&amp;b)&gt;&gt;1.  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int getSum(int a, int b) &#123;</span><br><span class="line">        int x&#x3D;Math.abs(a);</span><br><span class="line">        int y&#x3D;Math.abs(b);</span><br><span class="line">        if(y&gt;x) return getSum(b,a);</span><br><span class="line">        int sign&#x3D;a&gt;0?1:-1;</span><br><span class="line">        if(a*b&gt;&#x3D;0)&#123;</span><br><span class="line">            while(y!&#x3D;0)&#123;</span><br><span class="line">                int answer&#x3D;x^y;</span><br><span class="line">            int carry&#x3D;(x&amp;y)&lt;&lt;1;</span><br><span class="line">            x&#x3D;answer;</span><br><span class="line">            y&#x3D;carry;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            while(y!&#x3D;0)&#123;</span><br><span class="line">              int answer&#x3D;x^y;</span><br><span class="line">            int borrow&#x3D;(~x&amp;y)&lt;&lt;1;</span><br><span class="line">            x&#x3D;answer;</span><br><span class="line">            y&#x3D;borrow;  </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return x*sign;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>bit manipulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>378. Kth Smallest Element in a Sorted Matrix</title>
+    <url>/2021/03/11/kthSmallest/</url>
+    <content><![CDATA[<h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>Using a priority queue to keep a min heap of min(N,k). We need to define our own heap node to keep the information about its row, column and value. We loop for k times, each time we pop the top element and push into the queue the element after it.   </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int kthSmallest(int[][] matrix, int k) &#123;</span><br><span class="line">        Queue&lt;MyHeapNode&gt; q&#x3D;new PriorityQueue&lt;&gt;(new Comparator&lt;MyHeapNode&gt;()&#123;</span><br><span class="line">            public int compare(MyHeapNode a,MyHeapNode b)&#123;</span><br><span class="line">                return a.val-b.val;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        for(int i&#x3D;0;i&lt;Math.min(matrix.length,k);i++)&#123;</span><br><span class="line">            q.offer(new MyHeapNode(i,0,matrix[i][0]));</span><br><span class="line">        &#125; </span><br><span class="line">        MyHeapNode element&#x3D;q.peek();</span><br><span class="line">        for(int i&#x3D;k;i&gt;0;i--)&#123;</span><br><span class="line">            element&#x3D;q.poll();</span><br><span class="line">            int r&#x3D;element.getRow();</span><br><span class="line">            int c&#x3D;element.getColumn();</span><br><span class="line">            if(c&lt;matrix.length-1)&#123;</span><br><span class="line">                q.offer(new MyHeapNode(r,c+1,matrix[r][c+1]));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return element.getValue();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class MyHeapNode&#123;</span><br><span class="line">    int row;</span><br><span class="line">    int column;</span><br><span class="line">    int val;</span><br><span class="line">    public MyHeapNode()&#123;&#125;</span><br><span class="line">    public MyHeapNode(int r,int c,int v)&#123;</span><br><span class="line">        row&#x3D;r;</span><br><span class="line">        column&#x3D;c;</span><br><span class="line">        val&#x3D;v;</span><br><span class="line">    &#125;</span><br><span class="line">    public int getRow()&#123;</span><br><span class="line">        return this.row;</span><br><span class="line">    &#125;</span><br><span class="line">    public int getColumn()&#123;</span><br><span class="line">        return this.column;</span><br><span class="line">    &#125;</span><br><span class="line">    public int getValue()&#123;</span><br><span class="line">        return this.val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>The solution is implemented using binary search but is in a way different than typical one. Here we take the middle one as the average of start and end.   </p>
+<ul>
+<li>We search through the matrix to get the number of elements smaller or equal to mid. At the same time, we keep track of the biggest number smaller than or equal to mid and smallest number larger than mid. We keep updating the end and start until the count is equal to k.  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int kthSmallest(int[][] matrix, int k) &#123;</span><br><span class="line">        int n&#x3D;matrix.length;</span><br><span class="line">        int start&#x3D;matrix[0][0];</span><br><span class="line">        int end&#x3D;matrix[n-1][n-1];</span><br><span class="line">        while(start&lt;end)&#123;</span><br><span class="line">            int mid&#x3D;(start+end)&#x2F;2;</span><br><span class="line">            int[] pair&#x3D;new int[]&#123;start,end&#125;;</span><br><span class="line">            int count&#x3D;this.count(matrix,mid,pair);</span><br><span class="line">            if(count&#x3D;&#x3D;k) return pair[0];</span><br><span class="line">            if(count&lt;k)&#123;</span><br><span class="line">                start&#x3D;pair[1];</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                end&#x3D;pair[0];</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        return start;</span><br><span class="line">    &#125;</span><br><span class="line">    private int count(int[][] matrix,int mid,int[] pair)&#123;</span><br><span class="line">        int r&#x3D;matrix.length-1;</span><br><span class="line">        int c&#x3D;0;</span><br><span class="line">        int count&#x3D;0;</span><br><span class="line">        while(r&gt;&#x3D;0&amp;&amp;c&lt;matrix[0].length)&#123;</span><br><span class="line">            if(mid&lt;matrix[r][c])&#123;</span><br><span class="line">                pair[1]&#x3D;Math.min(pair[1],matrix[r][c]);</span><br><span class="line">                r--;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                pair[0]&#x3D;Math.max(pair[0],matrix[r][c]);</span><br><span class="line">                c++;</span><br><span class="line">                count+&#x3D;r+1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>binary search</tag>
+        <tag>heap</tag>
       </tags>
   </entry>
 </search>
