@@ -184,6 +184,221 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/21/kClosest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/21/kClosest/" class="post-title-link" itemprop="url">973. K Closest Points to Origin</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-21 17:12:33" itemprop="dateCreated datePublished" datetime="2021-03-21T17:12:33+00:00">2021-03-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-22 00:32:52" itemprop="dateModified" datetime="2021-03-22T00:32:52+00:00">2021-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[][] kClosest(int[][] points, int k) &#123;</span><br><span class="line">        Arrays.sort(points,new Comparator&lt;int[]&gt;()&#123;</span><br><span class="line">            public int compare(int[] a,int[] b)&#123;</span><br><span class="line">                return a[0]*a[0]+a[1]*a[1]-b[0]*b[0]-b[1]*b[1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        int[][] res&#x3D;new int[k][2];</span><br><span class="line">        for(int i&#x3D;0;i&lt;k;i++)&#123;</span><br><span class="line">            res[i]&#x3D;points[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return Arrays.copyOfRange(points,0,k);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/minRemoveToMakeValid/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/20/minRemoveToMakeValid/" class="post-title-link" itemprop="url">1249. Minimum Remove to Make Valid Parentheses</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-20 22:44:54" itemprop="dateCreated datePublished" datetime="2021-03-20T22:44:54+00:00">2021-03-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-21 16:45:01" itemprop="dateModified" datetime="2021-03-21T16:45:01+00:00">2021-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Remain a stack to keep the index of the opening parentheses.   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String minRemoveToMakeValid(String s) &#123;</span><br><span class="line">        Stack&lt;Integer&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">        Set&lt;Integer&gt; remove&#x3D;new HashSet&lt;&gt;();</span><br><span class="line">        int left&#x3D;0,right&#x3D;0;</span><br><span class="line">        for(int i&#x3D;0;i&lt;s.length();i++)&#123;</span><br><span class="line">             if(s.charAt(i)&#x3D;&#x3D;&#39;(&#39;)&#123;</span><br><span class="line">                 stack.push(i);</span><br><span class="line">             &#125;</span><br><span class="line">            else if(s.charAt(i)&#x3D;&#x3D;&#39;)&#39;)&#123;</span><br><span class="line">                if(!stack.isEmpty())&#123;</span><br><span class="line">                    stack.pop();</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    remove.add(i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while(!stack.isEmpty())&#123;</span><br><span class="line">            remove.add(stack.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder sb&#x3D;new StringBuilder();</span><br><span class="line">        for(int i&#x3D;0;i&lt;s.length();i++)&#123;</span><br><span class="line">            if(remove.contains(i)) continue;</span><br><span class="line">            sb.append(s.charAt(i));</span><br><span class="line">        &#125;</span><br><span class="line">        return sb.toString();</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/removeInvalidParentheses/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/20/removeInvalidParentheses/" class="post-title-link" itemprop="url">301. Remove Invalid Parentheses</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-20 15:50:12 / Modified: 20:46:09" itemprop="dateCreated datePublished" datetime="2021-03-20T15:50:12+00:00">2021-03-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>We use the backtracking algorithm here. At each index we have the choice of appending the current character to the track or directily going pass it.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    HashSet&lt;String&gt; res&#x3D;new HashSet&lt;&gt;();</span><br><span class="line">    int removeMin&#x3D;Integer.MAX_VALUE;</span><br><span class="line">    public List&lt;String&gt; removeInvalidParentheses(String s) &#123;</span><br><span class="line">        StringBuilder sb&#x3D;new StringBuilder();</span><br><span class="line">        backtracking(s,sb,0,0,0,0);</span><br><span class="line">        return new ArrayList&lt;String&gt;(res);</span><br><span class="line">    &#125;</span><br><span class="line">    private void backtracking(String s,StringBuilder sb,int lc,int rc,int index,int removed)&#123;</span><br><span class="line">        &#x2F;&#x2F;s: the original string</span><br><span class="line">        &#x2F;&#x2F;sb: the tracking path</span><br><span class="line">        &#x2F;&#x2F;lc: number of left parentheses</span><br><span class="line">        &#x2F;&#x2F;rc: number of right parentheses</span><br><span class="line">        &#x2F;&#x2F;index: current depth of backtracking</span><br><span class="line">        &#x2F;&#x2F;removed: number of parentheses that have been removed</span><br><span class="line"></span><br><span class="line">        if(removed&gt;removeMin) return;</span><br><span class="line"></span><br><span class="line">        if(index&#x3D;&#x3D;s.length())&#123;</span><br><span class="line">            if(removed&#x3D;&#x3D;removeMin&amp;&amp;lc&#x3D;&#x3D;rc)&#123;</span><br><span class="line">                res.add(sb.toString());</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F;If a smaller removing number is found, clear the original result set </span><br><span class="line">            else if(removed&lt;removeMin&amp;&amp;lc&#x3D;&#x3D;rc)&#123;</span><br><span class="line">                removeMin&#x3D;removed;</span><br><span class="line">                res.clear();</span><br><span class="line">                res.add(sb.toString());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if(s.charAt(index)!&#x3D;&#39;(&#39;&amp;&amp;s.charAt(index)!&#x3D;&#39;)&#39;)&#123;</span><br><span class="line">            backtracking(s,sb.append(s.charAt(index)),lc,rc,index+1,removed);</span><br><span class="line">            sb.deleteCharAt(sb.length()-1);&#x2F;&#x2F;IMPORTANT!!</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            &#x2F;&#x2F;choice 1:skip current character</span><br><span class="line">            backtracking(s,sb,lc,rc,index+1,removed+1);</span><br><span class="line">            &#x2F;&#x2F;choice 2:choose current character</span><br><span class="line">            sb.append(s.charAt(index));</span><br><span class="line">            if(s.charAt(index)&#x3D;&#x3D;&#39;(&#39;)&#123;</span><br><span class="line">                backtracking(s,sb,lc+1,rc,index+1,removed);</span><br><span class="line">            &#125;</span><br><span class="line">            if(s.charAt(index)&#x3D;&#x3D;&#39;)&#39;&amp;&amp;lc&gt;rc)&#123;</span><br><span class="line">                backtracking(s,sb,lc,rc+1,index+1,removed);</span><br><span class="line">            &#125;</span><br><span class="line">            sb.deleteCharAt(sb.length()-1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/isAlienSorted/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -678,213 +893,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/10/NestedIterator/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/10/NestedIterator/" class="post-title-link" itemprop="url">341. Flatten Nested List Iterator</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-03-10 11:32:43 / Modified: 11:43:31" itemprop="dateCreated datePublished" datetime="2021-03-10T11:32:43+00:00">2021-03-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>First we can see this as a nary tree, whose leaf nodes are integers and other nodes are lists with null val. We can traverse the whole nested list using dfs. However, the disadvantage of this method is that in most cases we require the iterator to be inactive(If you want a result, it will only calculate the one(or a small part) but not all of them).  </li>
-<li>Advanced method: Constantly flattening the first element of nested list until it is an integer. Whenever Next() is called, hasNext() will first be executed so it is always guaranteed that the first element will be integer. So we just return the first element and remove it from the list.  </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class NestedIterator implements Iterator&lt;Integer&gt; &#123;</span><br><span class="line">    LinkedList&lt;NestedInteger&gt; list;</span><br><span class="line">    &#x2F;&#x2F;We need to reimplement nestedList to guarantee that it is a linkedlist so the executions will be more efficient.</span><br><span class="line">    public NestedIterator(List&lt;NestedInteger&gt; nestedList) &#123;</span><br><span class="line">        list&#x3D;new LinkedList&lt;&gt;(nestedList);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Integer next() &#123;</span><br><span class="line">        return list.remove(0).getInteger();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public boolean hasNext() &#123;</span><br><span class="line">        while(!list.isEmpty()&amp;&amp;!list.get(0).isInteger())&#123;</span><br><span class="line">            List&lt;NestedInteger&gt; first&#x3D;list.remove(0).getList();</span><br><span class="line">            for(int i&#x3D;first.size()-1;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">                list.addFirst(first.get(i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return !list.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/08/increasingTriplet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/08/increasingTriplet/" class="post-title-link" itemprop="url">334. Increasing Triplet Subsequence</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-03-08 20:21:29 / Modified: 20:30:42" itemprop="dateCreated datePublished" datetime="2021-03-08T20:21:29+00:00">2021-03-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>The first solution that comes to my mind is to reuse the code for LIS.  But there is better solution for this problem that can reduce time complexity and space complexity to O(N) and O(1).<br>We only keep variables first_num and second_num and we loop through the array to update them and find if there is an element larger than both of them. In a nutshell it’s basically the same idea of LIS but we can shorten the array to size 3 based on the requirements.    </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean increasingTriplet(int[] nums) &#123;</span><br><span class="line">        int first_num&#x3D;Integer.MAX_VALUE;</span><br><span class="line">        int second_num&#x3D;Integer.MIN_VALUE;</span><br><span class="line">        for(int num:nums)&#123;</span><br><span class="line">            if(num&lt;first_num)&#123;</span><br><span class="line">                first_num&#x3D;num;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(num&lt;second_num)&#123;</span><br><span class="line">                second_num&#x3D;num;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                return true;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/08/oddEvenList/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/08/oddEvenList/" class="post-title-link" itemprop="url">328. Odd Even Linked List</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-03-08 19:37:58 / Modified: 20:22:50" itemprop="dateCreated datePublished" datetime="2021-03-08T19:37:58+00:00">2021-03-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode oddEvenList(ListNode head) &#123;</span><br><span class="line">        if(head&#x3D;&#x3D;null) return null;</span><br><span class="line">        ListNode odd&#x3D;head;</span><br><span class="line">        ListNode even&#x3D;head.next;</span><br><span class="line">        ListNode evenh&#x3D;even;</span><br><span class="line">        while(even!&#x3D;null&amp;&amp;even.next!&#x3D;null)&#123;</span><br><span class="line">            odd.next&#x3D;even.next;</span><br><span class="line">            even.next&#x3D;even.next.next;</span><br><span class="line">            odd&#x3D;odd.next;</span><br><span class="line">            even&#x3D;even.next; </span><br><span class="line">        &#125;</span><br><span class="line">        odd.next&#x3D;evenh;</span><br><span class="line">        return head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1004,7 +1012,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-count">125</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

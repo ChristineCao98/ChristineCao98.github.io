@@ -1560,7 +1560,7 @@ s2 = s1 + s2;
       </tags>
   </entry>
   <entry>
-    <title>partitionLabels</title>
+    <title>763. Partition Labels</title>
     <url>/2021/02/05/partitionLabels/</url>
     <content><![CDATA[<ul>
 <li>Maintain an array that keeps the index where each character appears last.  </li>
@@ -2465,11 +2465,6 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
       </tags>
   </entry>
   <entry>
-    <title>addBinary</title>
-    <url>/2021/03/25/addBinary/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>415. Add Strings</title>
     <url>/2021/03/25/addStrings/</url>
     <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String addStrings(String num1, String num2) &#123;</span><br><span class="line">        if(num1.length()&lt;num2.length()) return addStrings(num2,num1);</span><br><span class="line">        int carry&#x3D;0;</span><br><span class="line">        int m&#x3D;num1.length()-1;</span><br><span class="line">        int n&#x3D;num2.length()-1;</span><br><span class="line">        StringBuilder res&#x3D;new StringBuilder();</span><br><span class="line">        while(m&gt;&#x3D;0)&#123;</span><br><span class="line">            int add1&#x3D;num1.charAt(m)-&#39;0&#39;;</span><br><span class="line">            int add2&#x3D;n&gt;&#x3D;0?num2.charAt(n)-&#39;0&#39;:0;</span><br><span class="line">            int sum&#x3D;(add1+add2+carry)%10;</span><br><span class="line">            carry&#x3D;(add1+add2+carry)&#x2F;10;</span><br><span class="line">            res.append(sum);</span><br><span class="line">            m--;</span><br><span class="line">            n--;</span><br><span class="line">        &#125;</span><br><span class="line">        if(carry&gt;0) res.append(carry);</span><br><span class="line">        return res.reverse().toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
@@ -2527,6 +2522,55 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
       <tags>
         <tag>leetcode</tag>
         <tag>greedy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>1192. Critical Connections in a Network</title>
+    <url>/2021/03/27/criticalConnections/</url>
+    <content><![CDATA[<p>Using Tarjan’s algorithm, the key of the solution is to keep an array of lowTime and id of each node.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; res&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">    boolean[] visited;</span><br><span class="line">    int[] id;</span><br><span class="line">    int[] lowTime;</span><br><span class="line">    int time&#x3D;0;</span><br><span class="line">    Map&lt;Integer,List&lt;Integer&gt;&gt; graph;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; criticalConnections(int n, List&lt;List&lt;Integer&gt;&gt; connections) &#123;</span><br><span class="line">        graph&#x3D;formGraph(n,connections);</span><br><span class="line">        visited&#x3D;new boolean[n];</span><br><span class="line">        id&#x3D;new int[n];</span><br><span class="line">        lowTime&#x3D;new int[n];</span><br><span class="line">        dfs(0,-1);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;Build the graph map</span><br><span class="line">    private Map&lt;Integer,List&lt;Integer&gt;&gt; formGraph(int n,List&lt;List&lt;Integer&gt;&gt; connections)&#123;</span><br><span class="line">        Map&lt;Integer,List&lt;Integer&gt;&gt; graph&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        for(int i&#x3D;0;i&lt;n;i++)&#123;</span><br><span class="line">            graph.put(i,new ArrayList&lt;Integer&gt;());</span><br><span class="line">        &#125;</span><br><span class="line">        for(List&lt;Integer&gt; lis:connections)&#123;</span><br><span class="line">            int a&#x3D;lis.get(0);</span><br><span class="line">            int b&#x3D;lis.get(1);</span><br><span class="line">            graph.get(a).add(b);</span><br><span class="line">            graph.get(b).add(a);</span><br><span class="line">        &#125;</span><br><span class="line">        return graph;</span><br><span class="line">    &#125;</span><br><span class="line">    private void dfs(int cur,int parent)&#123;</span><br><span class="line">        visited[cur]&#x3D;true;</span><br><span class="line">        lowTime[cur]&#x3D;id[cur]&#x3D;time++;</span><br><span class="line">        for(int neighbor:graph.get(cur))&#123;</span><br><span class="line">            if(neighbor&#x3D;&#x3D;parent) continue;</span><br><span class="line">            if(!visited[neighbor])&#123;</span><br><span class="line">                dfs(neighbor,cur);</span><br><span class="line">                lowTime[cur]&#x3D;Math.min(lowTime[cur],lowTime[neighbor]);&#x2F;&#x2F;Update lowTime of current node in postorder position</span><br><span class="line">                if(id[cur]&lt;lowTime[neighbor])&#123;&#x2F;&#x2F;IMPORTANT!!</span><br><span class="line">                    res.add(Arrays.asList(cur,neighbor));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                lowTime[cur]&#x3D;Math.min(lowTime[cur],id[neighbor]);</span><br><span class="line">                &#x2F;&#x2F;If the neighbor node is visited and is not parent, this means we have found a cycle here, so we need to update the lowTime of current node.</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>depth first search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>819. Most Common Word</title>
+    <url>/2021/03/27/mostCommonWord/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String mostCommonWord(String paragraph, String[] banned) &#123;</span><br><span class="line">        String normalizedstr&#x3D;paragraph.replaceAll(&quot;[^a-z0-9A-Z ]&quot;,&quot; &quot;).toLowerCase(); </span><br><span class="line">        String[] words&#x3D;normalizedstr.split(&quot;\\s+&quot;);&#x2F;&#x2F;Notice that we cannot use &quot; &quot; here. In regular expression &#39;\s&#39; represents space, &#39;+&#39; means once or more, &#39;\&#39; is escape character. </span><br><span class="line">        Map&lt;String,Integer&gt; map&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        Set&lt;String&gt; set&#x3D;new HashSet&lt;&gt;();</span><br><span class="line">        for(String str:banned)&#123;</span><br><span class="line">            set.add(str);</span><br><span class="line">        &#125;</span><br><span class="line">        int max&#x3D;0;</span><br><span class="line">        String res&#x3D;&quot;&quot;;</span><br><span class="line">        for(String str:words)&#123;</span><br><span class="line">            if(!set.contains(str))&#123;</span><br><span class="line">                int times&#x3D;map.getOrDefault(str,0)+1;</span><br><span class="line">                if(times&gt;max)&#123;</span><br><span class="line">                    res&#x3D;str;</span><br><span class="line">                    max&#x3D;times;</span><br><span class="line">                &#125;</span><br><span class="line">                map.put(str,times);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>string</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>994. Rotting Oranges</title>
+    <url>/2021/03/27/orangesRotting/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int orangesRotting(int[][] grid) &#123;</span><br><span class="line">        int m&#x3D;grid.length;</span><br><span class="line">        int n&#x3D;grid[0].length;</span><br><span class="line">        int[][] add&#x3D;new int[][]&#123;&#123;0,1&#125;,&#123;0,-1&#125;,&#123;1,0&#125;,&#123;-1,0&#125;&#125;;</span><br><span class="line">        Queue&lt;int[]&gt; q&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">        int times&#x3D;-1; </span><br><span class="line">        int fresh&#x3D;0;</span><br><span class="line">        for(int i&#x3D;0;i&lt;m;i++)&#123;</span><br><span class="line">            for(int j&#x3D;0;j&lt;n;j++)&#123;</span><br><span class="line">                if(grid[i][j]&#x3D;&#x3D;2)&#123;</span><br><span class="line">                    q.offer(new int[]&#123;i,j&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">                if(grid[i][j]&#x3D;&#x3D;1)&#123;</span><br><span class="line">                    fresh++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(q.isEmpty()) return fresh&#x3D;&#x3D;0?0:-1;&#x2F;&#x2F;This is to avoid the situation like[[1]] or [[0]]</span><br><span class="line">        while(!q.isEmpty())&#123;</span><br><span class="line">            int size&#x3D;q.size();</span><br><span class="line">            for(int i&#x3D;0;i&lt;size;i++)&#123;</span><br><span class="line">                int[] cur&#x3D;q.poll();</span><br><span class="line">                int r&#x3D;cur[0];</span><br><span class="line">                int c&#x3D;cur[1];</span><br><span class="line">                for(int[] adds:add)&#123;</span><br><span class="line">                    int r2&#x3D;r+adds[0];</span><br><span class="line">                    int c2&#x3D;c+adds[1];</span><br><span class="line">                    if(r2&lt;0||r2&gt;&#x3D;m||c2&lt;0||c2&gt;&#x3D;n) continue;</span><br><span class="line">                    if(grid[r2][c2]&#x3D;&#x3D;1)&#123;</span><br><span class="line">                        grid[r2][c2]&#x3D;2;&#x2F;&#x2F;We must update the value here to avoid visiting the same element more than once</span><br><span class="line">                        q.offer(new int[]&#123;r2,c2&#125;);</span><br><span class="line">                        fresh--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            times++;</span><br><span class="line">        &#125;</span><br><span class="line">        return fresh&#x3D;&#x3D;0?times:-1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>breadth first search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>937. Reorder Data in Log Files</title>
+    <url>/2021/03/26/reorderLogFiles/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String[] reorderLogFiles(String[] logs) &#123;</span><br><span class="line">        Arrays.sort(logs,new Comparator&lt;String&gt;()&#123;</span><br><span class="line">            public int compare(String a,String b)&#123;</span><br><span class="line">                String[] as&#x3D;a.split(&quot; &quot;,2);</span><br><span class="line">                String[] bs&#x3D;b.split(&quot; &quot;,2);</span><br><span class="line">                boolean aLetter&#x3D;isLetter(as);</span><br><span class="line">                boolean bLetter&#x3D;isLetter(bs);</span><br><span class="line">                if(aLetter&#x3D;&#x3D;true&amp;&amp;bLetter&#x3D;&#x3D;false)&#123;</span><br><span class="line">                    return -1;</span><br><span class="line">                &#125;</span><br><span class="line">                if(aLetter&#x3D;&#x3D;false&amp;&amp;bLetter&#x3D;&#x3D;true) return 1;</span><br><span class="line">                if(aLetter&#x3D;&#x3D;false&amp;&amp;bLetter&#x3D;&#x3D;false) return 0;&#x2F;&#x2F;To remain relative order it must return 0 not -1</span><br><span class="line">                int cmp&#x3D;as[1].compareTo(bs[1]);</span><br><span class="line">                if(cmp!&#x3D;0) return cmp;</span><br><span class="line">                return as[0].compareTo(bs[0]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        return logs;</span><br><span class="line">    &#125;</span><br><span class="line">    private boolean isLetter(String[] s)&#123;</span><br><span class="line">        return Character.isAlphabetic(s[1].charAt(0));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>string</tag>
       </tags>
   </entry>
 </search>
