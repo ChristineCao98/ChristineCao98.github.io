@@ -184,6 +184,144 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/03/largestNumber/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/03/largestNumber/" class="post-title-link" itemprop="url">179. Largest Number</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-03 20:41:17 / Modified: 21:54:49" itemprop="dateCreated datePublished" datetime="2021-03-03T20:41:17+00:00">2021-03-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>The most important part of this question is to figure out the compare function.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String largestNumber(int[] nums) &#123;</span><br><span class="line">        String[] snum&#x3D;new String[nums.length];</span><br><span class="line">        for(int i&#x3D;0;i&lt;nums.length;i++)&#123;</span><br><span class="line">            snum[i]&#x3D;String.valueOf(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(snum,new Comparator&lt;String&gt;()&#123;</span><br><span class="line">            public int compare(String a,String b)&#123;</span><br><span class="line">                String order1&#x3D;a+b;</span><br><span class="line">                String order2&#x3D;b+a;</span><br><span class="line">                return order2.compareTo(order1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        StringBuilder res&#x3D;new StringBuilder();</span><br><span class="line">        if(snum[0].equals(&quot;0&quot;)) return &quot;0&quot;;</span><br><span class="line">        for(String s:snum)&#123;</span><br><span class="line">            res.append(s);</span><br><span class="line">        &#125;</span><br><span class="line">        return res.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/02/fractionToDecimal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/02/fractionToDecimal/" class="post-title-link" itemprop="url">166. Fraction to Recurring Decimal</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-02 00:48:37 / Modified: 01:03:26" itemprop="dateCreated datePublished" datetime="2021-03-02T00:48:37+00:00">2021-03-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>The key insight here is to notice that once the remainder starts repeating, so does the divided result.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String fractionToDecimal(int numerator, int denominator) &#123;</span><br><span class="line">        if(numerator&#x3D;&#x3D;0) return &quot;0&quot;;</span><br><span class="line">        StringBuilder res&#x3D;new StringBuilder();</span><br><span class="line">        if(numerator&lt;0^denominator&lt;0) res.append(&#39;-&#39;);</span><br><span class="line">        long dividend&#x3D;Math.abs(Long.valueOf(numerator));&#x2F;&#x2F;Long.valueOf() is necessary here, because converting Integer.MIN_VAL to positive will cause overflow</span><br><span class="line">        long divisor&#x3D;Math.abs(Long.valueOf(denominator));</span><br><span class="line">        res.append(String.valueOf(dividend&#x2F;divisor));</span><br><span class="line">        long remainder&#x3D;dividend%divisor;</span><br><span class="line">        if(remainder&#x3D;&#x3D;0) return res.toString();</span><br><span class="line">        res.append(&#39;.&#39;);</span><br><span class="line">        Map&lt;Long,Integer&gt; map&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        while(remainder!&#x3D;0)&#123;</span><br><span class="line">            if(map.containsKey(remainder))&#123;</span><br><span class="line">                res.insert(map.get(remainder),&quot;(&quot;);</span><br><span class="line">                res.append(&#39;)&#39;);</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            map.put(remainder,res.length());</span><br><span class="line">            remainder*&#x3D;10;</span><br><span class="line">            res.append(String.valueOf(remainder&#x2F;divisor));</span><br><span class="line">            remainder%&#x3D;divisor;&#x2F;&#x2F;Just like doing the long division</span><br><span class="line">        &#125;</span><br><span class="line">        return res.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/01/findPeakElement/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -756,140 +894,6 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/18/pow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/18/pow/" class="post-title-link" itemprop="url">50. Pow(x, n)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-02-18 22:55:41 / Modified: 22:59:00" itemprop="dateCreated datePublished" datetime="2021-02-18T22:55:41+00:00">2021-02-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    HashMap&lt;Integer,Double&gt; mem&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">     public double myPow(double x, int n) &#123;</span><br><span class="line">         long N&#x3D;n;&#x2F;&#x2F;pay attention to the possibility of overflow</span><br><span class="line">         if(n&lt;0)&#123;</span><br><span class="line">             x&#x3D;1&#x2F;x;</span><br><span class="line">             N&#x3D;-N;</span><br><span class="line">         &#125;</span><br><span class="line">         return Pow(x,N);</span><br><span class="line">     &#125;</span><br><span class="line">    public double Pow(double x, long n) &#123;</span><br><span class="line">        if(n&#x3D;&#x3D;0) return 1.0;</span><br><span class="line">        double half&#x3D;Pow(x,n&#x2F;2);</span><br><span class="line">        if(n%2&#x3D;&#x3D;0)&#123;</span><br><span class="line">            return half*half;</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">             return half*half*x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/18/isValidSudoku/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/18/isValidSudoku/" class="post-title-link" itemprop="url">36. Valid Sudoku</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-02-18 21:48:02 / Modified: 22:50:22" itemprop="dateCreated datePublished" datetime="2021-02-18T21:48:02+00:00">2021-02-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isValidSudoku(char[][] board) &#123;</span><br><span class="line">        HashSet&lt;Integer&gt;[] rowmap&#x3D;new HashSet[9];</span><br><span class="line">        HashSet&lt;Integer&gt;[] colmap&#x3D;new HashSet[9];</span><br><span class="line">        HashSet&lt;Integer&gt;[] blockmap&#x3D;new HashSet[9];</span><br><span class="line">        for(int i&#x3D;0;i&lt;9;i++)&#123;</span><br><span class="line">            rowmap[i]&#x3D;new HashSet&lt;Integer&gt;();</span><br><span class="line">            colmap[i]&#x3D;new HashSet&lt;Integer&gt;();</span><br><span class="line">            blockmap[i]&#x3D;new HashSet&lt;Integer&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;0;i&lt;9;i++)&#123;</span><br><span class="line">            for(int j&#x3D;0;j&lt;9;j++)&#123;</span><br><span class="line">                int num&#x3D;board[i][j]-&#39;0&#39;;</span><br><span class="line">                if(board[i][j]&#x3D;&#x3D;&#39;.&#39;) continue;</span><br><span class="line"> if(rowmap[i].contains(num)||colmap[j].contains(num)||blockmap[i&#x2F;3*3+j&#x2F;3].contains(num)) return false;</span><br><span class="line">                rowmap[i].add(num);</span><br><span class="line">                colmap[j].add(num);</span><br><span class="line">                blockmap[i&#x2F;3*3+j&#x2F;3].add(num);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1009,7 +1013,7 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">125</span>
+          <span class="site-state-item-count">127</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

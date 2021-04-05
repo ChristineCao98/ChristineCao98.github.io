@@ -184,6 +184,146 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/11/getSum371/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/11/getSum371/" class="post-title-link" itemprop="url">371. Sum of Two Integers</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-11 15:33:10 / Modified: 15:46:44" itemprop="dateCreated datePublished" datetime="2021-03-11T15:33:10+00:00">2021-03-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>First we need to turn both a and b to positive and we need to make sure that a&gt;b. If the signs of a and b are different, then it is considered to be a-b; If identical, then a+b.  </p>
+<ul>
+<li>For a+b, we can get the result by manipulation of its sum without carry and carry. We get the former by XOR and latter by (a&amp;b)&lt;&lt;1.  </li>
+<li>For a-b, we can get the result by manipulation of its sum without carry and carry. We get the former by XOR and latter by (~a&amp;b)&gt;&gt;1.  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int getSum(int a, int b) &#123;</span><br><span class="line">        int x&#x3D;Math.abs(a);</span><br><span class="line">        int y&#x3D;Math.abs(b);</span><br><span class="line">        if(y&gt;x) return getSum(b,a);</span><br><span class="line">        int sign&#x3D;a&gt;0?1:-1;</span><br><span class="line">        if(a*b&gt;&#x3D;0)&#123;</span><br><span class="line">            while(y!&#x3D;0)&#123;</span><br><span class="line">                int answer&#x3D;x^y;</span><br><span class="line">            int carry&#x3D;(x&amp;y)&lt;&lt;1;</span><br><span class="line">            x&#x3D;answer;</span><br><span class="line">            y&#x3D;carry;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            while(y!&#x3D;0)&#123;</span><br><span class="line">              int answer&#x3D;x^y;</span><br><span class="line">            int borrow&#x3D;(~x&amp;y)&lt;&lt;1;</span><br><span class="line">            x&#x3D;answer;</span><br><span class="line">            y&#x3D;borrow;  </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return x*sign;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/10/TicTacToe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/10/TicTacToe/" class="post-title-link" itemprop="url">348. Design Tic-Tac-Toe</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-10 18:15:03 / Modified: 18:17:33" itemprop="dateCreated datePublished" datetime="2021-03-10T18:15:03+00:00">2021-03-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>We can use three arrays to keep track of the players’ moves, one for rows, one for columns and one for two diagonals. If player one makes a move, increment the corresponding row, column and diagonal by one and player two decrement.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">class TicTacToe &#123;</span><br><span class="line">    int[] r;</span><br><span class="line">    int[] c;</span><br><span class="line">    int[] diagonal;</span><br><span class="line">    int n;</span><br><span class="line">    &#x2F;** Initialize your data structure here. *&#x2F;</span><br><span class="line">    public TicTacToe(int n) &#123;</span><br><span class="line">        r&#x3D;new int[n];</span><br><span class="line">        c&#x3D;new int[n];</span><br><span class="line">        diagonal&#x3D;new int[2];</span><br><span class="line">        this.n&#x3D;n;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;** Player &#123;player&#125; makes a move at (&#123;row&#125;, &#123;col&#125;).</span><br><span class="line">        @param row The row of the board.</span><br><span class="line">        @param col The column of the board.</span><br><span class="line">        @param player The player, can be either 1 or 2.</span><br><span class="line">        @return The current winning condition, can be either:</span><br><span class="line">                0: No one wins.</span><br><span class="line">                1: Player 1 wins.</span><br><span class="line">                2: Player 2 wins. *&#x2F;</span><br><span class="line">    public int move(int row, int col, int player) &#123;</span><br><span class="line">        int sign&#x3D;player&#x3D;&#x3D;1?1:-1;</span><br><span class="line">        r[row]+&#x3D;sign;</span><br><span class="line">        if(Math.abs(r[row])&#x3D;&#x3D;n) return r[row]&gt;0?1:2;</span><br><span class="line">        c[col]+&#x3D;sign;</span><br><span class="line">        if(Math.abs(c[col])&#x3D;&#x3D;n) return c[col]&gt;0?1:2;</span><br><span class="line">        if(row&#x3D;&#x3D;col)&#123;</span><br><span class="line">            diagonal[0]+&#x3D;sign;</span><br><span class="line">            if(Math.abs(diagonal[0])&#x3D;&#x3D;n) return diagonal[0]&gt;0?1:2;</span><br><span class="line">        &#125;</span><br><span class="line">        if(row+col&#x3D;&#x3D;n-1)&#123;</span><br><span class="line">            diagonal[1]+&#x3D;sign;</span><br><span class="line">            if(Math.abs(diagonal[1])&#x3D;&#x3D;n) return diagonal[1]&gt;0?1:2;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Your TicTacToe object will be instantiated and called as such:</span><br><span class="line"> * TicTacToe obj &#x3D; new TicTacToe(n);</span><br><span class="line"> * int param_1 &#x3D; obj.move(row,col,player);</span><br><span class="line"> *&#x2F;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/10/NestedIterator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -786,144 +926,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/03/largestNumber/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/03/largestNumber/" class="post-title-link" itemprop="url">179. Largest Number</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-03-03 20:41:17 / Modified: 21:54:49" itemprop="dateCreated datePublished" datetime="2021-03-03T20:41:17+00:00">2021-03-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>The most important part of this question is to figure out the compare function.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String largestNumber(int[] nums) &#123;</span><br><span class="line">        String[] snum&#x3D;new String[nums.length];</span><br><span class="line">        for(int i&#x3D;0;i&lt;nums.length;i++)&#123;</span><br><span class="line">            snum[i]&#x3D;String.valueOf(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(snum,new Comparator&lt;String&gt;()&#123;</span><br><span class="line">            public int compare(String a,String b)&#123;</span><br><span class="line">                String order1&#x3D;a+b;</span><br><span class="line">                String order2&#x3D;b+a;</span><br><span class="line">                return order2.compareTo(order1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        StringBuilder res&#x3D;new StringBuilder();</span><br><span class="line">        if(snum[0].equals(&quot;0&quot;)) return &quot;0&quot;;</span><br><span class="line">        for(String s:snum)&#123;</span><br><span class="line">            res.append(s);</span><br><span class="line">        &#125;</span><br><span class="line">        return res.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/02/fractionToDecimal/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/02/fractionToDecimal/" class="post-title-link" itemprop="url">166. Fraction to Recurring Decimal</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-03-02 00:48:37 / Modified: 01:03:26" itemprop="dateCreated datePublished" datetime="2021-03-02T00:48:37+00:00">2021-03-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>The key insight here is to notice that once the remainder starts repeating, so does the divided result.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String fractionToDecimal(int numerator, int denominator) &#123;</span><br><span class="line">        if(numerator&#x3D;&#x3D;0) return &quot;0&quot;;</span><br><span class="line">        StringBuilder res&#x3D;new StringBuilder();</span><br><span class="line">        if(numerator&lt;0^denominator&lt;0) res.append(&#39;-&#39;);</span><br><span class="line">        long dividend&#x3D;Math.abs(Long.valueOf(numerator));&#x2F;&#x2F;Long.valueOf() is necessary here, because converting Integer.MIN_VAL to positive will cause overflow</span><br><span class="line">        long divisor&#x3D;Math.abs(Long.valueOf(denominator));</span><br><span class="line">        res.append(String.valueOf(dividend&#x2F;divisor));</span><br><span class="line">        long remainder&#x3D;dividend%divisor;</span><br><span class="line">        if(remainder&#x3D;&#x3D;0) return res.toString();</span><br><span class="line">        res.append(&#39;.&#39;);</span><br><span class="line">        Map&lt;Long,Integer&gt; map&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        while(remainder!&#x3D;0)&#123;</span><br><span class="line">            if(map.containsKey(remainder))&#123;</span><br><span class="line">                res.insert(map.get(remainder),&quot;(&quot;);</span><br><span class="line">                res.append(&#39;)&#39;);</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            map.put(remainder,res.length());</span><br><span class="line">            remainder*&#x3D;10;</span><br><span class="line">            res.append(String.valueOf(remainder&#x2F;divisor));</span><br><span class="line">            remainder%&#x3D;divisor;&#x2F;&#x2F;Just like doing the long division</span><br><span class="line">        &#125;</span><br><span class="line">        return res.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1043,7 +1045,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">125</span>
+          <span class="site-state-item-count">127</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

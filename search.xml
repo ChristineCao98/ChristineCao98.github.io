@@ -1886,7 +1886,7 @@ s2 = s1 + s2;
 <h2 id="MyBatis开发步骤"><a href="#MyBatis开发步骤" class="headerlink" title="MyBatis开发步骤"></a>MyBatis开发步骤</h2><h3 id="配置MyBatis"><a href="#配置MyBatis" class="headerlink" title="配置MyBatis"></a>配置MyBatis</h3><p>配置数据库信息和需要加载的映射文件<br>表 - 类<br>映射文件 xxxMapper.xml:增删改查标签<select></select><br>测试类:session.selectOne(“需要查询的namespace.id”,sql的参数值)</p>
 <ul>
 <li>MyBatis约定parameterType 和resultType都只能有一个</li>
-<li>如果使用的transaction manager 为JDBC，则需要手工提交，即session.commit()</li>
+<li>如果使用的transaction manager为JDBC，则需要手工提交，即session.commit()</li>
 </ul>
 <h3 id="动态代理方式的CRUD"><a href="#动态代理方式的CRUD" class="headerlink" title="动态代理方式的CRUD"></a>动态代理方式的CRUD</h3><ul>
 <li>原则：约定优于配置  <ul>
@@ -2571,6 +2571,30 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
       <tags>
         <tag>leetcode</tag>
         <tag>string</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>692. Top K Frequent Words</title>
+    <url>/2021/03/29/topKFrequent/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;String&gt; topKFrequent(String[] words, int k) &#123;</span><br><span class="line">        HashMap&lt;String,Integer&gt; freq&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        for(String word:words)&#123;</span><br><span class="line">            freq.put(word,freq.getOrDefault(word,0)+1);</span><br><span class="line">        &#125;</span><br><span class="line">        PriorityQueue&lt;String&gt; min&#x3D;new PriorityQueue&lt;&gt;(new Comparator&lt;String&gt;()&#123;</span><br><span class="line">            public int compare(String a,String b)&#123;</span><br><span class="line">                int cmp&#x3D;freq.get(a)-freq.get(b);</span><br><span class="line">                if(cmp&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    return b.compareTo(a);</span><br><span class="line">                &#125;</span><br><span class="line">                return cmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        for(String str:freq.keySet())&#123;</span><br><span class="line">            min.offer(str);</span><br><span class="line">            if(min.size()&gt;k)&#123;</span><br><span class="line">                min.poll();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        LinkedList&lt;String&gt; res&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">        while(min.size()&gt;0)&#123;</span><br><span class="line">            res.addFirst(min.poll());</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>sort</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>957. Prison Cells After N Days</title>
+    <url>/2021/03/29/prisonAfterNDays/</url>
+    <content><![CDATA[<p>The core of solving this problem is that there are only finite possibilities of prison cells(at least less than 2^6), therefore all the states could form a cycle.<br>In the code, if n&lt;size of the cycle, then it will return temp, if not, we could directly get it from the arraylist we save for the cycle. We don’t need to keep a hashmap here, we could determine if we have reached a cycle by comparing current state to the starting state of the cycle.  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] prisonAfterNDays(int[] cells, int n) &#123;</span><br><span class="line">        List&lt;int[]&gt; cycle&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">        int[] temp&#x3D;new int[8];</span><br><span class="line">        for(int i&#x3D;n;i&gt;0;i--)&#123;</span><br><span class="line">            for(int j&#x3D;1;j&lt;7;j++)&#123;</span><br><span class="line">                temp[j]&#x3D;cells[j-1]&#x3D;&#x3D;cells[j+1]?1:0;</span><br><span class="line">            &#125;</span><br><span class="line">            if(cycle.size()&gt;0&amp;&amp;Arrays.equals(cycle.get(0),temp))&#123;</span><br><span class="line">                return cycle.get((i-1)%cycle.size());</span><br><span class="line">            &#125;&#x2F;&#x2F;Notice that it is i-1 here.</span><br><span class="line">            int[] added&#x3D;Arrays.copyOf(temp,8);</span><br><span class="line">            cycle.add(added);</span><br><span class="line">            cells&#x3D;added;&#x2F;&#x2F;Notice that cells&#x3D;temp will not work because it would end up pointing both cells and temp to the same location in memory.</span><br><span class="line">        &#125;</span><br><span class="line">        return temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
       </tags>
   </entry>
 </search>
