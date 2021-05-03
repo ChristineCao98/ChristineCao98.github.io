@@ -184,6 +184,74 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/03/trap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/03/trap/" class="post-title-link" itemprop="url">42. Trapping Rain Water</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-05-03 12:46:47 / Modified: 16:24:53" itemprop="dateCreated datePublished" datetime="2021-05-03T12:46:47+01:00">2021-05-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>For each grid i the water it can hold is min(leftmax[i],rightmax[i])-h[i].<br>leftmax[i]=max(h[0],h[1],…,h[i-1])<br>rightmax[i]=max(h[i+1],h[i+2],h[length-1])<br>It can be illustrated in the diagram below:<br><img src="/post_images/trap_diagram1.png"><br>The gist is leftmax[i-1]&lt;=leftmax[i], so if rightmax[i]&lt;leftmax[i-1], rightmax[i]&lt;leftmax[i]. It is same for the case of leftmax[i]&lt;=rightmax[i+1]  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        if(height.length&lt;&#x3D;2) return 0;</span><br><span class="line">        int left&#x3D;1;</span><br><span class="line">        int right&#x3D;height.length-2;</span><br><span class="line">        int res&#x3D;0;</span><br><span class="line">        int leftmax&#x3D;height[left-1];</span><br><span class="line">        int rightmax&#x3D;height[right+1];</span><br><span class="line">        while(left&lt;&#x3D;right)&#123;</span><br><span class="line">            if(leftmax&lt;rightmax)&#123;</span><br><span class="line">                if(height[left]&gt;leftmax)&#123;</span><br><span class="line">                    leftmax&#x3D;height[left];</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    res+&#x3D;leftmax-height[left++];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                if(height[right]&gt;rightmax)&#123;</span><br><span class="line">                    rightmax&#x3D;height[right];</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    res+&#x3D;rightmax-height[right--];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/06/ladderLength/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -796,73 +864,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/27/mostCommonWord/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/27/mostCommonWord/" class="post-title-link" itemprop="url">819. Most Common Word</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-03-27 22:10:47 / Modified: 22:20:16" itemprop="dateCreated datePublished" datetime="2021-03-27T22:10:47+00:00">2021-03-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String mostCommonWord(String paragraph, String[] banned) &#123;</span><br><span class="line">        String normalizedstr&#x3D;paragraph.replaceAll(&quot;[^a-z0-9A-Z ]&quot;,&quot; &quot;).toLowerCase(); </span><br><span class="line">        String[] words&#x3D;normalizedstr.split(&quot;\\s+&quot;);&#x2F;&#x2F;Notice that we cannot use &quot; &quot; here. In regular expression &#39;\s&#39; represents space, &#39;+&#39; means once or more, &#39;\&#39; is escape character. </span><br><span class="line">        Map&lt;String,Integer&gt; map&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        Set&lt;String&gt; set&#x3D;new HashSet&lt;&gt;();</span><br><span class="line">        for(String str:banned)&#123;</span><br><span class="line">            set.add(str);</span><br><span class="line">        &#125;</span><br><span class="line">        int max&#x3D;0;</span><br><span class="line">        String res&#x3D;&quot;&quot;;</span><br><span class="line">        for(String str:words)&#123;</span><br><span class="line">            if(!set.contains(str))&#123;</span><br><span class="line">                int times&#x3D;map.getOrDefault(str,0)+1;</span><br><span class="line">                if(times&gt;max)&#123;</span><br><span class="line">                    res&#x3D;str;</span><br><span class="line">                    max&#x3D;times;</span><br><span class="line">                &#125;</span><br><span class="line">                map.put(str,times);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -982,7 +983,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">134</span>
+          <span class="site-state-item-count">135</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

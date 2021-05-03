@@ -184,6 +184,89 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/24/commonclass/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/24/commonclass/" class="post-title-link" itemprop="url">Common Class</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-01-24 22:04:31 / Modified: 23:36:24" itemprop="dateCreated datePublished" datetime="2021-01-24T22:04:31+00:00">2021-01-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="System类"><a href="#System类" class="headerlink" title="System类"></a>System类</h3><ul>
+<li><p>概述<br>包含一些有用的类字段和方法，不能被实例化</p>
+</li>
+<li><p>Class Method  </p>
+<ul>
+<li>public static void gc()<br>System.gc()可用于垃圾回收，当使用它回收某个对象占用的内存之前，通过要求程序调用适当的方法清理资源。在没有明确指定资源清理的情况下，Java提供了默认机制来清理该对象的资源，就是调用Object类的finalize()方法()。finalize()方法的作用是释放一个对象占用的内存空间时，会被JVM调用，而子类重写该方法，就可以清理对象占用的资源，通过super.finalize()的方式可以实现从下到上的finalize()方法的调用，即先释放自己的资源再去释放父类的资源。<br>但是不要在程序中频繁地调用垃圾回收，因为每一次执行垃圾回收，JVM都会强制启动垃圾回收器运行，这会耗费更多的系统资源，会与正常的java程序运行争抢资源。只有在执行大量的对象释放时才调用垃圾回收最好。</li>
+<li>public static void exit(int status)<br>终止目前正在运行的JVM，参数用作状态码。根据惯例，非0的状态码表示异常终止  </li>
+<li>public static long currentTimeMillis()//返回当前时间与协调世界时，1970年1月1日午夜之间的时间差(以毫秒为单位)  </li>
+<li>public static void arraycopy(Object src,int srcPos,Object dest,int desPos,int length)//从指定源数组中复制一个数组，复制从指定的位置开始，到目标数组的指定位置结束(注意此方法名是不规范的)
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/24/commonclass/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/24/arrays/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -649,7 +732,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">134</span>
+          <span class="site-state-item-count">135</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -2693,4 +2693,17 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
         <tag>sort</tag>
       </tags>
   </entry>
+  <entry>
+    <title>42. Trapping Rain Water</title>
+    <url>/2021/05/03/trap/</url>
+    <content><![CDATA[<p>For each grid i the water it can hold is min(leftmax[i],rightmax[i])-h[i].<br>leftmax[i]=max(h[0],h[1],…,h[i-1])<br>rightmax[i]=max(h[i+1],h[i+2],h[length-1])<br>It can be illustrated in the diagram below:<br><img src="/post_images/trap_diagram1.png"><br>The gist is leftmax[i-1]&lt;=leftmax[i], so if rightmax[i]&lt;leftmax[i-1], rightmax[i]&lt;leftmax[i]. It is same for the case of leftmax[i]&lt;=rightmax[i+1]  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        if(height.length&lt;&#x3D;2) return 0;</span><br><span class="line">        int left&#x3D;1;</span><br><span class="line">        int right&#x3D;height.length-2;</span><br><span class="line">        int res&#x3D;0;</span><br><span class="line">        int leftmax&#x3D;height[left-1];</span><br><span class="line">        int rightmax&#x3D;height[right+1];</span><br><span class="line">        while(left&lt;&#x3D;right)&#123;</span><br><span class="line">            if(leftmax&lt;rightmax)&#123;</span><br><span class="line">                if(height[left]&gt;leftmax)&#123;</span><br><span class="line">                    leftmax&#x3D;height[left];</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    res+&#x3D;leftmax-height[left++];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                if(height[right]&gt;rightmax)&#123;</span><br><span class="line">                    rightmax&#x3D;height[right];</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    res+&#x3D;rightmax-height[right--];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>binary search</tag>
+      </tags>
+  </entry>
 </search>
