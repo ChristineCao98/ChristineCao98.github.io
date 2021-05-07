@@ -184,6 +184,232 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/07/findLadders/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/07/findLadders/" class="post-title-link" itemprop="url">126. Word Ladder II</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-05-07 12:31:44 / Modified: 12:40:42" itemprop="dateCreated datePublished" datetime="2021-05-07T12:31:44+01:00">2021-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>In the first edition of this question, we use hashmap to construct the relations in the graph,a queue for bfs and a hashset to store the visited word. Actually that can be optimized by using two hashsets only, one(startSet) to store the words of each level, the other(set) for the left words to be chosen. For each word in the startSet, we replace each character with a-z to find if the generated word exists in set. </li>
+<li>To get the required returned list, we need to keep a hashmap to record the traversed tree so that after the bfs, we can use backtracking to get it.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    List&lt;List&lt;String&gt;&gt; res&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">    &#x2F;&#x2F;To store the order of the words in the transformation</span><br><span class="line">    Map&lt;String,List&lt;String&gt;&gt; map&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">    public List&lt;List&lt;String&gt;&gt; findLadders(String beginWord,</span><br><span class="line">         String endWord, List&lt;String&gt; wordList) &#123;</span><br><span class="line">        &#x2F;&#x2F;To store the words that are left to be chosen</span><br><span class="line">        Set&lt;String&gt; set&#x3D;new HashSet&lt;&gt;(wordList);</span><br><span class="line">        if(!set.contains(endWord))&#123;</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;The words in each level of traversal</span><br><span class="line">        Set&lt;String&gt; startSet&#x3D;new HashSet&lt;&gt;();</span><br><span class="line">        startSet.add(beginWord);</span><br><span class="line">        boolean found&#x3D;false;</span><br><span class="line">        while(startSet.size()!&#x3D;0&amp;&amp;!found)&#123;</span><br><span class="line">            set.removeAll(startSet);</span><br><span class="line">            Set&lt;String&gt; tmp&#x3D;new HashSet&lt;&gt;();</span><br><span class="line">            for(String s:startSet)&#123;</span><br><span class="line">                char[] word&#x3D;s.toCharArray();</span><br><span class="line">                for(int i&#x3D;0;i&lt;s.length();i++)&#123;</span><br><span class="line">                    char old&#x3D;word[i];</span><br><span class="line">                    for(char c&#x3D;&#39;a&#39;;c&lt;&#x3D;&#39;z&#39;;c++)&#123;</span><br><span class="line">                        word[i]&#x3D;c;</span><br><span class="line">                        String newWord&#x3D;new String(word);</span><br><span class="line">                        if(set.contains(newWord))&#123;</span><br><span class="line">                            if(newWord.equals(endWord))&#123;</span><br><span class="line">                                found&#x3D;true;</span><br><span class="line">                            &#125;</span><br><span class="line">                            else&#123;</span><br><span class="line">                                tmp.add(newWord);</span><br><span class="line">                            &#125;</span><br><span class="line">                            if(!map.containsKey(s))&#123;</span><br><span class="line">                                map.put(s,new LinkedList&lt;String&gt;());</span><br><span class="line">                            &#125;</span><br><span class="line">                            map.get(s).add(newWord);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    word[i]&#x3D;old;</span><br><span class="line">                &#125;</span><br><span class="line">                startSet&#x3D;tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;String&gt; track&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">        track.add(beginWord);</span><br><span class="line">        backtracking(beginWord,track,endWord);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    public void backtracking(String word,List&lt;String&gt; track,String endWord)&#123;</span><br><span class="line">        if(word.equals(endWord))&#123;</span><br><span class="line">            res.add(new LinkedList&lt;&gt;(track));</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if(!map.containsKey(word)) return;</span><br><span class="line">        for(String s:map.get(word))&#123;</span><br><span class="line">            track.add(s);</span><br><span class="line">            backtracking(s,track,endWord);</span><br><span class="line">            track.remove(track.size()-1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/06/candy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/06/candy/" class="post-title-link" itemprop="url">135. Candy</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-05-06 15:06:59 / Modified: 20:40:55" itemprop="dateCreated datePublished" datetime="2021-05-06T15:06:59+01:00">2021-05-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>We can break down this problem into two steps, each step we only care about the monotonicly increasing intervals.  </p>
+<ul>
+<li>First we iterate from left to right </li>
+<li>Then we iterate from right to left(therefore what looks decreasing from left looks increasing from this direction)  </li>
+<li>At last we get the maximum of the two iterations.  </li>
+<li>The most important reason for doing this is to get the value for the crest.  </li>
+</ul>
+<p>This process is illustrated in the diagram below:<br><img src="/images/post_images/candy_diagram.png">  </p>
+<p>Actually this solution can be optimized to use one array only:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int candy(int[] ratings) &#123;</span><br><span class="line">        int m&#x3D;ratings.length;</span><br><span class="line">        &#x2F;&#x2F;an array to save how many candies given to each child</span><br><span class="line">        int[] candies&#x3D;new int[m];</span><br><span class="line">        Arrays.fill(candies,1);</span><br><span class="line">        for(int i&#x3D;1;i&lt;m;i++)&#123;</span><br><span class="line">            if(ratings[i]&gt;ratings[i-1])&#123;</span><br><span class="line">                candies[i]&#x3D;candies[i-1]+1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;m-2;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            if(ratings[i]&gt;ratings[i+1]&amp;&amp;candies[i]&lt;&#x3D;candies[i+1])&#123;</span><br><span class="line">                candies[i]&#x3D;candies[i+1]+1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int res&#x3D;0;</span><br><span class="line">        for(int candy:candies)&#123;</span><br><span class="line">            res+&#x3D;candy;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/04/AutocompleteSystem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/04/AutocompleteSystem/" class="post-title-link" itemprop="url">642. Design Search Autocomplete System</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-05-04 22:17:43" itemprop="dateCreated datePublished" datetime="2021-05-04T22:17:43+01:00">2021-05-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-05 20:32:43" itemprop="dateModified" datetime="2021-05-05T20:32:43+01:00">2021-05-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>In order to solve this problem, we need to do a little modification to the trie data structure.  </p>
+<ul>
+<li>Add attribute s and times to save the complete string and its corresponding times at the end node.  </li>
+<li>Add attribute hotList to record the top 3 strings at each node.  </li>
+<li>Implement Comparable to allow the trie node to be sorted.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">class AutocompleteSystem &#123;</span><br><span class="line">    TrieNode root;</span><br><span class="line">    TrieNode cur;</span><br><span class="line">    StringBuilder sb;</span><br><span class="line">    public AutocompleteSystem(String[] sentences, int[] times) &#123;</span><br><span class="line">        root&#x3D;new TrieNode();</span><br><span class="line">        cur&#x3D;root;</span><br><span class="line">        sb&#x3D;new StringBuilder();</span><br><span class="line">        for(int i&#x3D;0;i&lt;times.length;i++)&#123;</span><br><span class="line">            add(sentences[i],times[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public void add(String sentence,int time)&#123;</span><br><span class="line">        TrieNode temp&#x3D;root;</span><br><span class="line">        List&lt;TrieNode&gt; list&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">        for(char c:sentence.toCharArray())&#123;</span><br><span class="line">            if(temp.children[toInt(c)]&#x3D;&#x3D;null)&#123;</span><br><span class="line">                temp.children[toInt(c)]&#x3D;new TrieNode();</span><br><span class="line">            &#125;</span><br><span class="line">            temp&#x3D;temp.children[toInt(c)];</span><br><span class="line">            list.add(temp);</span><br><span class="line">        &#125;</span><br><span class="line">        temp.s&#x3D;sentence;</span><br><span class="line">        temp.times+&#x3D;time;&#x2F;&#x2F;IMPORTANT!</span><br><span class="line">        for(TrieNode node:list)&#123;</span><br><span class="line">            node.update(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public List&lt;String&gt; input(char c) &#123;</span><br><span class="line">        List&lt;String&gt; res&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">        if(c&#x3D;&#x3D;&#39;#&#39;)&#123;</span><br><span class="line">            add(sb.toString(),1);</span><br><span class="line">            cur&#x3D;root;</span><br><span class="line">            sb&#x3D;new StringBuilder();</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">        sb.append(c);</span><br><span class="line">        if(cur!&#x3D;null)&#123;</span><br><span class="line">            cur&#x3D;cur.children[toInt(c)];</span><br><span class="line">        &#125;</span><br><span class="line">        if(cur&#x3D;&#x3D;null) return res;</span><br><span class="line">        for(TrieNode node:cur.hotList)&#123;</span><br><span class="line">            res.add(node.s);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    public int toInt(char c)&#123;</span><br><span class="line">        return c&#x3D;&#x3D;&#39; &#39;?26:c-&#39;a&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">class TrieNode implements Comparable&lt;TrieNode&gt;&#123;</span><br><span class="line">    int times;</span><br><span class="line">    TrieNode[] children;</span><br><span class="line">    List&lt;TrieNode&gt; hotList;</span><br><span class="line">    String s;</span><br><span class="line">    public TrieNode()&#123;</span><br><span class="line">        times&#x3D;0;</span><br><span class="line">        children&#x3D;new TrieNode[27];</span><br><span class="line">        hotList&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    public int compareTo(TrieNode o)&#123;</span><br><span class="line">        if(this.times&#x3D;&#x3D;o.times)&#123;</span><br><span class="line">            return this.s.compareTo(o.s);</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            return o.times-this.times;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public void update(TrieNode node)&#123;</span><br><span class="line">        if(!this.hotList.contains(node))&#123;&#x2F;&#x2F;IMPORTANT! To avoid repetition</span><br><span class="line">            this.hotList.add(node);</span><br><span class="line">        &#125;</span><br><span class="line">        Collections.sort(hotList);</span><br><span class="line">        if(hotList.size()&gt;3)&#123;</span><br><span class="line">            hotList.remove(hotList.size()-1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Your AutocompleteSystem object will be instantiated and called as such:</span><br><span class="line"> * AutocompleteSystem obj &#x3D; new AutocompleteSystem(sentences, times);</span><br><span class="line"> * List&lt;String&gt; param_1 &#x3D; obj.input(c);</span><br><span class="line"> *&#x2F;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/03/trap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -209,7 +435,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-05-03 12:46:47 / Modified: 16:24:53" itemprop="dateCreated datePublished" datetime="2021-05-03T12:46:47+01:00">2021-05-03</time>
+              <time title="Created: 2021-05-03 12:46:47 / Modified: 16:28:04" itemprop="dateCreated datePublished" datetime="2021-05-03T12:46:47+01:00">2021-05-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,7 +458,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>For each grid i the water it can hold is min(leftmax[i],rightmax[i])-h[i].<br>leftmax[i]=max(h[0],h[1],…,h[i-1])<br>rightmax[i]=max(h[i+1],h[i+2],h[length-1])<br>It can be illustrated in the diagram below:<br><img src="/post_images/trap_diagram1.png"><br>The gist is leftmax[i-1]&lt;=leftmax[i], so if rightmax[i]&lt;leftmax[i-1], rightmax[i]&lt;leftmax[i]. It is same for the case of leftmax[i]&lt;=rightmax[i+1]  </p>
+          <p>For each grid i the water it can hold is min(leftmax[i],rightmax[i])-h[i].<br>leftmax[i]=max(h[0],h[1],…,h[i-1])<br>rightmax[i]=max(h[i+1],h[i+2],h[length-1])<br>It can be illustrated in the diagram below:<br><img src="/images/post_images/trap_diagram1.png"><br>The gist is leftmax[i-1]&lt;=leftmax[i], so if rightmax[i]&lt;leftmax[i-1], rightmax[i]&lt;leftmax[i]. It is same for the case of leftmax[i]&lt;=rightmax[i+1]  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        if(height.length&lt;&#x3D;2) return 0;</span><br><span class="line">        int left&#x3D;1;</span><br><span class="line">        int right&#x3D;height.length-2;</span><br><span class="line">        int res&#x3D;0;</span><br><span class="line">        int leftmax&#x3D;height[left-1];</span><br><span class="line">        int rightmax&#x3D;height[right+1];</span><br><span class="line">        while(left&lt;&#x3D;right)&#123;</span><br><span class="line">            if(leftmax&lt;rightmax)&#123;</span><br><span class="line">                if(height[left]&gt;leftmax)&#123;</span><br><span class="line">                    leftmax&#x3D;height[left];</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    res+&#x3D;leftmax-height[left++];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                if(height[right]&gt;rightmax)&#123;</span><br><span class="line">                    rightmax&#x3D;height[right];</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    res+&#x3D;rightmax-height[right--];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -652,218 +878,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/05/findAllConcatenatedWordsInADict/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/05/findAllConcatenatedWordsInADict/" class="post-title-link" itemprop="url">472. Concatenated Words</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-04-05 16:49:57 / Modified: 18:19:35" itemprop="dateCreated datePublished" datetime="2021-04-05T16:49:57+01:00">2021-04-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>My intial solution with dynamic programming failed due to TLE.  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;String&gt; set&#x3D;new HashSet&lt;&gt;();</span><br><span class="line">HashSet&lt;String&gt; res&#x3D;new HashSet&lt;&gt;();</span><br><span class="line">public List&lt;String&gt; findAllConcatenatedWordsInADict(String[] words) &#123;</span><br><span class="line">    for(String str:words)&#123;</span><br><span class="line">        set.add(new String(str));</span><br><span class="line">    &#125;</span><br><span class="line">    backtracking(new StringBuilder(),words,0);</span><br><span class="line">    List&lt;String&gt; ret&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">    for(String s:res)&#123;</span><br><span class="line">        ret.add(s);</span><br><span class="line">    &#125;</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br><span class="line">private void backtracking(StringBuilder track,String[] words,int depth)&#123;</span><br><span class="line">    if(depth&gt;1&amp;&amp;set.contains(track.toString()))&#123;</span><br><span class="line">        res.add(track.toString());</span><br><span class="line">    &#125;</span><br><span class="line">    if(depth&#x3D;&#x3D;set.size()) return;</span><br><span class="line">    for(String str:words)&#123;</span><br><span class="line">        track.append(str);</span><br><span class="line">        backtracking(track,words,depth+1);</span><br><span class="line">        track.delete(track.length()-str.length(),track.length());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>One lesson I learnt from the code above is that the equals() method of StringBuilder is not overriden so when we compare two StringBuilders we need to convert them to Strings first.  </p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/05/findAllConcatenatedWordsInADict/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/29/topKFrequent/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/29/topKFrequent/" class="post-title-link" itemprop="url">692. Top K Frequent Words</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-03-29 14:21:10 / Modified: 14:22:18" itemprop="dateCreated datePublished" datetime="2021-03-29T14:21:10+01:00">2021-03-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;String&gt; topKFrequent(String[] words, int k) &#123;</span><br><span class="line">        HashMap&lt;String,Integer&gt; freq&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        for(String word:words)&#123;</span><br><span class="line">            freq.put(word,freq.getOrDefault(word,0)+1);</span><br><span class="line">        &#125;</span><br><span class="line">        PriorityQueue&lt;String&gt; min&#x3D;new PriorityQueue&lt;&gt;(new Comparator&lt;String&gt;()&#123;</span><br><span class="line">            public int compare(String a,String b)&#123;</span><br><span class="line">                int cmp&#x3D;freq.get(a)-freq.get(b);</span><br><span class="line">                if(cmp&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    return b.compareTo(a);</span><br><span class="line">                &#125;</span><br><span class="line">                return cmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        for(String str:freq.keySet())&#123;</span><br><span class="line">            min.offer(str);</span><br><span class="line">            if(min.size()&gt;k)&#123;</span><br><span class="line">                min.poll();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        LinkedList&lt;String&gt; res&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">        while(min.size()&gt;0)&#123;</span><br><span class="line">            res.addFirst(min.poll());</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/29/prisonAfterNDays/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/29/prisonAfterNDays/" class="post-title-link" itemprop="url">957. Prison Cells After N Days</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-03-29 12:31:48 / Modified: 14:05:03" itemprop="dateCreated datePublished" datetime="2021-03-29T12:31:48+01:00">2021-03-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>The core of solving this problem is that there are only finite possibilities of prison cells(at least less than 2^6), therefore all the states could form a cycle.<br>In the code, if n&lt;size of the cycle, then it will return temp, if not, we could directly get it from the arraylist we save for the cycle. We don’t need to keep a hashmap here, we could determine if we have reached a cycle by comparing current state to the starting state of the cycle.  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] prisonAfterNDays(int[] cells, int n) &#123;</span><br><span class="line">        List&lt;int[]&gt; cycle&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">        int[] temp&#x3D;new int[8];</span><br><span class="line">        for(int i&#x3D;n;i&gt;0;i--)&#123;</span><br><span class="line">            for(int j&#x3D;1;j&lt;7;j++)&#123;</span><br><span class="line">                temp[j]&#x3D;cells[j-1]&#x3D;&#x3D;cells[j+1]?1:0;</span><br><span class="line">            &#125;</span><br><span class="line">            if(cycle.size()&gt;0&amp;&amp;Arrays.equals(cycle.get(0),temp))&#123;</span><br><span class="line">                return cycle.get((i-1)%cycle.size());</span><br><span class="line">            &#125;&#x2F;&#x2F;Notice that it is i-1 here.</span><br><span class="line">            int[] added&#x3D;Arrays.copyOf(temp,8);</span><br><span class="line">            cycle.add(added);</span><br><span class="line">            cells&#x3D;added;&#x2F;&#x2F;Notice that cells&#x3D;temp will not work because it would end up pointing both cells and temp to the same location in memory.</span><br><span class="line">        &#125;</span><br><span class="line">        return temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -872,7 +886,7 @@
 
     <div class="tag-cloud">
       <div class="tag-cloud-tags" id="tags">
-        <a href="/tags/array/" style="font-size: 16px; color: #fff">array</a> <a href="/tags/backtracking/" style="font-size: 16px; color: #fff">backtracking</a> <a href="/tags/basic-syntax/" style="font-size: 16px; color: #fff">basic syntax</a> <a href="/tags/binary-first-search/" style="font-size: 16px; color: #fff">binary first search</a> <a href="/tags/binary-search/" style="font-size: 16px; color: #fff">binary search</a> <a href="/tags/bit-manipulation/" style="font-size: 16px; color: #fff">bit manipulation</a> <a href="/tags/breadth-first-search/" style="font-size: 16px; color: #fff">breadth first search</a> <a href="/tags/core-learning/" style="font-size: 16px; color: #fff">core learning</a> <a href="/tags/depth-first-search/" style="font-size: 16px; color: #fff">depth first search</a> <a href="/tags/design/" style="font-size: 16px; color: #fff">design</a> <a href="/tags/divide-and-conquer/" style="font-size: 16px; color: #fff">divide and conquer</a> <a href="/tags/dynamic-programming/" style="font-size: 16px; color: #fff">dynamic programming</a> <a href="/tags/greedy/" style="font-size: 16px; color: #fff">greedy</a> <a href="/tags/hashmap/" style="font-size: 16px; color: #fff">hashmap</a> <a href="/tags/hashset/" style="font-size: 16px; color: #fff">hashset</a> <a href="/tags/heap/" style="font-size: 16px; color: #fff">heap</a> <a href="/tags/java-frame/" style="font-size: 16px; color: #fff">java frame</a> <a href="/tags/java-web/" style="font-size: 16px; color: #fff">java web</a> <a href="/tags/leetcode/" style="font-size: 16px; color: #fff">leetcode</a> <a href="/tags/linked-list/" style="font-size: 16px; color: #fff">linked list</a> <a href="/tags/math/" style="font-size: 16px; color: #fff">math</a> <a href="/tags/monotonic-stack/" style="font-size: 16px; color: #fff">monotonic stack</a> <a href="/tags/prefix-sum/" style="font-size: 16px; color: #fff">prefix sum</a> <a href="/tags/problem-solving-template/" style="font-size: 16px; color: #fff">problem solving template</a> <a href="/tags/quick-find/" style="font-size: 16px; color: #fff">quick find</a> <a href="/tags/recursion/" style="font-size: 16px; color: #fff">recursion</a> <a href="/tags/sliding-window/" style="font-size: 16px; color: #fff">sliding window</a> <a href="/tags/sort/" style="font-size: 16px; color: #fff">sort</a> <a href="/tags/stack/" style="font-size: 16px; color: #fff">stack</a> <a href="/tags/string/" style="font-size: 16px; color: #fff">string</a> <a href="/tags/two-pointers/" style="font-size: 16px; color: #fff">two pointers</a>
+        <a href="/tags/array/" style="font-size: 16px; color: #fff">array</a> <a href="/tags/backtracking/" style="font-size: 16px; color: #fff">backtracking</a> <a href="/tags/basic-syntax/" style="font-size: 16px; color: #fff">basic syntax</a> <a href="/tags/binary-first-search/" style="font-size: 16px; color: #fff">binary first search</a> <a href="/tags/binary-search/" style="font-size: 16px; color: #fff">binary search</a> <a href="/tags/bit-manipulation/" style="font-size: 16px; color: #fff">bit manipulation</a> <a href="/tags/breadth-first-search/" style="font-size: 16px; color: #fff">breadth first search</a> <a href="/tags/core-learning/" style="font-size: 16px; color: #fff">core learning</a> <a href="/tags/depth-first-search/" style="font-size: 16px; color: #fff">depth first search</a> <a href="/tags/design/" style="font-size: 16px; color: #fff">design</a> <a href="/tags/divide-and-conquer/" style="font-size: 16px; color: #fff">divide and conquer</a> <a href="/tags/dynamic-programming/" style="font-size: 16px; color: #fff">dynamic programming</a> <a href="/tags/greedy/" style="font-size: 16px; color: #fff">greedy</a> <a href="/tags/hashmap/" style="font-size: 16px; color: #fff">hashmap</a> <a href="/tags/hashset/" style="font-size: 16px; color: #fff">hashset</a> <a href="/tags/heap/" style="font-size: 16px; color: #fff">heap</a> <a href="/tags/java-frame/" style="font-size: 16px; color: #fff">java frame</a> <a href="/tags/java-web/" style="font-size: 16px; color: #fff">java web</a> <a href="/tags/leetcode/" style="font-size: 16px; color: #fff">leetcode</a> <a href="/tags/linked-list/" style="font-size: 16px; color: #fff">linked list</a> <a href="/tags/math/" style="font-size: 16px; color: #fff">math</a> <a href="/tags/monotonic-stack/" style="font-size: 16px; color: #fff">monotonic stack</a> <a href="/tags/prefix-sum/" style="font-size: 16px; color: #fff">prefix sum</a> <a href="/tags/problem-solving-template/" style="font-size: 16px; color: #fff">problem solving template</a> <a href="/tags/quick-find/" style="font-size: 16px; color: #fff">quick find</a> <a href="/tags/recursion/" style="font-size: 16px; color: #fff">recursion</a> <a href="/tags/sliding-window/" style="font-size: 16px; color: #fff">sliding window</a> <a href="/tags/sort/" style="font-size: 16px; color: #fff">sort</a> <a href="/tags/stack/" style="font-size: 16px; color: #fff">stack</a> <a href="/tags/string/" style="font-size: 16px; color: #fff">string</a> <a href="/tags/trie/" style="font-size: 16px; color: #fff">trie</a> <a href="/tags/two-pointers/" style="font-size: 16px; color: #fff">two pointers</a>
       </div>
     </div>
     <br>
@@ -983,7 +997,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">135</span>
+          <span class="site-state-item-count">138</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -996,7 +1010,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

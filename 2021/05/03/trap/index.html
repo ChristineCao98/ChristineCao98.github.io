@@ -27,14 +27,14 @@
 <meta property="og:site_name" content="Christine Cao&#39;s Blog">
 <meta property="og:description" content="For each grid i the water it can hold is min(leftmax[i],rightmax[i])-h[i].leftmax[i]&#x3D;max(h[0],h[1],…,h[i-1])rightmax[i]&#x3D;max(h[i+1],h[i+2],h[length-1])It can be illustrated in the diagram below:The gis">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/post_images/trap_diagram1.png">
+<meta property="og:image" content="http://example.com/images/post_images/trap_diagram1.png">
 <meta property="article:published_time" content="2021-05-03T11:46:47.000Z">
-<meta property="article:modified_time" content="2021-05-03T15:24:53.357Z">
+<meta property="article:modified_time" content="2021-05-03T15:28:04.838Z">
 <meta property="article:author" content="Christine Cao">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="binary search">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/post_images/trap_diagram1.png">
+<meta name="twitter:image" content="http://example.com/images/post_images/trap_diagram1.png">
 
 <link rel="canonical" href="http://example.com/2021/05/03/trap/">
 
@@ -216,7 +216,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-05-03 12:46:47 / Modified: 16:24:53" itemprop="dateCreated datePublished" datetime="2021-05-03T12:46:47+01:00">2021-05-03</time>
+              <time title="Created: 2021-05-03 12:46:47 / Modified: 16:28:04" itemprop="dateCreated datePublished" datetime="2021-05-03T12:46:47+01:00">2021-05-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,7 +239,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>For each grid i the water it can hold is min(leftmax[i],rightmax[i])-h[i].<br>leftmax[i]=max(h[0],h[1],…,h[i-1])<br>rightmax[i]=max(h[i+1],h[i+2],h[length-1])<br>It can be illustrated in the diagram below:<br><img src="/post_images/trap_diagram1.png"><br>The gist is leftmax[i-1]&lt;=leftmax[i], so if rightmax[i]&lt;leftmax[i-1], rightmax[i]&lt;leftmax[i]. It is same for the case of leftmax[i]&lt;=rightmax[i+1]  </p>
+        <p>For each grid i the water it can hold is min(leftmax[i],rightmax[i])-h[i].<br>leftmax[i]=max(h[0],h[1],…,h[i-1])<br>rightmax[i]=max(h[i+1],h[i+2],h[length-1])<br>It can be illustrated in the diagram below:<br><img src="/images/post_images/trap_diagram1.png"><br>The gist is leftmax[i-1]&lt;=leftmax[i], so if rightmax[i]&lt;leftmax[i-1], rightmax[i]&lt;leftmax[i]. It is same for the case of leftmax[i]&lt;=rightmax[i+1]  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        if(height.length&lt;&#x3D;2) return 0;</span><br><span class="line">        int left&#x3D;1;</span><br><span class="line">        int right&#x3D;height.length-2;</span><br><span class="line">        int res&#x3D;0;</span><br><span class="line">        int leftmax&#x3D;height[left-1];</span><br><span class="line">        int rightmax&#x3D;height[right+1];</span><br><span class="line">        while(left&lt;&#x3D;right)&#123;</span><br><span class="line">            if(leftmax&lt;rightmax)&#123;</span><br><span class="line">                if(height[left]&gt;leftmax)&#123;</span><br><span class="line">                    leftmax&#x3D;height[left];</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    res+&#x3D;leftmax-height[left++];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                if(height[right]&gt;rightmax)&#123;</span><br><span class="line">                    rightmax&#x3D;height[right];</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    res+&#x3D;rightmax-height[right--];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
@@ -262,7 +262,10 @@
     <a href="/2021/04/06/ladderLength/" rel="prev" title="127. Word Ladder">
       <i class="fa fa-chevron-left"></i> 127. Word Ladder
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/04/AutocompleteSystem/" rel="next" title="642. Design Search Autocomplete System">
+      642. Design Search Autocomplete System <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -336,7 +339,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">135</span>
+          <span class="site-state-item-count">138</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -349,7 +352,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
