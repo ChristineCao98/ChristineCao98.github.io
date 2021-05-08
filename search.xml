@@ -2763,4 +2763,22 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
         <tag>breadth first search</tag>
       </tags>
   </entry>
+  <entry>
+    <title>140. Word Break II</title>
+    <url>/2021/05/08/wordBreak140/</url>
+    <content><![CDATA[<p>Initially the approach I took is to keep a hashmap with the key being the index and value the list of all the concatenations form begin to that index. But it is very costly. The rationale is twofold: </p>
+<ol>
+<li>we have to keep many copies of string in the memory. </li>
+<li>we have to iterate through the string to make a new copy, which is time-consuming.<br>To optimize it, we can keep the index rather than the string and do a backtracking to get the result afterwards.  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    List&lt;String&gt; res&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">    public List&lt;String&gt; wordBreak(String s, List&lt;String&gt; wordDict) &#123;</span><br><span class="line">        int m&#x3D;s.length();</span><br><span class="line">        &#x2F;&#x2F;dp[i] means if it is possible to segement s[0...i-1]</span><br><span class="line">        boolean[] dp&#x3D;new boolean[m+1];</span><br><span class="line">        Set&lt;String&gt; set&#x3D;new HashSet&lt;&gt;(wordDict);</span><br><span class="line">        Map&lt;Integer,List&lt;Integer&gt;&gt; map&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        dp[0]&#x3D;true;</span><br><span class="line">        for(int i&#x3D;1;i&lt;m+1;i++)&#123;</span><br><span class="line">            for(int j&#x3D;i-1;j&gt;&#x3D;0;j--)&#123;</span><br><span class="line">                String word&#x3D;s.substring(j,i);</span><br><span class="line">                if(dp[j]&amp;&amp;set.contains(word))&#123;</span><br><span class="line">                    dp[i]&#x3D;true;</span><br><span class="line">                    if(!map.containsKey(j))&#123;</span><br><span class="line">                        map.put(j,new LinkedList&lt;Integer&gt;());</span><br><span class="line">                    &#125;</span><br><span class="line">                    map.get(j).add(i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder track&#x3D;new StringBuilder();</span><br><span class="line">        backtracking(0,map,s,track);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    public void backtracking(int start,Map&lt;Integer,List&lt;Integer&gt;&gt; map,String s,StringBuilder track)&#123;</span><br><span class="line">        if(start&#x3D;&#x3D;s.length())&#123;</span><br><span class="line">            res.add(track.toString().strip());</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if(!map.containsKey(start)) return;</span><br><span class="line">        for(int i:map.get(start))&#123;</span><br><span class="line">            String news&#x3D;s.substring(start,i);</span><br><span class="line">            track.append(&#39; &#39;).append(news);</span><br><span class="line">            backtracking(i,map,s,track);</span><br><span class="line">            track.delete(track.length()-news.length()-1,track.length());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>dynamic programming</tag>
+        <tag>backtracking</tag>
+      </tags>
+  </entry>
 </search>

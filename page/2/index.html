@@ -184,6 +184,73 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/05/isSubtree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/05/isSubtree/" class="post-title-link" itemprop="url">572. Subtree of Another Tree</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-05 18:34:16 / Modified: 18:35:35" itemprop="dateCreated datePublished" datetime="2021-04-05T18:34:16+01:00">2021-04-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isSubtree(TreeNode s, TreeNode t) &#123;</span><br><span class="line">        return dfs(s,t);</span><br><span class="line">    &#125;</span><br><span class="line">    private boolean equals(TreeNode s,TreeNode t)&#123;</span><br><span class="line">        if(s&#x3D;&#x3D;null&amp;&amp;t&#x3D;&#x3D;null) return true;</span><br><span class="line">        if(s&#x3D;&#x3D;null||t&#x3D;&#x3D;null) return false;</span><br><span class="line">        return s.val&#x3D;&#x3D;t.val&amp;&amp;equals(s.left,t.left)&amp;&amp;equals(s.right,t.right);</span><br><span class="line">    &#125;&#x2F;&#x2F;compare every node of two trees to see if they are the same</span><br><span class="line">    private boolean dfs(TreeNode s,TreeNode t)&#123;</span><br><span class="line">        return s!&#x3D;null&amp;&amp;(equals(s,t)||dfs(s.left,t)||dfs(s.right,t));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/05/findAllConcatenatedWordsInADict/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -795,73 +862,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/25/addStrings/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/25/addStrings/" class="post-title-link" itemprop="url">415. Add Strings</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-03-25 21:57:49 / Modified: 22:04:25" itemprop="dateCreated datePublished" datetime="2021-03-25T21:57:49+00:00">2021-03-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String addStrings(String num1, String num2) &#123;</span><br><span class="line">        if(num1.length()&lt;num2.length()) return addStrings(num2,num1);</span><br><span class="line">        int carry&#x3D;0;</span><br><span class="line">        int m&#x3D;num1.length()-1;</span><br><span class="line">        int n&#x3D;num2.length()-1;</span><br><span class="line">        StringBuilder res&#x3D;new StringBuilder();</span><br><span class="line">        while(m&gt;&#x3D;0)&#123;</span><br><span class="line">            int add1&#x3D;num1.charAt(m)-&#39;0&#39;;</span><br><span class="line">            int add2&#x3D;n&gt;&#x3D;0?num2.charAt(n)-&#39;0&#39;:0;</span><br><span class="line">            int sum&#x3D;(add1+add2+carry)%10;</span><br><span class="line">            carry&#x3D;(add1+add2+carry)&#x2F;10;</span><br><span class="line">            res.append(sum);</span><br><span class="line">            m--;</span><br><span class="line">            n--;</span><br><span class="line">        &#125;</span><br><span class="line">        if(carry&gt;0) res.append(carry);</span><br><span class="line">        return res.reverse().toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -981,7 +981,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">138</span>
+          <span class="site-state-item-count">139</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

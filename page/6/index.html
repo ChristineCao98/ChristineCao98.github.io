@@ -184,6 +184,75 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/21/setZeroes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/21/setZeroes/" class="post-title-link" itemprop="url">73. Set Matrix Zeroes</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-21 00:13:00 / Modified: 00:21:52" itemprop="dateCreated datePublished" datetime="2021-02-21T00:13:00+00:00">2021-02-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>If we want space complexity to be O(1), we can use the first row and first column to mark if there is a 0 in their row and column.<br><strong>We also need to a marker for the first column and first row themselves, we can use matrix[0][0] to act as one and create another boolean variable for another.</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public void setZeroes(int[][] matrix) &#123;</span><br><span class="line">        int m&#x3D;matrix.length;</span><br><span class="line">        int n&#x3D;matrix[0].length;</span><br><span class="line">        boolean isCol&#x3D;false;</span><br><span class="line">        for(int i&#x3D;0;i&lt;m;i++)&#123;</span><br><span class="line">            if (matrix[i][0]&#x3D;&#x3D;0) isCol&#x3D;true;</span><br><span class="line">            for(int j&#x3D;1;j&lt;n;j++)&#123;</span><br><span class="line">                if(matrix[i][j]&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    matrix[0][j]&#x3D;0;</span><br><span class="line">                    matrix[i][0]&#x3D;0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;1;i&lt;m;i++)&#123;</span><br><span class="line">            for(int j&#x3D;1;j&lt;n;j++)&#123;</span><br><span class="line">                if(matrix[i][0]&#x3D;&#x3D;0||matrix[0][j]&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    matrix[i][j]&#x3D;0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(matrix[0][0]&#x3D;&#x3D;0)&#123;</span><br><span class="line">            for(int i&#x3D;0;i&lt;n;i++) matrix[0][i]&#x3D;0;</span><br><span class="line">        &#125;</span><br><span class="line">        if(isCol)&#123;</span><br><span class="line">            for(int i&#x3D;0;i&lt;m;i++) matrix[i][0]&#x3D;0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/18/spiralOrder/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -951,74 +1020,6 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/11/isPowerOfThree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/11/isPowerOfThree/" class="post-title-link" itemprop="url">isPowerOfThree</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-02-11 13:35:17 / Modified: 14:28:34" itemprop="dateCreated datePublished" datetime="2021-02-11T13:35:17+00:00">2021-02-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Knowing the limitation of n, we can now deduce that the maximum value of n that is also a power of three is 1162261467.<br>Therefore, the possible values of n where we should return true are 3^0, 3^1… 3^19. Since 3 is a prime number, the only divisors of 3^19 are 3^0, 3^1 … 3^19, therefore all we need to do is divide 3^19 by n. A remainder of 0 means n is a divisor of 3^19 and therefore a power of three.  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isPowerOfThree(int n) &#123;</span><br><span class="line">        int max&#x3D;(int)Math.pow(3,(int)(Math.log10(Integer.MAX_VALUE)&#x2F;Math.log10(3)));</span><br><span class="line">        return n&gt;0&amp;&amp;max%n&#x3D;&#x3D;0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1138,7 +1139,7 @@ The better approach is to do it iteratively beacuse recursion consumes stack res
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">138</span>
+          <span class="site-state-item-count">139</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
