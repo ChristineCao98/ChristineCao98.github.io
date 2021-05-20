@@ -28,7 +28,7 @@
 <meta property="og:description" content="Initially the approach I took is to keep a hashmap with the key being the index and value the list of all the concatenations form begin to that index. But it is very costly. The rationale is twofold:">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-08T15:44:32.000Z">
-<meta property="article:modified_time" content="2021-05-08T16:16:36.811Z">
+<meta property="article:modified_time" content="2021-05-08T17:16:29.434Z">
 <meta property="article:author" content="Christine Cao">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="dynamic programming">
@@ -215,7 +215,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-05-08 16:44:32 / Modified: 17:16:36" itemprop="dateCreated datePublished" datetime="2021-05-08T16:44:32+01:00">2021-05-08</time>
+              <time title="Created: 2021-05-08 16:44:32 / Modified: 18:16:29" itemprop="dateCreated datePublished" datetime="2021-05-08T16:44:32+01:00">2021-05-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,7 +243,7 @@
 <li>we have to keep many copies of string in the memory. </li>
 <li>we have to iterate through the string to make a new copy, which is time-consuming.<br>To optimize it, we can keep the index rather than the string and do a backtracking to get the result afterwards.  </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    List&lt;String&gt; res&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">    public List&lt;String&gt; wordBreak(String s, List&lt;String&gt; wordDict) &#123;</span><br><span class="line">        int m&#x3D;s.length();</span><br><span class="line">        &#x2F;&#x2F;dp[i] means if it is possible to segement s[0...i-1]</span><br><span class="line">        boolean[] dp&#x3D;new boolean[m+1];</span><br><span class="line">        Set&lt;String&gt; set&#x3D;new HashSet&lt;&gt;(wordDict);</span><br><span class="line">        Map&lt;Integer,List&lt;Integer&gt;&gt; map&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        dp[0]&#x3D;true;</span><br><span class="line">        for(int i&#x3D;1;i&lt;m+1;i++)&#123;</span><br><span class="line">            for(int j&#x3D;i-1;j&gt;&#x3D;0;j--)&#123;</span><br><span class="line">                String word&#x3D;s.substring(j,i);</span><br><span class="line">                if(dp[j]&amp;&amp;set.contains(word))&#123;</span><br><span class="line">                    dp[i]&#x3D;true;</span><br><span class="line">                    if(!map.containsKey(j))&#123;</span><br><span class="line">                        map.put(j,new LinkedList&lt;Integer&gt;());</span><br><span class="line">                    &#125;</span><br><span class="line">                    map.get(j).add(i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder track&#x3D;new StringBuilder();</span><br><span class="line">        backtracking(0,map,s,track);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    public void backtracking(int start,Map&lt;Integer,List&lt;Integer&gt;&gt; map,String s,StringBuilder track)&#123;</span><br><span class="line">        if(start&#x3D;&#x3D;s.length())&#123;</span><br><span class="line">            res.add(track.toString().strip());</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if(!map.containsKey(start)) return;</span><br><span class="line">        for(int i:map.get(start))&#123;</span><br><span class="line">            String news&#x3D;s.substring(start,i);</span><br><span class="line">            track.append(&#39; &#39;).append(news);</span><br><span class="line">            backtracking(i,map,s,track);</span><br><span class="line">            track.delete(track.length()-news.length()-1,track.length());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    List&lt;String&gt; res&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">    public List&lt;String&gt; wordBreak(String s, List&lt;String&gt; wordDict) &#123;</span><br><span class="line">        int m&#x3D;s.length();</span><br><span class="line">        &#x2F;&#x2F;dp[i] means if it is possible to segement s[0...i-1]</span><br><span class="line">        boolean[] dp&#x3D;new boolean[m+1];</span><br><span class="line">        Set&lt;String&gt; set&#x3D;new HashSet&lt;&gt;(wordDict);</span><br><span class="line">        Map&lt;Integer,List&lt;Integer&gt;&gt; map&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        dp[0]&#x3D;true;</span><br><span class="line">        for(int i&#x3D;1;i&lt;m+1;i++)&#123;</span><br><span class="line">            for(int j&#x3D;i-1;j&gt;&#x3D;0;j--)&#123;</span><br><span class="line">                String word&#x3D;s.substring(j,i);</span><br><span class="line">                if(dp[j]&amp;&amp;set.contains(word))&#123;</span><br><span class="line">                    dp[i]&#x3D;true;</span><br><span class="line">                    if(!map.containsKey(j))&#123;</span><br><span class="line">                        map.put(j,new LinkedList&lt;Integer&gt;());</span><br><span class="line">                    &#125;</span><br><span class="line">                    map.get(j).add(i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder track&#x3D;new StringBuilder();</span><br><span class="line">        backtracking(0,map,s,track);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    public void backtracking(int start,Map&lt;Integer,List&lt;Integer&gt;&gt; map,String s,StringBuilder track)&#123;</span><br><span class="line">        if(start&#x3D;&#x3D;s.length())&#123;</span><br><span class="line">            res.add(track.toString().strip());&#x2F;&#x2F;strip will remove the space in the front and the end of the string</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if(!map.containsKey(start)) return;</span><br><span class="line">        for(int i:map.get(start))&#123;</span><br><span class="line">            String news&#x3D;s.substring(start,i);</span><br><span class="line">            track.append(&#39; &#39;).append(news);</span><br><span class="line">            backtracking(i,map,s,track);</span><br><span class="line">            track.delete(track.length()-news.length()-1,track.length());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -266,7 +266,10 @@
     <a href="/2021/05/07/findLadders/" rel="prev" title="126. Word Ladder II">
       <i class="fa fa-chevron-left"></i> 126. Word Ladder II
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/08/findWord/" rel="next" title="212. Word Search II">
+      212. Word Search II <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -340,7 +343,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">139</span>
+          <span class="site-state-item-count">150</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -353,7 +356,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
