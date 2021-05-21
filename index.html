@@ -184,6 +184,280 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/21/maxPoints/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/21/maxPoints/" class="post-title-link" itemprop="url">149. Max Points on a Line</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-05-21 22:14:33 / Modified: 22:23:36" itemprop="dateCreated datePublished" datetime="2021-05-21T22:14:33+01:00">2021-05-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>The most important point of it is to get the greatest common divisor of dx and dy(because we cannot make floating number as key)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int maxPoints(int[][] points) &#123;</span><br><span class="line">        Map&lt;Integer,Map&lt;Integer,Integer&gt;&gt; map&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        int n&#x3D;points.length;</span><br><span class="line">        int max&#x3D;0;</span><br><span class="line">        System.out.println(gcd(-2,2)+&quot; &quot;+gcd(2,-2));</span><br><span class="line">        for(int i&#x3D;0;i&lt;n;i++)&#123;</span><br><span class="line">            for(int j&#x3D;i+1;j&lt;n;j++)&#123;</span><br><span class="line">                int x1&#x3D;points[i][0];</span><br><span class="line">                int y1&#x3D;points[i][1];</span><br><span class="line">                int x2&#x3D;points[j][0];</span><br><span class="line">                int y2&#x3D;points[j][1];</span><br><span class="line">                int dx&#x3D;x2-x1;</span><br><span class="line">                int dy&#x3D;y2-y1;</span><br><span class="line">                int gcd&#x3D;gcd(dx,dy);</span><br><span class="line">                dx&#x2F;&#x3D;gcd;</span><br><span class="line">                dy&#x2F;&#x3D;gcd;</span><br><span class="line">                map.putIfAbsent(dx,new HashMap&lt;&gt;());</span><br><span class="line">                int num&#x3D;map.get(dx).getOrDefault(dy,0)+1;</span><br><span class="line">                max&#x3D;Math.max(max,num);</span><br><span class="line">                map.get(dx).put(dy,num);</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            map.clear();&#x2F;&#x2F;IMPORTANT!!</span><br><span class="line">        &#125;</span><br><span class="line">        return max+1;&#x2F;&#x2F;plus the starting point</span><br><span class="line">    &#125;</span><br><span class="line">    public int gcd(int a,int b)&#123;</span><br><span class="line">        if(b&#x3D;&#x3D;0) return a;</span><br><span class="line">        return gcd(b,a%b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/21/RandomizedCollection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/21/RandomizedCollection/" class="post-title-link" itemprop="url">381. Insert Delete GetRandom O(1) - Duplicates allowed</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-05-21 21:39:35 / Modified: 21:42:27" itemprop="dateCreated datePublished" datetime="2021-05-21T21:39:35+01:00">2021-05-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>The difference between this question and the previous one is that it needs to store a set of indexes in the value of hashmap.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">class RandomizedCollection &#123;</span><br><span class="line">    List&lt;Integer&gt; list;</span><br><span class="line">    Map&lt;Integer,Set&lt;Integer&gt;&gt; valToIndex;</span><br><span class="line">    &#x2F;** Initialize your data structure here. *&#x2F;</span><br><span class="line">    public RandomizedCollection() &#123;</span><br><span class="line">        valToIndex&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        list&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. *&#x2F;</span><br><span class="line">    public boolean insert(int val) &#123;</span><br><span class="line">        valToIndex.putIfAbsent(val,new LinkedHashSet&lt;&gt;());</span><br><span class="line">        valToIndex.get(val).add(list.size());</span><br><span class="line">        list.add(val);</span><br><span class="line">        return valToIndex.get(val).size()&#x3D;&#x3D;1;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;** Removes a value from the collection. Returns true if the collection contained the specified element. *&#x2F;</span><br><span class="line">    public boolean remove(int val) &#123;</span><br><span class="line">        if(!valToIndex.containsKey(val)||valToIndex.get(val).size()&#x3D;&#x3D;0) return false;</span><br><span class="line">        int remove_id&#x3D;valToIndex.get(val).iterator().next();</span><br><span class="line">        int replace_val&#x3D;list.get(list.size()-1);</span><br><span class="line">        list.set(remove_id,replace_val);</span><br><span class="line">        list.remove(list.size()-1);</span><br><span class="line">        &#x2F;&#x2F;delete removed id</span><br><span class="line">        valToIndex.get(val).remove(remove_id);</span><br><span class="line">        valToIndex.get(replace_val).add(remove_id);</span><br><span class="line">        valToIndex.get(replace_val).remove(list.size());&#x2F;&#x2F;PAY ATTENTION TO THE ORDER!!!</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;** Get a random element from the collection. *&#x2F;</span><br><span class="line">    public int getRandom() &#123;</span><br><span class="line">        Random rd&#x3D;new Random();</span><br><span class="line">        return list.get(rd.nextInt(list.size()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Your RandomizedCollection object will be instantiated and called as such:</span><br><span class="line"> * RandomizedCollection obj &#x3D; new RandomizedCollection();</span><br><span class="line"> * boolean param_1 &#x3D; obj.insert(val);</span><br><span class="line"> * boolean param_2 &#x3D; obj.remove(val);</span><br><span class="line"> * int param_3 &#x3D; obj.getRandom();</span><br><span class="line"> *&#x2F;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/21/largestRectangleArea/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/21/largestRectangleArea/" class="post-title-link" itemprop="url">84. Largest Rectangle in Histogram</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-05-21 17:59:41 / Modified: 18:28:55" itemprop="dateCreated datePublished" datetime="2021-05-21T17:59:41+01:00">2021-05-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>We use an increasing monotonic stack to store the index. Once we meet a height that is smaller than the top element in the stack, it means that this height cannot be maintained so we need to pop it and calculate the area of the poped histogram. At the end we will get an increasing array so we make the last height 0 to force pop all of them.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int largestRectangleArea(int[] heights) &#123;</span><br><span class="line">        Stack&lt;Integer&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">        int max&#x3D;0;</span><br><span class="line">        stack.push(-1);</span><br><span class="line">        int n&#x3D;heights.length;</span><br><span class="line">        for(int i&#x3D;0;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">            int h&#x3D;i&#x3D;&#x3D;n?0:heights[i];</span><br><span class="line">            while(stack.peek()!&#x3D;-1&amp;&amp;heights[stack.peek()]&gt;&#x3D;h)&#123;</span><br><span class="line">                int height&#x3D;heights[stack.pop()];</span><br><span class="line">                int width&#x3D;i-stack.peek()-1;</span><br><span class="line">                max&#x3D;Math.max(height*width,max);</span><br><span class="line">            &#125;</span><br><span class="line">            stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/21/nextGreaterElement/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/21/nextGreaterElement/" class="post-title-link" itemprop="url">Next Greater Element</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-05-21 16:53:57 / Modified: 17:14:41" itemprop="dateCreated datePublished" datetime="2021-05-21T16:53:57+01:00">2021-05-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="496-Next-Greater-Element-I"><a href="#496-Next-Greater-Element-I" class="headerlink" title="496. Next Greater Element I"></a>496. Next Greater Element I</h2><p>In this question, what really matters are the numbers behind each number, so we will loop from right to left.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] nextGreaterElement(int[] nums1, int[] nums2) &#123;</span><br><span class="line">        Stack&lt;Integer&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">        int[] ret&#x3D;new int[nums1.length];</span><br><span class="line">        Map&lt;Integer,Integer&gt; valToRes&#x3D;new HashMap&lt;&gt;();</span><br><span class="line">        for(int i&#x3D;nums2.length-1;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            while(!stack.isEmpty()&amp;&amp;stack.peek()&lt;nums2[i])&#123;</span><br><span class="line">                stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            valToRes.put(nums2[i],stack.isEmpty()?-1:stack.peek());</span><br><span class="line">            stack.push(nums2[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;0;i&lt;nums1.length;i++)&#123;</span><br><span class="line">            ret[i]&#x3D;valToRes.get(nums1[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="503-Next-Greater-Element-II"><a href="#503-Next-Greater-Element-II" class="headerlink" title="503. Next Greater Element II"></a>503. Next Greater Element II</h2><p>The easiest solution to come up with is to double the size of the array, but we can emulate it using cyclic array.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] nextGreaterElements(int[] nums) &#123;</span><br><span class="line">        Stack&lt;Integer&gt; stack&#x3D;new Stack&lt;&gt;();</span><br><span class="line">        int n&#x3D;nums.length;</span><br><span class="line">        int[] res&#x3D;new int[n];</span><br><span class="line">        for(int i&#x3D;2*n-1;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            while(!stack.isEmpty()&amp;&amp;stack.peek()&lt;&#x3D;nums[i%n])&#123;</span><br><span class="line">                stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            res[i%n]&#x3D;stack.isEmpty()?-1:stack.peek();</span><br><span class="line">            stack.push(nums[i%n]);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/20/mergeStones/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -603,284 +877,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/11/connectSticks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/11/connectSticks/" class="post-title-link" itemprop="url">1167. Minimum Cost to Connect Sticks</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-05-11 21:20:31 / Modified: 21:21:39" itemprop="dateCreated datePublished" datetime="2021-05-11T21:20:31+01:00">2021-05-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int connectSticks(int[] sticks) &#123;</span><br><span class="line">        Queue&lt;Integer&gt; q&#x3D;new PriorityQueue&lt;&gt;();</span><br><span class="line">        for(int i:sticks)&#123;</span><br><span class="line">            q.offer(i);</span><br><span class="line">        &#125;</span><br><span class="line">        int res&#x3D;0;</span><br><span class="line">        while(q.size()&gt;1)&#123;</span><br><span class="line">            int i&#x3D;q.poll()+q.poll();</span><br><span class="line">            res+&#x3D;i;</span><br><span class="line">            q.offer(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/11/snakesAndLadders/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/11/snakesAndLadders/" class="post-title-link" itemprop="url">909. Snakes and Ladders</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-05-11 15:38:13 / Modified: 15:41:54" itemprop="dateCreated datePublished" datetime="2021-05-11T15:38:13+01:00">2021-05-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>There are two steps for solving the problem:  </p>
-<ul>
-<li>Flatten the 2D array</li>
-<li>BFS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    boolean[] visited;</span><br><span class="line">    int[] b;</span><br><span class="line">    public int snakesAndLadders(int[][] board) &#123;</span><br><span class="line">        int n&#x3D;board.length;</span><br><span class="line">        b&#x3D;new int[n*n+1];</span><br><span class="line">        boolean odd&#x3D;true;</span><br><span class="line">        for(int i&#x3D;n-1;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            for(int j&#x3D;0;j&lt;n;j++)&#123;</span><br><span class="line">                if(odd)&#123;</span><br><span class="line">                    b[n*(n-1-i)+j+1]&#x3D;board[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    b[n*(n-i)-j]&#x3D;board[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            odd&#x3D;!odd;</span><br><span class="line">        &#125;</span><br><span class="line">        visited&#x3D;new boolean[n*n+1];</span><br><span class="line">        Queue&lt;Integer&gt; q&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">        q.offer(indexOf(1));</span><br><span class="line">        markVisited(1);</span><br><span class="line">        int res&#x3D;0;</span><br><span class="line">        while(!q.isEmpty())&#123;</span><br><span class="line">            int sz&#x3D;q.size();</span><br><span class="line">            for(int i&#x3D;0;i&lt;sz;i++)&#123;</span><br><span class="line">                int node&#x3D;q.poll();</span><br><span class="line">                for(int j&#x3D;1;j&lt;&#x3D;6;j++)&#123;</span><br><span class="line">                    if(!visited[indexOf(node+j)])&#123;</span><br><span class="line">                        if(indexOf(node+j)&#x3D;&#x3D;n*n)&#123;</span><br><span class="line">                            return res+1;</span><br><span class="line">                        &#125;</span><br><span class="line">                        markVisited(node+j);</span><br><span class="line">                        q.offer(indexOf(node+j));</span><br><span class="line">                    &#125; </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    public void markVisited(int i)&#123;</span><br><span class="line">        if(b[i]!&#x3D;-1)&#123;</span><br><span class="line">            visited[b[i]]&#x3D;true;</span><br><span class="line">        &#125;</span><br><span class="line">        visited[i]&#x3D;true;</span><br><span class="line">    &#125;</span><br><span class="line">    public int indexOf(int i)&#123;</span><br><span class="line">        return b[i]&#x3D;&#x3D;-1?i:b[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/10/suggestedProducts/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/10/suggestedProducts/" class="post-title-link" itemprop="url">1268. Search Suggestions System</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-05-10 21:31:39 / Modified: 21:32:57" itemprop="dateCreated datePublished" datetime="2021-05-10T21:31:39+01:00">2021-05-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    TrieNode root;</span><br><span class="line">    public List&lt;List&lt;String&gt;&gt; suggestedProducts(String[] products, String searchWord) &#123;</span><br><span class="line">        root&#x3D;new TrieNode();</span><br><span class="line">        TrieNode cur&#x3D;root;</span><br><span class="line">        for(String s:products)&#123;</span><br><span class="line">            insert(s);</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;List&lt;String&gt;&gt; res&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">        for(char c:searchWord.toCharArray())&#123;</span><br><span class="line">            List&lt;String&gt; sub&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">            if(cur!&#x3D;null)&#123;</span><br><span class="line">                cur&#x3D;cur.getChild(c);</span><br><span class="line">            &#125;</span><br><span class="line">            if(cur!&#x3D;null)&#123;</span><br><span class="line">                for(TrieNode node:cur.hotList)&#123;</span><br><span class="line">                    sub.add(node.s);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            res.add(sub);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    public void insert(String product)&#123;</span><br><span class="line">        TrieNode cur&#x3D;root;</span><br><span class="line">        List&lt;TrieNode&gt; list&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">        for(char c:product.toCharArray())&#123;</span><br><span class="line">            if(cur.getChild(c)&#x3D;&#x3D;null)&#123;</span><br><span class="line">                cur.setChild(c,new TrieNode());</span><br><span class="line">            &#125;</span><br><span class="line">            cur&#x3D;cur.getChild(c);</span><br><span class="line">            list.add(cur);</span><br><span class="line">        &#125;</span><br><span class="line">        cur.s&#x3D;product;</span><br><span class="line">        for(TrieNode node:list)&#123;</span><br><span class="line">            node.update(cur);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class TrieNode implements Comparable&lt;TrieNode&gt;&#123;</span><br><span class="line">    String s;</span><br><span class="line">    TrieNode[] children&#x3D;new TrieNode[27];</span><br><span class="line">    List&lt;TrieNode&gt; hotList&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">    public TrieNode getChild(char c)&#123;</span><br><span class="line">        return children[c&#x3D;&#x3D;&#39; &#39;?26:c-&#39;a&#39;];</span><br><span class="line">    &#125;</span><br><span class="line">    public void setChild(char c,TrieNode node)&#123;</span><br><span class="line">        children[c&#x3D;&#x3D;&#39; &#39;?26:c-&#39;a&#39;]&#x3D;node;</span><br><span class="line">    &#125;</span><br><span class="line">    public int compareTo(TrieNode o)&#123;</span><br><span class="line">        return this.s.compareTo(o.s);</span><br><span class="line">    &#125;</span><br><span class="line">    public void update(TrieNode o)&#123;</span><br><span class="line">        hotList.add(o);</span><br><span class="line">        Collections.sort(hotList);</span><br><span class="line">        if(hotList.size()&gt;3)&#123;</span><br><span class="line">            hotList.remove(hotList.size()-1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/10/countComponents/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/10/countComponents/" class="post-title-link" itemprop="url">323. Number of Connected Components in an Undirected Graph</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-05-10 15:49:36 / Modified: 15:53:12" itemprop="dateCreated datePublished" datetime="2021-05-10T15:49:36+01:00">2021-05-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>It is a typical union find question.  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    int[] id;</span><br><span class="line">    int[] sz;</span><br><span class="line">    int count;</span><br><span class="line">    &#x2F;&#x2F;find the root node</span><br><span class="line">    public int findRoot(int p)&#123;</span><br><span class="line">        if(id[p]&#x3D;&#x3D;p) return p;</span><br><span class="line">        while(p!&#x3D;id[p])&#123;</span><br><span class="line">            id[p]&#x3D;id[id[p]];</span><br><span class="line">            p&#x3D;id[p];</span><br><span class="line">        &#125;</span><br><span class="line">        return p;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;if they are already connected,return 0; else return 1</span><br><span class="line">    public int combine(int p,int q)&#123;</span><br><span class="line">        int r1&#x3D;findRoot(p);</span><br><span class="line">        int r2&#x3D;findRoot(q);</span><br><span class="line">        if(r1&#x3D;&#x3D;r2) return 0;</span><br><span class="line">        if(sz[r1]&gt;sz[r2])&#123;</span><br><span class="line">            sz[r1]+&#x3D;sz[r2];</span><br><span class="line">            id[r2]&#x3D;id[r1];</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            sz[r2]+&#x3D;sz[r1];</span><br><span class="line">            id[r1]&#x3D;id[r2];</span><br><span class="line">        &#125;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    public int countComponents(int n, int[][] edges) &#123;</span><br><span class="line">        id&#x3D;new int[n];</span><br><span class="line">        sz&#x3D;new int[n];</span><br><span class="line">        count&#x3D;n;</span><br><span class="line">        for(int i&#x3D;0;i&lt;n;i++)&#123;</span><br><span class="line">            id[i]&#x3D;i;</span><br><span class="line">            sz[i]&#x3D;1;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int[] edge:edges)&#123;</span><br><span class="line">            count-&#x3D;combine(edge[0],edge[1]);</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
     <div class="tag-cloud">
@@ -996,7 +996,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">150</span>
+          <span class="site-state-item-count">154</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
