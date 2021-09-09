@@ -184,6 +184,150 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/isAlienSorted/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/20/isAlienSorted/" class="post-title-link" itemprop="url">953. Verifying an Alien Dictionary</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-20 15:17:56 / Modified: 15:50:33" itemprop="dateCreated datePublished" datetime="2021-03-20T15:17:56+00:00">2021-03-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>Given that there is only 26 letters in the dictionary, we can use an integer array instead of hashmap to save the order of the alien dictionary.</li>
+<li>Looping through the entire words array, each time we only compare the adjacent two words.  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isAlienSorted(String[] words, String order) &#123;</span><br><span class="line">        int[] wordOrder&#x3D;new int[26];</span><br><span class="line">        for(int i&#x3D;0;i&lt;order.length();i++)&#123;</span><br><span class="line">            wordOrder[order.charAt(i)-&#39;a&#39;]&#x3D;i;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;0;i&lt;words.length-1;++i)&#123;</span><br><span class="line">            String word1&#x3D;words[i];</span><br><span class="line">            String word2&#x3D;words[i+1];</span><br><span class="line">            for(int j&#x3D;0;j&lt;Math.min(word1.length(),word2.length());j++)&#123;</span><br><span class="line">                char c1&#x3D;word1.charAt(j);</span><br><span class="line">                char c2&#x3D;word2.charAt(j);</span><br><span class="line">                if(wordOrder[c1-&#39;a&#39;]&gt;wordOrder[c2-&#39;a&#39;]) return false;</span><br><span class="line">                if(wordOrder[c1-&#39;a&#39;]&lt;wordOrder[c2-&#39;a&#39;]) break;</span><br><span class="line">                if(j&#x3D;&#x3D;Math.min(word1.length(),word2.length())-1&amp;&amp;word1.length()&gt;word2.length()) return false;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/11/longestSubstring/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Christine Cao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Christine Cao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/11/longestSubstring/" class="post-title-link" itemprop="url">395. Longest Substring with At Least K Repeating Characters</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-11 22:17:21 / Modified: 22:23:58" itemprop="dateCreated datePublished" datetime="2021-03-11T22:17:21+00:00">2021-03-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Divide and Conquer is one of the popular strategies that work in 2 phases.</p>
+<ul>
+<li>Divide the problem into subproblems. (Divide Phase).</li>
+<li>Repeatedly solve each subproblem independently and combine the result to solve the original problem. (Conquer Phase).  </li>
+</ul>
+<p>In coping with this problem, we can first count the frequency of each element. Then we use the elements which are less frequent than k as dilimeter and conquer the problem in substrings divided by them.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int longestSubstring(String s, int k) &#123;</span><br><span class="line">        return longestSubstring(s,0,s.length()-1,k);</span><br><span class="line">    &#125;</span><br><span class="line">    private int longestSubstring(String s,int start,int end,int k)&#123;</span><br><span class="line">        if(end-start+1&lt;k) return 0;</span><br><span class="line">        int[] count&#x3D;new int[26];</span><br><span class="line">        for(int i&#x3D;start;i&lt;&#x3D;end;i++)&#123;</span><br><span class="line">            count[s.charAt(i)-&#39;a&#39;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        for(int i&#x3D;start;i&lt;&#x3D;end;i++)&#123;</span><br><span class="line">            if(count[s.charAt(i)-&#39;a&#39;]&gt;&#x3D;k) continue;</span><br><span class="line">            int divider&#x3D;i+1;</span><br><span class="line">            while(divider&lt;&#x3D;end&amp;&amp;count[s.charAt(divider)-&#39;a&#39;]&lt;k) divider++;</span><br><span class="line">            return Math.max(longestSubstring(s,start,i-1,k),longestSubstring(s,divider,end,k));</span><br><span class="line">        &#125;</span><br><span class="line">        return end-start+1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/11/shuffle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -747,171 +891,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/08/wiggleSort/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/08/wiggleSort/" class="post-title-link" itemprop="url">324. Wiggle Sort II</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-03-08 17:59:20 / Modified: 18:57:23" itemprop="dateCreated datePublished" datetime="2021-03-08T17:59:20+00:00">2021-03-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>The main idea here is that we need to keep the median as far away as possible so we can get the correct answer in case like [4,5,5,6].  </p>
-<ul>
-<li>First we reuse the algorithm for finding the kth largest element to find the median of the array.  </li>
-<li>We loop through the array to allocate element larger than median to odd indexes starting from left to right and element smaller to even idexes starting from right to left. At last we allocate the rest medians.  </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public void wiggleSort(int[] nums) &#123;</span><br><span class="line">        int med&#x3D;findMedian(nums);</span><br><span class="line">        int[] temp&#x3D;new int[nums.length];</span><br><span class="line">        int odd&#x3D;1;</span><br><span class="line">        int even&#x3D;nums.length%2&#x3D;&#x3D;0?nums.length-2:nums.length-1;</span><br><span class="line">        for(int num:nums)&#123;</span><br><span class="line">            if(num&gt;med)&#123;</span><br><span class="line">                temp[odd]&#x3D;num;</span><br><span class="line">                odd+&#x3D;2;</span><br><span class="line">            &#125;</span><br><span class="line">            if(num&lt;med)&#123;</span><br><span class="line">                temp[even]&#x3D;num;</span><br><span class="line">                even-&#x3D;2;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while(odd&lt;nums.length)&#123;</span><br><span class="line">            temp[odd]&#x3D;med;</span><br><span class="line">            odd+&#x3D;2;</span><br><span class="line">        &#125;</span><br><span class="line">        while(even&gt;&#x3D;0)&#123;</span><br><span class="line">            temp[even]&#x3D;med;</span><br><span class="line">            even-&#x3D;2;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;0;i&lt;nums.length;i++)&#123;</span><br><span class="line">            nums[i]&#x3D;temp[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    private int findMedian(int[] nums)&#123;</span><br><span class="line">        int med&#x3D;nums.length&#x2F;2;</span><br><span class="line">        int l&#x3D;0;</span><br><span class="line">        int r&#x3D;nums.length-1;</span><br><span class="line">        while(l&lt;&#x3D;r)&#123;</span><br><span class="line">            int pivot&#x3D;partition(nums,l,r);</span><br><span class="line">            if(pivot&lt;med)&#123;</span><br><span class="line">                l&#x3D;pivot+1;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(pivot&gt;med)&#123;</span><br><span class="line">                r&#x3D;pivot-1;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                return nums[pivot];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    private int partition(int[] nums,int start,int end)&#123;</span><br><span class="line">        if(start&#x3D;&#x3D;end) return start;</span><br><span class="line">        int pivot&#x3D;nums[start];</span><br><span class="line">        int i&#x3D;start;</span><br><span class="line">        int j&#x3D;end+1;</span><br><span class="line">        while(true)&#123;</span><br><span class="line">            while(nums[++i]&lt;pivot)&#123;</span><br><span class="line">                if(i&#x3D;&#x3D;end) break;</span><br><span class="line">            &#125;</span><br><span class="line">            while(nums[--j]&gt;&#x3D;pivot)&#123;</span><br><span class="line">                if(j&#x3D;&#x3D;start) break;</span><br><span class="line">            &#125;</span><br><span class="line">            if(i&gt;&#x3D;j) break;</span><br><span class="line">            swap(nums,i,j);</span><br><span class="line">        &#125;</span><br><span class="line">        swap(nums,j,start);</span><br><span class="line">        return j;</span><br><span class="line">    &#125;</span><br><span class="line">    private void swap(int[] nums,int p,int q)&#123;</span><br><span class="line">        int temp&#x3D;nums[p];</span><br><span class="line">        nums[p]&#x3D;nums[q];</span><br><span class="line">        nums[q]&#x3D;temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/06/gameOfLife/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="Christine Cao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Christine Cao's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/06/gameOfLife/" class="post-title-link" itemprop="url">289. Game of Life</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-06 14:22:59" itemprop="dateCreated datePublished" datetime="2021-03-06T14:22:59+00:00">2021-03-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-07 20:36:20" itemprop="dateModified" datetime="2021-03-07T20:36:20+00:00">2021-03-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>The most important trick of this problem(to do it inplace) is to use different integers to denote live-&gt;dead and dead-&gt;live so that they won’t corrupt the initial values. In my solution, I use -1 and 2 to represent them respectively.  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public void gameOfLife(int[][] board) &#123;</span><br><span class="line">        int[] neighbors&#x3D;new int[]&#123;-1,0,1&#125;;</span><br><span class="line">        int m&#x3D;board.length;</span><br><span class="line">        int n&#x3D;board[0].length;</span><br><span class="line">        for(int r&#x3D;0;r&lt;m;r++)&#123;</span><br><span class="line">            for(int c&#x3D;0;c&lt;n;c++)&#123;</span><br><span class="line">                int liveneighbor&#x3D;0;</span><br><span class="line">                for(int i&#x3D;0;i&lt;3;i++)&#123;</span><br><span class="line">                    for(int j&#x3D;0;j&lt;3;j++)&#123;</span><br><span class="line">                        if(!(neighbors[i]&#x3D;&#x3D;0&amp;&amp;neighbors[j]&#x3D;&#x3D;0))&#123;</span><br><span class="line">                            int row&#x3D;r+neighbors[i];</span><br><span class="line">                            int col&#x3D;c+neighbors[j];</span><br><span class="line">                            if(row&gt;&#x3D;0&amp;&amp;row&lt;m&amp;&amp;col&gt;&#x3D;0&amp;&amp;col&lt;n)&#123;</span><br><span class="line">                                if(Math.abs(board[row][col])&#x3D;&#x3D;1) liveneighbor++;</span><br><span class="line">                            &#125;</span><br><span class="line">                            </span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                if(board[r][c]&#x3D;&#x3D;0&amp;&amp;liveneighbor&#x3D;&#x3D;3) board[r][c]&#x3D;2;</span><br><span class="line">                if(board[r][c]&#x3D;&#x3D;1&amp;&amp;(liveneighbor&lt;2||liveneighbor&gt;3)) board[r][c]&#x3D;-1;</span><br><span class="line">                   &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                   for(int i&#x3D;0;i&lt;m;i++)&#123;</span><br><span class="line">                       for(int j&#x3D;0;j&lt;n;j++)&#123;</span><br><span class="line">                           if(board[i][j]&#x3D;&#x3D;2) board[i][j]&#x3D;1;</span><br><span class="line">                           if(board[i][j]&lt;0) board[i][j]&#x3D;0;</span><br><span class="line">                       &#125;</span><br><span class="line">                   &#125;</span><br><span class="line">                        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>Follow up:  </p>
-<ul>
-<li><p>It would be computationally impossible to iterate a matrix that large.</p>
-</li>
-<li><p>It would not be possible to store that big a matrix entirely in memory. We have huge memory capacities these days i.e. of the order of hundreds of GBs. However, it still wouldn’t be enough to store such a large matrix in memory.</p>
-</li>
-<li><p>We would be wasting a lot of space if such a huge board only has a few live cells and the rest of them are all dead. In such a case, we have an extremely sparse matrix and it wouldn’t make sense to save the board as a “matrix”.</p>
-</li>
-<li><p>Solution:<br>For the first two situations, we read one row at a time from the file and at max we will have 3 rows in memory. We will keep discarding rows that are processed and then we will keep reading new rows from the file, one at a time.<br>For the third situation, we could only keep the set of the coordinates of live cells, and count the times of the appearance of its surrounding cells, use it to update the board.   </p>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
     <div class="tag-cloud">
@@ -1027,7 +1010,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">180</span>
+          <span class="site-state-item-count">182</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
